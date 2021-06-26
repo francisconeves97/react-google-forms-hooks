@@ -1,0 +1,98 @@
+{
+  "action": "e/1FAIpQLSe5U3qvg8WHs4nkU-e6h2RlAD7fKoCkou6HO2w2-tXYIA_F8g",
+  "fvv": 1,
+  "pageHistory": 0,
+  "fbzx": "-269944567407372274",
+  "fields": {
+    "461850935": {
+      "id": "461850935",
+      "label": "Short answer",
+      "fieldType": "SHORT_ANSWER",
+      "required": true
+    },
+    "705101286": {
+      "id": "705101286",
+      "label": "Checkbox question",
+      "fieldType": "CHECKBOX",
+      "required": true,
+      "options": [
+        {
+          "custom": false,
+          "href": "",
+          "label": "Opção 1"
+        },
+        {
+          "custom": false,
+          "href": "",
+          "label": "Opção 2"
+        },
+        {
+          "custom": false,
+          "href": "",
+          "label": "Opção 3"
+        },
+        {
+          "custom": true,
+          "href": "",
+          "label": ""
+        }
+      ]
+    },
+    "1387297716": {
+      "id": "1387297716",
+      "label": "Multiple choice question",
+      "fieldType": "RADIO",
+      "required": true,
+      "options": [
+        {
+          "custom": false,
+          "href": "",
+          "label": "Opção 1"
+        },
+        {
+          "custom": false,
+          "href": "",
+          "label": "Opção 2"
+        },
+        {
+          "custom": false,
+          "href": "",
+          "label": "Opção 3"
+        },
+        {
+          "custom": false,
+          "href": "",
+          "label": "Opção 4"
+        },
+        {
+          "custom": true,
+          "href": "",
+          "label": ""
+        }
+      ]
+    },
+    "1740631530": {
+      "id": "1740631530",
+      "label": "Long answer",
+      "fieldType": "LONG_ANSWER",
+      "required": false
+    },
+    "1872810205": {
+      "id": "1872810205",
+      "label": "",
+      "fieldType": "GRID",
+      "required": false,
+      "columns": [
+        {
+          "label": "Coluna 1"
+        }
+      ],
+      "lines": [
+        {
+          "id": "1872810205",
+          "name": "Linha 1"
+        }
+      ]
+    }
+  }
+}

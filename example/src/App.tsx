@@ -1,10 +1,22 @@
 import React from 'react'
 
-import { ExampleComponent } from 'react-google-forms'
-import 'react-google-forms/dist/index.css'
+import { useGoogleFormContext, GoogleFormProvider } from './useFormContext'
+import { useGoogleForm } from './useGoogleForm'
+import CheckboxInput from './components/CheckboxInput'
+
+import form from './form.json'
+
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  const methods = useGoogleForm({ form })
+
+  return (
+    <div>
+      <GoogleFormProvider {...methods}>
+        <CheckboxInput questionId="705101286" />
+      </GoogleFormProvider>
+    </div>
+  )
 }
 
 export default App
