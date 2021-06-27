@@ -51,12 +51,15 @@ const mapDropdownAnswer = (field) => {
 
 const mapCheckboxAnswer = (field) => {
   const { id, required, options } = field.widgets[0]
+  const hasCustom = options.some((o) => o.custom)
+
   return {
     id,
     label: field.label,
     fieldType: 'CHECKBOX',
     required,
-    options
+    hasCustom,
+    options: options.filter((o) => !o.custom)
   }
 }
 

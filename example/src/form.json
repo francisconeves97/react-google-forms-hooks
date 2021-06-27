@@ -2,7 +2,7 @@
   "action": "e/1FAIpQLSe5U3qvg8WHs4nkU-e6h2RlAD7fKoCkou6HO2w2-tXYIA_F8g",
   "fvv": 1,
   "pageHistory": 0,
-  "fbzx": "-269944567407372274",
+  "fbzx": "-8054297886567980036",
   "fields": {
     "461850935": {
       "id": "461850935",
@@ -15,6 +15,7 @@
       "label": "Checkbox question",
       "fieldType": "CHECKBOX",
       "required": true,
+      "hasCustom": true,
       "options": [
         {
           "custom": false,
@@ -30,11 +31,6 @@
           "custom": false,
           "href": "",
           "label": "Opção 3"
-        },
-        {
-          "custom": true,
-          "href": "",
-          "label": ""
         }
       ]
     },
