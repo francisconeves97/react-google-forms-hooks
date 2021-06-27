@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 
 import { useGoogleFormContext } from "./useFormContext"
@@ -13,13 +14,19 @@ const buildCustomFieldId = (id) => {
 export const useCheckboxInput = (id) => {
   const context = useGoogleFormContext()
   const field = context.getField(id)
+  const [customInputRequired, setCustomInputRequired] = useState(false)
+
   const register = (options = {}) => context.register(id, { required: field.required, ...options })
   const registerCustom = (options = {}) => ({ ...register(), value: '__other_option__' })
   const registerCustomInput = (options = {}) => {
-    return context.register(buildCustomFieldId(id), { validate: (v) => {
-      return !context.getValues(id).includes('__other_option__') || v.length > 0 
-    }})
+    return context.register(buildCustomFieldId(id), { required: customInputRequired})
   }
+
+  const currentValue = context.watch(id)
+
+  useEffect(() => {
+    setCustomInputRequired(currentValue && currentValue.includes('__other_option__'))
+  }, [currentValue, customInputRequired])
 
   return { ...field, register, registerCustom, registerCustomInput }
 }
