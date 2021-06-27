@@ -5,6 +5,7 @@ import { useGoogleForm } from './useGoogleForm'
 import CheckboxInput from './components/CheckboxInput'
 import RadioInput from './components/RadioInput'
 import ShortAnswerInput from './components/ShortAnswerInput'
+import LongAnswerInput from './components/LongAnswerInput'
 
 import form from './form.json'
 
@@ -22,6 +23,7 @@ const App = () => {
         <CheckboxInput questionId="705101286" />
         <RadioInput questionId="1387297716" />
         <ShortAnswerInput questionId="461850935" />
+        <LongAnswerInput questionId="1740631530" />
         <button type='submit'>Submeter</button>
         </form>
       </GoogleFormProvider>

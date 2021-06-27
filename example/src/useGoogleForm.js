@@ -28,6 +28,17 @@ export const useShortAnswerInput = (id) => {
   return { ...field, register }
 }
 
+export const useLongAnswerInput = (id) => {
+  const context = useGoogleFormContext()
+  const field = context.getField(id)
+
+  assertInputType(field, 'LONG_ANSWER')
+
+  const register = (options = {}) => context.register(id, { required: field.required, ...options })
+
+  return { ...field, register }
+}
+
 export const useCheckboxInput = (id) => {
   const context = useGoogleFormContext()
   const field = context.getField(id)
