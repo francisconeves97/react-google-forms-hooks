@@ -11,9 +11,18 @@ const buildCustomFieldId = (id) => {
   return `${id}-other_option_response`
 }
 
+const assertInputType = (field, fieldType) => {
+  if (field.type !== fieldType) {
+    throw new Error(`Field with id ${field.id} is not of type ${fieldType}. It's type is ${field.type}`)
+  }
+}
+
 export const useCheckboxInput = (id) => {
   const context = useGoogleFormContext()
   const field = context.getField(id)
+
+  assertInputType(field, 'CHECKBOX')
+
   const [customInputRequired, setCustomInputRequired] = useState(false)
 
   const register = (options = {}) => context.register(id, { required: field.required, ...options })

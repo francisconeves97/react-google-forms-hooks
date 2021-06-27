@@ -12,7 +12,7 @@ const mapShortAnswer = (field) => {
   return {
     id,
     label: field.label,
-    fieldType: 'SHORT_ANSWER',
+    type: 'SHORT_ANSWER',
     required
   }
 }
@@ -22,7 +22,7 @@ const mapLongAnswer = (field) => {
   return {
     id,
     label: field.label,
-    fieldType: 'LONG_ANSWER',
+    type: 'LONG_ANSWER',
     required
   }
 }
@@ -32,7 +32,7 @@ const mapRadioAnswer = (field) => {
   return {
     id,
     label: field.label,
-    fieldType: 'RADIO',
+    type: 'RADIO',
     required,
     options
   }
@@ -43,7 +43,7 @@ const mapDropdownAnswer = (field) => {
   return {
     id,
     label: field.label,
-    fieldType: 'DROPDOWN',
+    type: 'DROPDOWN',
     required,
     options
   }
@@ -56,7 +56,7 @@ const mapCheckboxAnswer = (field) => {
   return {
     id,
     label: field.label,
-    fieldType: 'CHECKBOX',
+    type: 'CHECKBOX',
     required,
     hasCustom,
     options: options.filter((o) => !o.custom)
@@ -68,7 +68,7 @@ const mapLinearAnswer = (field) => {
   return {
     id,
     label: field.label,
-    fieldType: 'LINEAR',
+    type: 'LINEAR',
     required,
     options,
     legend
@@ -88,7 +88,7 @@ const mapGridAnswer = (field) => {
   return {
     id,
     label: field.label,
-    fieldType: 'GRID',
+    type: 'GRID',
     required,
     columns,
     lines: field.widgets.map(mapGridLine)

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useGoogleFormContext, GoogleFormProvider } from './useFormContext'
+import { GoogleFormProvider } from './useFormContext'
 import { useGoogleForm } from './useGoogleForm'
 import CheckboxInput from './components/CheckboxInput'
 
