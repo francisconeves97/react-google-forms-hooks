@@ -1,1 +1,90 @@
-{"action":"e/1FAIpQLSe5U3qvg8WHs4nkU-e6h2RlAD7fKoCkou6HO2w2-tXYIA_F8g","fvv":1,"pageHistory":0,"fbzx":"-7788110695962068060","fields":{"461850935":{"id":"461850935","label":"Short answer","type":"SHORT_ANSWER","required":true},"705101286":{"id":"705101286","label":"Checkbox question","type":"CHECKBOX","required":true,"hasCustom":true,"options":[{"custom":false,"href":"","label":"Opção 1"},{"custom":false,"href":"","label":"Opção 2"},{"custom":false,"href":"","label":"Opção 3"}]},"1387297716":{"id":"1387297716","label":"Multiple choice question","type":"RADIO","required":true,"options":[{"custom":false,"href":"","label":"Opção 1"},{"custom":false,"href":"","label":"Opção 2"},{"custom":false,"href":"","label":"Opção 3"},{"custom":false,"href":"","label":"Opção 4"}],"hasCustom":true},"1740631530":{"id":"1740631530","label":"Long answer","type":"LONG_ANSWER","required":false},"1872810205":{"id":"1872810205","label":"","type":"GRID","required":false,"columns":[{"label":"Coluna 1"}],"lines":[{"id":"1872810205","name":"Linha 1"}]}}}
+{
+  "action": "e/1FAIpQLSe5U3qvg8WHs4nkU-e6h2RlAD7fKoCkou6HO2w2-tXYIA_F8g",
+  "fvv": 1,
+  "pageHistory": 0,
+  "fbzx": "-7788110695962068060",
+  "fields": {
+    "461850935": {
+      "id": "461850935",
+      "label": "Short answer",
+      "type": "SHORT_ANSWER",
+      "required": true
+    },
+    "705101286": {
+      "id": "705101286",
+      "label": "Checkbox question",
+      "type": "CHECKBOX",
+      "required": true,
+      "hasCustom": true,
+      "options": [
+        {
+          "custom": false,
+          "href": "",
+          "label": "Opção 1"
+        },
+        {
+          "custom": false,
+          "href": "",
+          "label": "Opção 2"
+        },
+        {
+          "custom": false,
+          "href": "",
+          "label": "Opção 3"
+        }
+      ]
+    },
+    "1387297716": {
+      "id": "1387297716",
+      "label": "Multiple choice question",
+      "type": "RADIO",
+      "required": true,
+      "options": [
+        {
+          "custom": false,
+          "href": "",
+          "label": "Opção 1"
+        },
+        {
+          "custom": false,
+          "href": "",
+          "label": "Opção 2"
+        },
+        {
+          "custom": false,
+          "href": "",
+          "label": "Opção 3"
+        },
+        {
+          "custom": false,
+          "href": "",
+          "label": "Opção 4"
+        }
+      ],
+      "hasCustom": true
+    },
+    "1740631530": {
+      "id": "1740631530",
+      "label": "Long answer",
+      "type": "LONG_ANSWER",
+      "required": false
+    },
+    "1872810205": {
+      "id": "1872810205",
+      "label": "",
+      "type": "GRID",
+      "required": false,
+      "columns": [
+        {
+          "label": "Coluna 1"
+        }
+      ],
+      "lines": [
+        {
+          "id": "1872810205",
+          "name": "Linha 1"
+        }
+      ]
+    }
+  }
+}

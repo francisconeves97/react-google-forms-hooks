@@ -4,6 +4,7 @@ import { GoogleFormProvider } from './useFormContext'
 import { useGoogleForm } from './useGoogleForm'
 import CheckboxInput from './components/CheckboxInput'
 import RadioInput from './components/RadioInput'
+import ShortAnswerInput from './components/ShortAnswerInput'
 
 import form from './form.json'
 
@@ -20,6 +21,7 @@ const App = () => {
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <CheckboxInput questionId="705101286" />
         <RadioInput questionId="1387297716" />
+        <ShortAnswerInput questionId="461850935" />
         <button type='submit'>Submeter</button>
         </form>
       </GoogleFormProvider>

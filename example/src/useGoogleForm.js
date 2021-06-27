@@ -17,6 +17,17 @@ const assertInputType = (field, fieldType) => {
   }
 }
 
+export const useShortAnswerInput = (id) => {
+  const context = useGoogleFormContext()
+  const field = context.getField(id)
+
+  assertInputType(field, 'SHORT_ANSWER')
+
+  const register = (options = {}) => context.register(id, { required: field.required, ...options })
+
+  return { ...field, register }
+}
+
 export const useCheckboxInput = (id) => {
   const context = useGoogleFormContext()
   const field = context.getField(id)
