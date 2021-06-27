@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 
 import { useGoogleFormContext } from "./useFormContext"
@@ -15,6 +15,32 @@ const assertInputType = (field, fieldType) => {
   if (field.type !== fieldType) {
     throw new Error(`Field with id ${field.id} is not of type ${fieldType}. It's type is ${field.type}`)
   }
+}
+
+export const useGridInput = (id) => {
+  const context = useGoogleFormContext()
+  const field = context.getField(id)
+
+  assertInputType(field, 'GRID')
+
+  const register = (options = {}) => context.register(id, { required: field.required, ...options })
+
+  const renderGrid = (render) => {
+    return field.lines.map(l => {
+      const registerLine = (options = {}) => context.register(l.id, { required: field.required, ...options })
+      const renderColumns = (render) => {
+        return field.columns.map(c => {
+          const registerColumn = () => ({ ...registerLine(), value: c.label })
+
+          return render({ ...c, registerColumn })
+        })
+      }
+
+      return render({ ...l, renderColumns })
+    })
+  }
+
+  return { ...field, register, renderGrid }
 }
 
 export const useShortAnswerInput = (id) => {

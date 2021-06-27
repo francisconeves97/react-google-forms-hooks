@@ -2,7 +2,7 @@
   "action": "e/1FAIpQLSe5U3qvg8WHs4nkU-e6h2RlAD7fKoCkou6HO2w2-tXYIA_F8g",
   "fvv": 1,
   "pageHistory": 0,
-  "fbzx": "-7788110695962068060",
+  "fbzx": "8786507097368773532",
   "fields": {
     "461850935": {
       "id": "461850935",
@@ -31,6 +31,95 @@
           "custom": false,
           "href": "",
           "label": "Opção 3"
+        }
+      ]
+    },
+    "718815240": {
+      "id": "718815240",
+      "label": "Linear scale",
+      "type": "LINEAR",
+      "required": false,
+      "options": [
+        {
+          "label": "1"
+        },
+        {
+          "label": "2"
+        },
+        {
+          "label": "3"
+        },
+        {
+          "label": "4"
+        },
+        {
+          "label": "5"
+        }
+      ],
+      "legend": {
+        "first": "Low number",
+        "last": ""
+      }
+    },
+    "906890030": {
+      "id": "906890030",
+      "label": "Dropdown",
+      "type": "DROPDOWN",
+      "required": false,
+      "options": [
+        {
+          "custom": false,
+          "href": "",
+          "label": "Opção 1"
+        },
+        {
+          "custom": false,
+          "href": "",
+          "label": "Opção 2"
+        },
+        {
+          "custom": false,
+          "href": "",
+          "label": "Opção 3"
+        },
+        {
+          "custom": false,
+          "href": "",
+          "label": "Opção 4"
+        }
+      ]
+    },
+    "1243133950": {
+      "id": "1243133950",
+      "label": "Multiple choice grid",
+      "type": "GRID",
+      "required": true,
+      "columns": [
+        {
+          "label": "Coluna 1"
+        },
+        {
+          "label": "Coluna 2"
+        },
+        {
+          "label": "Coluna 3"
+        },
+        {
+          "label": "Coluna 4"
+        }
+      ],
+      "lines": [
+        {
+          "id": "1243133950",
+          "name": "Linha 1"
+        },
+        {
+          "id": "146706513",
+          "name": "Linha 2"
+        },
+        {
+          "id": "1808973121",
+          "name": "Linha 3"
         }
       ]
     },
@@ -63,6 +152,40 @@
       ],
       "hasCustom": true
     },
+    "1403312854": {
+      "id": "1403312854",
+      "label": "Multiple choice verification grid",
+      "type": "GRID",
+      "required": false,
+      "columns": [
+        {
+          "label": "Coluna 1"
+        },
+        {
+          "label": "Coluna 2"
+        },
+        {
+          "label": "Coluna 3"
+        },
+        {
+          "label": "Coluna 4"
+        }
+      ],
+      "lines": [
+        {
+          "id": "1403312854",
+          "name": "Linha 1"
+        },
+        {
+          "id": "983011973",
+          "name": "Linha 2"
+        },
+        {
+          "id": "1226242907",
+          "name": "Linha 3"
+        }
+      ]
+    },
     "1740631530": {
       "id": "1740631530",
       "label": "Long answer",
@@ -71,18 +194,35 @@
     },
     "1872810205": {
       "id": "1872810205",
-      "label": "",
+      "label": "Grid question",
       "type": "GRID",
       "required": false,
       "columns": [
         {
           "label": "Coluna 1"
+        },
+        {
+          "label": "Coluna 2"
+        },
+        {
+          "label": "Coluna 3"
+        },
+        {
+          "label": "Coluna 4"
         }
       ],
       "lines": [
         {
           "id": "1872810205",
           "name": "Linha 1"
+        },
+        {
+          "id": "540613778",
+          "name": "Linha 2"
+        },
+        {
+          "id": "1477014245",
+          "name": "Linha 3"
         }
       ]
     }

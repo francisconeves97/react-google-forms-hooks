@@ -54,14 +54,14 @@
     "prettier": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1",
-    "typescript": "^3.7.5"
+    "react-scripts": "^3.4.1"
   },
   "files": [
     "dist"
   ],
   "dependencies": {
     "got": "^11.8.2",
-    "react-hook-form": "^7.9.0"
+    "react-hook-form": "^7.9.0",
+    "typescript": "^4.3.4"
   }
 }
