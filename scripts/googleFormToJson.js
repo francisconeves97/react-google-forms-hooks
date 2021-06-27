@@ -29,12 +29,15 @@ const mapLongAnswer = (field) => {
 
 const mapRadioAnswer = (field) => {
   const { id, required, options } = field.widgets[0]
+  const hasCustom = options.some((o) => o.custom)
+
   return {
     id,
     label: field.label,
     type: 'RADIO',
     required,
-    options
+    options: options.filter((o) => !o.custom),
+    hasCustom
   }
 }
 
