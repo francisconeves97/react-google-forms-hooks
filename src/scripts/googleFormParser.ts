@@ -1,19 +1,18 @@
 import cheerio from 'cheerio'
 const axios = require('axios').default
 
-const GOOGLE_FORMS_HOST = 'docs.google.com'
-
 const assertValidUrl = (formUrl: string) => {
+  const googleFormsHost = 'docs.google.com'
   const url = new URL(formUrl)
 
-  if (url.host !== GOOGLE_FORMS_HOST) {
+  if (url.host !== googleFormsHost) {
     throw new Error(
-      `Invalid google forms host. It must be ${GOOGLE_FORMS_HOST} and is ${url.host}`
+      `Invalid google forms host. It must be ${googleFormsHost} and is ${url.host}.`
     )
   }
 
   if (!url.pathname.endsWith('/viewform')) {
-    throw new Error(`Please use the public URL`)
+    throw new Error(`Please use the form's public URL.`)
   }
 }
 
@@ -27,8 +26,26 @@ const extractForm = (html: string) => {
   const fbzx = $('[name="fbzx"]').attr('value')
 
   if (!fbzx) {
-    throw new Error(`Invalid form. Couldn't find fbzx field`)
+    throw new Error(`Invalid form. Couldn't find fbzx field.`)
   }
+
+  const scriptStringIdentifier = 'var FB_PUBLIC_LOAD_DATA_ ='
+  let scriptHtml = $('script')
+    .filter((_, el) => {
+      return $(el)!.html()!.includes(scriptStringIdentifier)
+    })
+    .first()
+    .html()
+
+  if (!scriptHtml) {
+    throw new Error(`Invalid form. Couldn't find script tag.`)
+  }
+
+  scriptHtml = scriptHtml.replace(';', '')
+  scriptHtml = scriptHtml.replace(scriptStringIdentifier, '')
+
+  const formDataRaw = JSON.parse(scriptHtml)
+  return formDataRaw
 }
 
 const googleFormToJson = async (formUrl: string) => {
