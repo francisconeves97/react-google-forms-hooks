@@ -1,5 +1,5 @@
 import cheerio from 'cheerio'
-const axios = require('axios').default
+import axios from 'axios'
 
 const assertValidUrl = (formUrl: string) => {
   const googleFormsHost = 'docs.google.com'
@@ -21,7 +21,7 @@ const getFormHtml = async (formUrl: string) => {
   return html.data
 }
 
-const extractForm = (html: string) => {
+const extractFormData = (html: string) => {
   const $ = cheerio.load(html)
   const fbzx = $('[name="fbzx"]').attr('value')
 
@@ -32,7 +32,7 @@ const extractForm = (html: string) => {
   const scriptStringIdentifier = 'var FB_PUBLIC_LOAD_DATA_ ='
   let scriptHtml = $('script')
     .filter((_, el) => {
-      return $(el)!.html()!.includes(scriptStringIdentifier)
+      return $(el).html()!.includes(scriptStringIdentifier)
     })
     .first()
     .html()
@@ -48,6 +48,8 @@ const extractForm = (html: string) => {
   return formDataRaw
 }
 
+const parseFormData = (formData) => {}
+
 const googleFormToJson = async (formUrl: string) => {
   assertValidUrl(formUrl)
 
@@ -55,11 +57,11 @@ const googleFormToJson = async (formUrl: string) => {
   try {
     html = await getFormHtml(formUrl)
   } catch (err: any) {
-    console.error(err)
     throw new Error(`Failed to fetch form. ${err}`)
   }
 
-  return extractForm(html)
+  const formData = extractFormData(html)
+  return parseFormData(formData)
 }
 
 googleFormToJson(
