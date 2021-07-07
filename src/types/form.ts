@@ -53,17 +53,21 @@ interface GridField extends BaseField {
   lines: Array<Line>
 }
 
-type Field =
+export type Field =
   | TextField
   | CustomOptionField
   | DropdownField
   | GridField
   | LinearField
 
+export interface Fields {
+  [fieldId: string]: Field
+}
+
 export type GoogleForm = {
   action: string
-  fvv: string
-  pageHistory: string
+  fvv: number
+  pageHistory: number
   fbzx: string
   fields: {
     [fieldId: string]: Field
