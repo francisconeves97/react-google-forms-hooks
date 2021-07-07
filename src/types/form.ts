@@ -38,11 +38,11 @@ interface LinearField extends BaseField {
   legend: Legend
 }
 
-interface Column {
+export interface Column {
   label: string
 }
 
-interface Line {
+export interface Line {
   id: string
   label: string
 }

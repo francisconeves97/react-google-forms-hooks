@@ -6,7 +6,9 @@ import {
   Field,
   Fields,
   CustomizableOption,
-  Option
+  Option,
+  Column,
+  Line
 } from '../types/form'
 
 type FormData = {
@@ -103,8 +105,17 @@ const parseCustomizableOptions = (
   }))
 }
 
-const parseGridOptions = (options: Array<Array<string>>): Array<Option> => {
-  return options.map((o) => ({ label: o[0] }))
+const flattenArray = (array: Array<Array<string>>): Array<Option | Column> => {
+  return array.map((item) => ({ label: item[0] }))
+}
+
+const parseLines = (lines: Array<any>): Array<Line> => {
+  return lines.map((rawLine) => {
+    const line = <Line>{}
+    line.id = rawLine[0]
+    line.label = rawLine[3][0]
+    return line
+  })
 }
 
 const toBool = (n: number): boolean => n === 1
@@ -146,13 +157,17 @@ const parseField = (rawField: Array<any>): Field => {
       field.id = fieldInfo[0]
       const [labelFirst, labelLast] = fieldInfo[3]
       field.legend = { labelFirst, labelLast }
-      field.options = parseGridOptions(fieldInfo[1])
+      field.options = flattenArray(fieldInfo[1])
       field.required = toBool(fieldInfo[2])
       break
     }
     case 'CHECKBOX_GRID':
-    case 'RADIO_GRID':
+    case 'RADIO_GRID': {
+      field.id = rawField[0]
+      field.columns = flattenArray(rawField[4][0][1])
+      field.lines = parseLines(rawField[4])
       break
+    }
 
     default:
       break
