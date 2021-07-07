@@ -1,8 +1,8 @@
-interface Option {
+export interface Option {
   label: string
 }
 
-interface CustomizableOption extends Option {
+export interface CustomizableOption extends Option {
   custom?: boolean
 }
 

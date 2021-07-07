@@ -1,7 +1,13 @@
 import cheerio from 'cheerio'
 import axios from 'axios'
 
-import { GoogleForm, Field, Fields } from '../types/form'
+import {
+  GoogleForm,
+  Field,
+  Fields,
+  CustomizableOption,
+  Option
+} from '../types/form'
 
 type FormData = {
   formData: object
@@ -63,39 +69,89 @@ const parseGridMultiSelect = (rawField: Array<any>): 1 | 0 => {
   return canSelectMultiple
 }
 
+const parseFieldType = (rawField: Array<any>, fieldId: number) => {
+  const fieldTypes = [
+    'SHORT_ANSWER',
+    'LONG_ANSWER',
+    'RADIO',
+    'DROPDOWN',
+    'CHECKBOX',
+    'LINEAR'
+  ] as const
+
+  if (fieldId === 7) {
+    if (parseGridMultiSelect(rawField) === 1) {
+      return 'CHECKBOX_GRID'
+    } else {
+      return 'RADIO_GRID'
+    }
+  }
+
+  return fieldTypes[fieldId]
+}
+
+const parseOptions = (options: Array<any>): Array<Option> => {
+  return options.map((rawOption) => ({ label: rawOption[0] }))
+}
+
+const parseCustomizableOptions = (
+  options: Array<any>
+): Array<CustomizableOption> => {
+  return options.map((rawOption) => ({
+    label: rawOption[0],
+    custom: rawOption[4] === 1
+  }))
+}
+
+const parseGridOptions = (options: Array<Array<string>>): Array<Option> => {
+  return options.map((o) => ({ label: o[0] }))
+}
+
+const toBool = (n: number): boolean => n === 1
+
 const parseField = (rawField: Array<any>): Field => {
   const field = <Field>{}
 
-  field.id = rawField[0]
   field.label = rawField[1]
 
   const fieldId = rawField[3]
+  field.type = parseFieldType(rawField, fieldId)
 
-  switch (fieldId) {
-    case 0:
-      field.type = 'SHORT_ANSWER'
+  switch (field.type) {
+    case 'SHORT_ANSWER':
+    case 'LONG_ANSWER': {
+      const fieldInfo = rawField[4][0]
+      field.id = fieldInfo[0]
+      field.required = toBool(fieldInfo[2])
       break
-    case 1:
-      field.type = 'LONG_ANSWER'
+    }
+    case 'CHECKBOX':
+    case 'RADIO': {
+      const fieldInfo = rawField[4][0]
+      field.id = fieldInfo[0]
+      field.options = parseCustomizableOptions(fieldInfo[1])
+      field.hasCustom = field.options.some((o) => o.custom)
+      field.required = toBool(fieldInfo[2])
       break
-    case 2:
-      field.type = 'RADIO'
+    }
+    case 'DROPDOWN': {
+      const fieldInfo = rawField[4][0]
+      field.id = fieldInfo[0]
+      field.options = parseOptions(fieldInfo[1])
+      field.required = toBool(fieldInfo[2])
       break
-    case 3:
-      field.type = 'DROPDOWN'
+    }
+    case 'LINEAR': {
+      const fieldInfo = rawField[4][0]
+      field.id = fieldInfo[0]
+      const [labelFirst, labelLast] = fieldInfo[3]
+      field.legend = { labelFirst, labelLast }
+      field.options = parseGridOptions(fieldInfo[1])
+      field.required = toBool(fieldInfo[2])
       break
-    case 4:
-      field.type = 'CHECKBOX'
-      break
-    case 5:
-      field.type = 'LINEAR'
-      break
-    case 7:
-      if (parseGridMultiSelect(rawField) === 1) {
-        field.type = 'CHECKBOX_GRID'
-      } else {
-        field.type = 'RADIO_GRID'
-      }
+    }
+    case 'CHECKBOX_GRID':
+    case 'RADIO_GRID':
       break
 
     default:
@@ -126,8 +182,7 @@ const parseFormData = ({ formData, fbzx }: FormData): GoogleForm => {
 
   googleForm.fields = parseFields(formData[1][1])
 
-  console.log(JSON.stringify(formData))
-  console.log(googleForm)
+  console.log(JSON.stringify(googleForm))
 
   return googleForm
 }
