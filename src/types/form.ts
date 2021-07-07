@@ -1,16 +1,3 @@
-const textFields = ['SHORT_ANSWER', 'LONG_ANSWER'] as const
-type TextFieldType = typeof textFields[number]
-
-const customOptionFields = ['CHECKBOX', 'RADIO'] as const
-type CustomOptionFieldType = typeof customOptionFields[number]
-
-const fieldTypes = [
-  'LINEAR',
-  'DROPDOWN',
-  'CHECKBOX_GRID',
-  'RADIO_GRID'
-] as const
-
 interface Option {
   label: string
 }
@@ -26,11 +13,11 @@ interface BaseField {
 }
 
 interface TextField extends BaseField {
-  type: TextFieldType
+  type: 'SHORT_ANSWER' | 'LONG_ANSWER'
 }
 
 interface CustomOptionField extends BaseField {
-  type: CustomOptionFieldType
+  type: 'CHECKBOX' | 'RADIO'
   hasCustom: boolean
   options: Array<CustomizableOption>
 }
@@ -40,27 +27,45 @@ interface DropdownField extends BaseField {
   options: Array<Option>
 }
 
+interface Legend {
+  labelFirst: string
+  labelLast: string
+}
+
+interface LinearField extends BaseField {
+  type: 'LINEAR'
+  options: Array<Option>
+  legend: Legend
+}
+
+interface Column {
+  label: string
+}
+
+interface Line {
+  id: string
+  label: string
+}
+
+interface GridField extends BaseField {
+  type: 'RADIO_GRID' | 'CHECKBOX_GRID'
+  columns: Array<Column>
+  lines: Array<Line>
+}
+
+type Field =
+  | TextField
+  | CustomOptionField
+  | DropdownField
+  | GridField
+  | LinearField
+
 export type GoogleForm = {
   action: string
   fvv: string
   pageHistory: string
   fbzx: string
   fields: {
-    [fieldId: string]: TextField | CustomOptionField | DropdownField
-  }
-}
-
-const form: GoogleForm = {
-  action: 'asd',
-  fvv: 'asd',
-  pageHistory: 'asd',
-  fbzx: 'asd',
-  fields: {
-    adsad: {
-      id: 'asd',
-      label: 'asd',
-      required: false,
-      type: 'SHORT_ANSWER'
-    }
+    [fieldId: string]: Field
   }
 }
