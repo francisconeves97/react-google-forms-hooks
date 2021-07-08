@@ -26,3 +26,5 @@ nala
 # editor
 .vscode
 .idea
+
+/src/react-app-env.d.ts
