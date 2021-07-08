@@ -7,7 +7,7 @@
   "repository": "francisconeves97/react-google-forms",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
-  "source": "src/index.tsx",
+  "source": "src/index.ts",
   "engines": {
     "node": ">=10"
   },
