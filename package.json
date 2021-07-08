@@ -6,6 +6,7 @@
   "license": "MIT",
   "repository": "francisconeves97/react-google-forms",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
   "engines": {

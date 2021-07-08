@@ -16,7 +16,7 @@ type FormData = {
   fbzx: string
 }
 
-const assertValidUrl = (formUrl: string) => {
+const assertValidUrl = (formUrl: string): void => {
   const googleFormsHost = 'docs.google.com'
   const url = new URL(formUrl)
 
@@ -64,14 +64,14 @@ const extractFormData = (html: string): FormData => {
   return { formData: formDataRaw, fbzx }
 }
 
-const parseGridMultiSelect = (rawField: Array<any>): 1 | 0 => {
+const parseGridMultiSelect = (rawField: Array<object>): 1 | 0 => {
   const firstLine = rawField[4][0]
   const canSelectMultiple = firstLine[11][0]
 
   return canSelectMultiple
 }
 
-const parseFieldType = (rawField: Array<any>, fieldId: number) => {
+const parseFieldType = (rawField: Array<object>, fieldId: number) => {
   const fieldTypes = [
     'SHORT_ANSWER',
     'LONG_ANSWER',
@@ -92,12 +92,12 @@ const parseFieldType = (rawField: Array<any>, fieldId: number) => {
   return fieldTypes[fieldId]
 }
 
-const parseOptions = (options: Array<any>): Array<Option> => {
+const parseOptions = (options: Array<object>): Array<Option> => {
   return options.map((rawOption) => ({ label: rawOption[0] }))
 }
 
 const parseCustomizableOptions = (
-  options: Array<any>
+  options: Array<object>
 ): Array<CustomizableOption> => {
   return options.map((rawOption) => ({
     label: rawOption[0],
@@ -111,7 +111,7 @@ const flattenArray = (array: Array<Array<string>>): Array<Option | Column> => {
 
 const parseLines = (lines: Array<any>): Array<Line> => {
   return lines.map((rawLine) => {
-    const line = <Line>{}
+    const line = {} as Line
     line.id = rawLine[0]
     line.label = rawLine[3][0]
     return line
@@ -121,7 +121,7 @@ const parseLines = (lines: Array<any>): Array<Line> => {
 const toBool = (n: number): boolean => n === 1
 
 const parseField = (rawField: Array<any>): Field => {
-  const field = <Field>{}
+  const field = {} as Field
 
   field.label = rawField[1]
 
@@ -177,7 +177,7 @@ const parseField = (rawField: Array<any>): Field => {
 }
 
 const parseFields = (rawFields: Array<any>): Fields => {
-  const fields = <Fields>{}
+  const fields = {} as Fields
 
   rawFields.forEach((rawField: Array<any>) => {
     const field = parseField(rawField)
@@ -188,7 +188,7 @@ const parseFields = (rawFields: Array<any>): Fields => {
 }
 
 const parseFormData = ({ formData, fbzx }: FormData): GoogleForm => {
-  const googleForm = <GoogleForm>{}
+  const googleForm = {} as GoogleForm
 
   googleForm.fvv = 1
   googleForm.pageHistory = 0
@@ -202,24 +202,16 @@ const parseFormData = ({ formData, fbzx }: FormData): GoogleForm => {
   return googleForm
 }
 
-const googleFormToJson = async (formUrl: string) => {
+export const googleFormToJson = async (formUrl: string) => {
   assertValidUrl(formUrl)
 
   let html
   try {
     html = await getFormHtml(formUrl)
-  } catch (err: any) {
+  } catch (err) {
     throw new Error(`Failed to fetch form. ${err}`)
   }
 
   const formData = extractFormData(html)
   return parseFormData(formData)
-}
-
-googleFormToJson(
-  'https://docs.google.com/forms/d/e/1FAIpQLSe5U3qvg8WHs4nkU-e6h2RlAD7fKoCkou6HO2w2-tXYIA_F8g/viewform'
-)
-
-module.exports = {
-  googleFormToJson
 }
