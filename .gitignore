@@ -28,3 +28,5 @@ nala
 .idea
 
 /src/react-app-env.d.ts
+
+coverage

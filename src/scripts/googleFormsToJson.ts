@@ -168,9 +168,6 @@ const parseField = (rawField: Array<any>): Field => {
       field.lines = parseLines(rawField[4])
       break
     }
-
-    default:
-      break
   }
 
   return field
@@ -196,8 +193,6 @@ const parseFormData = ({ formData, fbzx }: FormData): GoogleForm => {
   googleForm.action = formData[14]
 
   googleForm.fields = parseFields(formData[1][1])
-
-  console.log(JSON.stringify(googleForm))
 
   return googleForm
 }
