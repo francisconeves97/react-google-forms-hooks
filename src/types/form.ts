@@ -60,6 +60,8 @@ export type Field =
   | GridField
   | LinearField
 
+export type FieldTypes = Field['type']
+
 export interface Fields {
   [fieldId: string]: Field
 }

@@ -1,16 +1,13 @@
 import { useState, useEffect } from 'react'
-import {
-  useForm,
-  UseFormRegisterReturn,
-  RegisterOptions
-} from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
 import { useGoogleFormContext } from './useGoogleFormContext'
 import {
   GoogleForm,
-  Field,
+  UseCustomOptionReturn,
   UseGoogleFormReturn,
-  CustomOptionField
+  CustomOptionField,
+  FieldTypes
 } from '../types'
 
 const resolveField = (id: string, form: GoogleForm) => {
@@ -25,35 +22,33 @@ export const useGoogleForm = ({ form }: { form: GoogleForm }) => {
   return methods
 }
 
-const throwWrongFieldError = (field: Field, type: string) => {
-  throw new Error(`Field with id ${field.id} is not of type ${type}`)
-}
-
 const buildCustomFieldId = (id: string) => {
   return `${id}-other_option_response`
 }
 
-type UseCustomOptionField = CustomOptionField & {
-  register: (options: RegisterOptions) => UseFormRegisterReturn
-  registerCustom: (options: RegisterOptions) => UseFormRegisterReturn
-  registerCustomInput: (options: RegisterOptions) => UseFormRegisterReturn
-}
+type UseCustomOptionField = CustomOptionField & UseCustomOptionReturn
 
-export const useRadioInput = (id: string): UseCustomOptionField => {
-  const context = useGoogleFormContext()
-
-  if (context === null) {
-    throw new Error('You need to wrap your form with a GoogleFormProvider')
-  }
-
+const getFieldFromContext = (
+  context: UseGoogleFormReturn,
+  id: string,
+  type: FieldTypes
+) => {
   const field = context.getField(id)
 
   // can't put this in a function because control flow for typescript doesnt work this way
-  if (field.type !== 'RADIO') {
-    throwWrongFieldError(field, 'RADIO')
+  if (field.type !== type) {
+    throw new Error(`Field with id ${field.id} is not of type ${type}`)
   }
 
+  return field
+}
+
+const useCustomOption = (
+  context: UseGoogleFormReturn,
+  field: CustomOptionField
+): UseCustomOptionReturn => {
   const [customInputRequired, setCustomInputRequired] = useState<boolean>(false)
+  const { id } = field
 
   const register = (options = {}) =>
     context.register(id, { required: field.required, ...options })
@@ -73,6 +68,23 @@ export const useRadioInput = (id: string): UseCustomOptionField => {
   useEffect(() => {
     setCustomInputRequired(currentValue && currentValue === '__other_option__')
   }, [currentValue, customInputRequired])
+
+  return { register, registerCustom, registerCustomInput }
+}
+
+export const useRadioInput = (id: string): UseCustomOptionField => {
+  const context = useGoogleFormContext()
+
+  if (context === null) {
+    throw new Error('You need to wrap your form with a GoogleFormProvider')
+  }
+
+  const field = getFieldFromContext(context, id, 'RADIO') as CustomOptionField
+
+  const { register, registerCustom, registerCustomInput } = useCustomOption(
+    context,
+    field
+  )
 
   return {
     ...(field as CustomOptionField),
