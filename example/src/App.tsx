@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react'
 
-import { googleFormsToJson, GoogleForm } from 'react-google-forms'
+import { googleFormsToJson, GoogleForm, useGoogleForm } from 'react-google-forms'
 import 'react-google-forms/dist/index.css'
+
+const Form = ({ form }: { form: GoogleForm }): React.ReactElement => {
+  const methods = useGoogleForm({ form })
+
+  return <div>ola</div>
+}
+
 
 const App = () => {
   const [json, setJson] = useState<GoogleForm>()
@@ -15,7 +22,7 @@ const App = () => {
     fetchGoogleForm()
   }, [])
 
-  return <div>{json}</div>
+  return json && <div><Form form={json} /></div>
 }
 
 export default App
