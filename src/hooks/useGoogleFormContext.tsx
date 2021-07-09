@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { UseGoogleFormReturn } from '../types/hooks'
+import { UseGoogleFormReturn } from '../types'
 
 const GoogleFormContext = React.createContext<UseGoogleFormReturn | null>(null)
 export const useGoogleFormContext = () => React.useContext(GoogleFormContext)

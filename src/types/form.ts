@@ -16,7 +16,7 @@ interface TextField extends BaseField {
   type: 'SHORT_ANSWER' | 'LONG_ANSWER'
 }
 
-interface CustomOptionField extends BaseField {
+export interface CustomOptionField extends BaseField {
   type: 'CHECKBOX' | 'RADIO'
   hasCustom: boolean
   options: Array<CustomizableOption>

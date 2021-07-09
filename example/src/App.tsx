@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from 'react'
 
-import { googleFormsToJson, GoogleForm, useGoogleForm } from 'react-google-forms'
+import { googleFormsToJson, GoogleForm, useGoogleForm, useRadioInput } from 'react-google-forms'
 import 'react-google-forms/dist/index.css'
+
+const CheckboxInput = (): React.ReactElement => {
+  const methods = useRadioInput('asd')
+
+  return <div>
+    ola
+  </div>
+}
 
 const Form = ({ form }: { form: GoogleForm }): React.ReactElement => {
   const methods = useGoogleForm({ form })
