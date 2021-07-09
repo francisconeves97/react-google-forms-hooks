@@ -72,6 +72,32 @@ const useCustomOption = (
   return { register, registerCustom, registerCustomInput }
 }
 
+export const useCheckboxInput = (id: string): UseCustomOptionField => {
+  const context = useGoogleFormContext()
+
+  if (context === null) {
+    throw new Error('You need to wrap your form with a GoogleFormProvider')
+  }
+
+  const field = getFieldFromContext(
+    context,
+    id,
+    'CHECKBOX'
+  ) as CustomOptionField
+
+  const { register, registerCustom, registerCustomInput } = useCustomOption(
+    context,
+    field
+  )
+
+  return {
+    ...(field as CustomOptionField),
+    register,
+    registerCustom,
+    registerCustomInput
+  }
+}
+
 export const useRadioInput = (id: string): UseCustomOptionField => {
   const context = useGoogleFormContext()
 
