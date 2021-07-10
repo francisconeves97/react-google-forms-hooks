@@ -167,6 +167,7 @@ const parseField = (rawField: Array<any>): Field => {
       field.id = toString(rawField[0])
       field.columns = flattenArray(rawField[4][0][1])
       field.lines = parseLines(rawField[4])
+      field.required = toBool(rawField[4][0][2])
       break
     }
   }
