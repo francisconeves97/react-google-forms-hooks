@@ -17,7 +17,9 @@ import {
   UseGridReturn,
   Option,
   BaseField,
-  DropdownField
+  DropdownField,
+  LinearField,
+  OptionRegister
 } from '../types'
 
 const resolveField = (id: string, form: GoogleForm) => {
@@ -241,4 +243,37 @@ export const useDropdownInput = (id: string): UseDropdownReturn => {
     context!.register(id, { required: field.required, ...options })
 
   return { ...field, register }
+}
+
+type UseLinearInputReturn = LinearField & {
+  options: Array<OptionRegister>
+}
+
+export const useLinearInput = (id: string): UseLinearInputReturn => {
+  const context = useGoogleFormContext()
+
+  const field = getFieldFromContext(context, id, 'LINEAR') as LinearField
+
+  const register = (options = {}) =>
+    context!.register(id, { required: field.required, ...options })
+
+  const buildId = (value: string) => {
+    return `${field.id}-${slugify(value)}`
+  }
+
+  const options = field.options.map((o) => {
+    const id = buildId(o.label)
+    const registerOption = (options = {}) => ({
+      ...register(options),
+      value: o.label
+    })
+
+    return {
+      ...o,
+      id,
+      registerOption
+    }
+  })
+
+  return { ...field, options }
 }
