@@ -28,8 +28,44 @@ describe('googleFormsToJson', () => {
         Object {
           "action": "e/1FAIpQLSe5U3qvg8WHs4nkU-e6h2RlAD7fKoCkou6HO2w2-tXYIA_F8g",
           "fbzx": "2765906482982597825",
-          "fields": Object {
-            "1387297716": Object {
+          "fields": Array [
+            Object {
+              "id": "705101286",
+              "label": "Checkbox question",
+              "options": Array [
+                Object {
+                  "custom": false,
+                  "label": "Opção 1",
+                },
+                Object {
+                  "custom": false,
+                  "label": "Opção 2",
+                },
+                Object {
+                  "custom": false,
+                  "label": "Opção 3",
+                },
+                Object {
+                  "custom": true,
+                  "label": "",
+                },
+              ],
+              "required": true,
+              "type": "CHECKBOX",
+            },
+            Object {
+              "id": "461850935",
+              "label": "Short answer",
+              "required": true,
+              "type": "SHORT_ANSWER",
+            },
+            Object {
+              "id": "1740631530",
+              "label": "Long answer",
+              "required": false,
+              "type": "LONG_ANSWER",
+            },
+            Object {
               "id": "1387297716",
               "label": "Multiple choice question",
               "options": Array [
@@ -57,7 +93,7 @@ describe('googleFormsToJson', () => {
               "required": true,
               "type": "RADIO",
             },
-            "1632852916": Object {
+            Object {
               "columns": Array [
                 Object {
                   "label": "Coluna 1",
@@ -88,54 +124,60 @@ describe('googleFormsToJson', () => {
                   "label": "Linha 3",
                 },
               ],
+              "required": false,
               "type": "RADIO_GRID",
             },
-            "1740631530": Object {
-              "id": "1740631530",
-              "label": "Long answer",
+            Object {
+              "id": "906890030",
+              "label": "Dropdown",
+              "options": Array [
+                Object {
+                  "label": "Opção 1",
+                },
+                Object {
+                  "label": "Opção 2",
+                },
+                Object {
+                  "label": "Opção 3",
+                },
+                Object {
+                  "label": "Opção 4",
+                },
+                Object {
+                  "label": "Opção 5",
+                },
+              ],
               "required": false,
-              "type": "LONG_ANSWER",
+              "type": "DROPDOWN",
             },
-            "1999750833": Object {
-              "columns": Array [
+            Object {
+              "id": "718815240",
+              "label": "Linear scale",
+              "legend": Object {
+                "labelFirst": "Low number",
+                "labelLast": "",
+              },
+              "options": Array [
                 Object {
-                  "label": "Coluna 1",
+                  "label": "1",
                 },
                 Object {
-                  "label": "Coluna 2",
+                  "label": "2",
                 },
                 Object {
-                  "label": "Coluna 3",
+                  "label": "3",
                 },
                 Object {
-                  "label": "Coluna 4",
+                  "label": "4",
+                },
+                Object {
+                  "label": "5",
                 },
               ],
-              "id": "1999750833",
-              "label": "Multiple choice verification grid",
-              "lines": Array [
-                Object {
-                  "id": "1403312854",
-                  "label": "Linha 1",
-                },
-                Object {
-                  "id": "983011973",
-                  "label": "Linha 2",
-                },
-                Object {
-                  "id": "1226242907",
-                  "label": "Linha 3",
-                },
-              ],
-              "type": "CHECKBOX_GRID",
+              "required": false,
+              "type": "LINEAR",
             },
-            "461850935": Object {
-              "id": "461850935",
-              "label": "Short answer",
-              "required": true,
-              "type": "SHORT_ANSWER",
-            },
-            "617310276": Object {
+            Object {
               "columns": Array [
                 Object {
                   "label": "Coluna 1",
@@ -166,82 +208,54 @@ describe('googleFormsToJson', () => {
                   "label": "Linha 3",
                 },
               ],
+              "required": false,
               "type": "RADIO_GRID",
             },
-            "705101286": Object {
-              "id": "705101286",
-              "label": "Checkbox question",
-              "options": Array [
+            Object {
+              "columns": Array [
                 Object {
-                  "custom": false,
-                  "label": "Opção 1",
+                  "label": "Coluna 1",
                 },
                 Object {
-                  "custom": false,
-                  "label": "Opção 2",
+                  "label": "Coluna 2",
                 },
                 Object {
-                  "custom": false,
-                  "label": "Opção 3",
+                  "label": "Coluna 3",
                 },
                 Object {
-                  "custom": true,
-                  "label": "",
+                  "label": "Coluna 4",
                 },
               ],
-              "required": true,
-              "type": "CHECKBOX",
-            },
-            "718815240": Object {
-              "id": "718815240",
-              "label": "Linear scale",
-              "legend": Object {
-                "labelFirst": "Low number",
-                "labelLast": "",
-              },
-              "options": Array [
+              "id": "1999750833",
+              "label": "Multiple choice verification grid",
+              "lines": Array [
                 Object {
-                  "label": "1",
+                  "id": "1403312854",
+                  "label": "Linha 1",
                 },
                 Object {
-                  "label": "2",
+                  "id": "983011973",
+                  "label": "Linha 2",
                 },
                 Object {
-                  "label": "3",
-                },
-                Object {
-                  "label": "4",
-                },
-                Object {
-                  "label": "5",
+                  "id": "1226242907",
+                  "label": "Linha 3",
                 },
               ],
               "required": false,
-              "type": "LINEAR",
+              "type": "CHECKBOX_GRID",
             },
-            "906890030": Object {
-              "id": "906890030",
-              "label": "Dropdown",
-              "options": Array [
-                Object {
-                  "label": "Opção 1",
-                },
-                Object {
-                  "label": "Opção 2",
-                },
-                Object {
-                  "label": "Opção 3",
-                },
-                Object {
-                  "label": "Opção 4",
-                },
-                Object {
-                  "label": "Opção 5",
-                },
-              ],
-              "required": false,
-              "type": "DROPDOWN",
-            },
+          ],
+          "fieldsOrder": Object {
+            "1387297716": 3,
+            "1632852916": 4,
+            "1740631530": 2,
+            "1999750833": 8,
+            "461850935": 1,
+            "617310276": 7,
+            "705101286": 0,
+            "718815240": 6,
+            "906890030": 5,
           },
           "fvv": 1,
           "pageHistory": 0,
