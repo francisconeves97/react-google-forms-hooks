@@ -49,13 +49,14 @@ const getFieldFromContext = (
     throw new Error(`Field with id ${id} wasn't found in your form`)
   }
 
-  // can't put this in a function because control flow for typescript doesnt work this way
   if (field.type !== type) {
     throw new Error(`Field with id ${field.id} is not of type ${type}`)
   }
 
   return field
 }
+
+const OTHER_OPTION = '__other_option__'
 
 const useCustomOption = (
   context: UseGoogleFormReturn,
@@ -68,7 +69,7 @@ const useCustomOption = (
     context.register(id, { required: field.required, ...options })
   const registerCustom = (options = {}) => ({
     ...register(options),
-    value: '__other_option__'
+    value: OTHER_OPTION
   })
   const registerCustomInput = (options = {}) => {
     return context.register(buildCustomFieldId(id), {
@@ -80,10 +81,19 @@ const useCustomOption = (
   const currentValue = context.watch(id)
 
   useEffect(() => {
-    setCustomInputRequired(currentValue && currentValue === '__other_option__')
+    setCustomInputRequired(
+      currentValue &&
+        currentValue.length === 1 &&
+        currentValue.includes(OTHER_OPTION)
+    )
   }, [currentValue, customInputRequired])
 
-  return { register, registerCustom, registerCustomInput }
+  return {
+    register,
+    registerCustom,
+    registerCustomInput,
+    options: field.options.filter((o) => !o.custom)
+  }
 }
 
 export const useCheckboxInput = (id: string): UseCustomOptionField => {
@@ -95,13 +105,12 @@ export const useCheckboxInput = (id: string): UseCustomOptionField => {
     'CHECKBOX'
   ) as CustomOptionField
 
-  const { register, registerCustom, registerCustomInput } = useCustomOption(
-    context!,
-    field
-  )
+  const { register, registerCustom, registerCustomInput, options } =
+    useCustomOption(context!, field)
 
   return {
     ...(field as CustomOptionField),
+    options,
     register,
     registerCustom,
     registerCustomInput
@@ -113,13 +122,12 @@ export const useRadioInput = (id: string): UseCustomOptionField => {
 
   const field = getFieldFromContext(context, id, 'RADIO') as CustomOptionField
 
-  const { register, registerCustom, registerCustomInput } = useCustomOption(
-    context!,
-    field
-  )
+  const { register, registerCustom, registerCustomInput, options } =
+    useCustomOption(context!, field)
 
   return {
     ...(field as CustomOptionField),
+    options,
     register,
     registerCustom,
     registerCustomInput

@@ -1,55 +1,28 @@
 import React from 'react'
+import styled from 'styled-components'
 
-import {
-  GoogleFormProvider,
-  useGoogleForm,
-  useRadioInput
-} from 'react-google-forms'
+import { GoogleFormProvider, useGoogleForm } from 'react-google-forms'
 
+import CheckboxInput from './components/CheckboxInput'
 import form from './scripts/form.json'
 
-const CheckboxInput = () => {
-  const { options, register, hasCustom, registerCustom, registerCustomInput } =
-    useRadioInput('1387297716')
-
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      {options.map((o) => (
-        <React.Fragment key={o.label}>
-          <input type='radio' value={o.label} {...register()} />
-          {o.label}
-        </React.Fragment>
-      ))}
-      {hasCustom && (
-        <div>
-          <input type='radio' {...registerCustom()} />
-          Outra
-          <input
-            type='text'
-            placeholder='Resposta aqui'
-            {...registerCustomInput()}
-          />
-        </div>
-      )}
-    </div>
-  )
-}
-
-const Form = ({ form }) => {
-  return (
-    <div>
-      <CheckboxInput id='' />
-    </div>
-  )
-}
+const Form = styled.form`
+  max-width: 600px;
+  margin: 0 auto;
+`
 
 const App = () => {
   const methods = useGoogleForm({ form })
+  const onSubmit = (data) => console.log('>>> Here  are the data', data)
+
+  console.log('>>> Here are the errors!!!', methods.formState.errors)
+
   return (
     <GoogleFormProvider {...methods}>
-      <div>
-        <Form form={form} />
-      </div>
+      <Form onSubmit={methods.handleSubmit(onSubmit)}>
+        <CheckboxInput id='705101286' />
+        <button type='submit'>Submeter</button>
+      </Form>
     </GoogleFormProvider>
   )
 }

@@ -3,7 +3,7 @@ import {
   UseFormRegisterReturn,
   RegisterOptions
 } from 'react-hook-form'
-import { Column, Field, Line } from './form'
+import { Column, Field, Line, Option } from './form'
 
 type GetField = (id: string) => Field | undefined
 
@@ -20,6 +20,7 @@ export type RegisterReturn = {
 export type UseCustomOptionReturn = RegisterReturn & {
   registerCustom: (options: RegisterOptions) => UseFormRegisterReturn
   registerCustomInput: (options: RegisterOptions) => UseFormRegisterReturn
+  options: Array<Option>
 }
 
 export type LineRenderer = Line & {
