@@ -8,7 +8,12 @@ import {
   UseGoogleFormReturn,
   CustomOptionField,
   FieldTypes,
-  TextField
+  TextField,
+  GridField,
+  RegisterReturn,
+  RenderLineFunction,
+  RenderColumnFunction,
+  UseGridReturn
 } from '../types'
 
 const resolveField = (id: string, form: GoogleForm) => {
@@ -121,10 +126,12 @@ export const useRadioInput = (id: string): UseCustomOptionField => {
   }
 }
 
+type UseTextFieldReturn = TextField & RegisterReturn
+
 const useTextInput = (
   id: string,
   fieldType: 'LONG_ANSWER' | 'SHORT_ANSWER'
-) => {
+): UseTextFieldReturn => {
   const context = useGoogleFormContext()
 
   const field = getFieldFromContext(context, id, fieldType) as TextField
@@ -136,9 +143,50 @@ const useTextInput = (
 }
 
 export const useLongAnswerInput = (id: string) => {
-  useTextInput(id, 'LONG_ANSWER')
+  return useTextInput(id, 'LONG_ANSWER')
 }
 
 export const useShortAnswerInput = (id: string) => {
-  useTextInput(id, 'SHORT_ANSWER')
+  return useTextInput(id, 'SHORT_ANSWER')
+}
+
+type UseGridFieldReturn = UseGridReturn & RegisterReturn
+
+const useGridInput = (
+  id: string,
+  type: 'RADIO_GRID' | 'CHECKBOX_GRID'
+): UseGridFieldReturn => {
+  const context = useGoogleFormContext()
+
+  const field = getFieldFromContext(context, id, type) as GridField
+
+  const register = (options = {}) =>
+    context!.register(id, { required: field.required, ...options })
+
+  const renderGrid = (render: RenderLineFunction): JSX.Element[] => {
+    return field.lines.map((l) => {
+      const registerLine = (options = {}) =>
+        context!.register(l.id, { required: field.required, ...options })
+
+      const renderColumns = (render: RenderColumnFunction): JSX.Element[] => {
+        return field.columns.map((c) => {
+          const registerColumn = () => ({ ...registerLine(), value: c.label })
+
+          return render({ ...c, registerColumn })
+        })
+      }
+
+      return render({ ...l, renderColumns })
+    })
+  }
+
+  return { ...field, register, renderGrid }
+}
+
+export const useRadioGridInput = (id: string) => {
+  return useGridInput(id, 'RADIO_GRID')
+}
+
+export const useCheckboxGridInput = (id: string) => {
+  return useGridInput(id, 'CHECKBOX_GRID')
 }

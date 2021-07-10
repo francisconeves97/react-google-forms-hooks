@@ -3,7 +3,7 @@ import {
   UseFormRegisterReturn,
   RegisterOptions
 } from 'react-hook-form'
-import { Field } from './form'
+import { Column, Field, Line } from './form'
 
 type GetField = (id: string) => Field | undefined
 
@@ -13,8 +13,25 @@ type GetFieldReturn = {
 
 export type UseGoogleFormReturn = UseFormReturn & GetFieldReturn
 
-export type UseCustomOptionReturn = {
+export type RegisterReturn = {
   register: (options: RegisterOptions) => UseFormRegisterReturn
+}
+
+export type UseCustomOptionReturn = RegisterReturn & {
   registerCustom: (options: RegisterOptions) => UseFormRegisterReturn
   registerCustomInput: (options: RegisterOptions) => UseFormRegisterReturn
+}
+
+export type LineRenderer = Line & {
+  renderColumns: (render: RenderColumnFunction) => JSX.Element[]
+}
+export type ColumnRenderer = Column & {
+  registerColumn: () => UseFormRegisterReturn
+}
+
+export type RenderLineFunction = (line: LineRenderer) => JSX.Element
+export type RenderColumnFunction = (column: ColumnRenderer) => JSX.Element
+
+export type UseGridReturn = RegisterReturn & {
+  renderGrid: (render: RenderLineFunction) => JSX.Element[]
 }

@@ -32,7 +32,7 @@ interface Legend {
   labelLast: string
 }
 
-interface LinearField extends BaseField {
+export interface LinearField extends BaseField {
   type: 'LINEAR'
   options: Array<Option>
   legend: Legend
@@ -47,7 +47,7 @@ export interface Line {
   label: string
 }
 
-interface GridField extends BaseField {
+export interface GridField extends BaseField {
   type: 'RADIO_GRID' | 'CHECKBOX_GRID'
   columns: Array<Column>
   lines: Array<Line>
