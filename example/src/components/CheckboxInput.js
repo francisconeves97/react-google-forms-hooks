@@ -17,25 +17,28 @@ const CheckboxContainer = styled.div`
 `
 
 export default function CheckboxInput({ id }) {
-  const { options, register, hasCustom, registerCustom, registerCustomInput } =
-    useCheckboxInput(id)
+  const { options, customOption } = useCheckboxInput(id)
 
   return (
     <Container>
       {options.map((o) => (
-        <CheckboxContainer key={o.label}>
-          <input type='checkbox' value={o.label} {...register()} />
-          <label htmlFor={id}>{o.label}</label>
+        <CheckboxContainer key={o.id}>
+          <input type='checkbox' id={o.id} {...o.registerOption()} />
+          <label htmlFor={o.id}>{o.label}</label>
         </CheckboxContainer>
       ))}
-      {hasCustom && (
+      {customOption && (
         <CheckboxContainer>
-          <input type='checkbox' {...registerCustom()} />
-          <label htmlFor={id}>Outra</label>
+          <input
+            type='checkbox'
+            id={customOption.id}
+            {...customOption.registerOption()}
+          />
+          <label htmlFor={customOption.id}>Outra</label>
           <input
             type='text'
             placeholder='Resposta aqui'
-            {...registerCustomInput()}
+            {...customOption.registerCustomInput()}
           />
         </CheckboxContainer>
       )}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import slugify from 'slugify'
 
 import { useGoogleFormContext } from './useGoogleFormContext'
 import {
@@ -13,7 +14,9 @@ import {
   RegisterReturn,
   RenderLineFunction,
   RenderColumnFunction,
-  UseGridReturn
+  UseGridReturn,
+  Option,
+  BaseField
 } from '../types'
 
 const resolveField = (id: string, form: GoogleForm) => {
@@ -32,7 +35,7 @@ const buildCustomFieldId = (id: string) => {
   return `${id}-other_option_response`
 }
 
-type UseCustomOptionField = CustomOptionField & UseCustomOptionReturn
+type UseCustomOptionField = BaseField & UseCustomOptionReturn
 
 const getFieldFromContext = (
   context: UseGoogleFormReturn | null,
@@ -67,33 +70,70 @@ const useCustomOption = (
 
   const register = (options = {}) =>
     context.register(id, { required: field.required, ...options })
-  const registerCustom = (options = {}) => ({
-    ...register(options),
-    value: OTHER_OPTION
-  })
-  const registerCustomInput = (options = {}) => {
-    return context.register(buildCustomFieldId(id), {
-      required: customInputRequired,
-      ...options
-    })
-  }
 
   const currentValue = context.watch(id)
 
   useEffect(() => {
-    setCustomInputRequired(
-      currentValue &&
-        currentValue.length === 1 &&
-        currentValue.includes(OTHER_OPTION)
-    )
+    if (field.type === 'RADIO') {
+      setCustomInputRequired(currentValue && currentValue === OTHER_OPTION)
+    } else {
+      setCustomInputRequired(
+        currentValue &&
+          currentValue.length === 1 &&
+          currentValue.includes(OTHER_OPTION)
+      )
+    }
   }, [currentValue, customInputRequired])
 
-  return {
-    register,
-    registerCustom,
-    registerCustomInput,
-    options: field.options.filter((o) => !o.custom)
+  const nonCustomOptions = field.options.filter(
+    (o) => !o.custom
+  ) as Array<Option>
+
+  const buildId = (value: string) => {
+    return `${id}-${slugify(value)}`
   }
+
+  const buildOptionRegister = (o: Option) => {
+    const id = buildId(o.label)
+    const registerOption = (options = {}) => ({
+      ...register({ ...options }),
+      value: o.label
+    })
+
+    return {
+      ...o,
+      id,
+      registerOption
+    }
+  }
+
+  const result = {
+    options: nonCustomOptions.map(buildOptionRegister)
+  } as UseCustomOptionReturn
+
+  const customOption = field.options.find((o) => o.custom) as Option
+  if (customOption) {
+    const id = buildId(OTHER_OPTION)
+    const registerOption = (options = {}) => ({
+      ...register({ ...options }),
+      value: OTHER_OPTION
+    })
+    const registerCustomInput = (options = {}) => {
+      return context.register(buildCustomFieldId(id), {
+        required: customInputRequired,
+        ...options
+      })
+    }
+
+    result.customOption = {
+      ...customOption,
+      id,
+      registerOption,
+      registerCustomInput
+    }
+  }
+
+  return result
 }
 
 export const useCheckboxInput = (id: string): UseCustomOptionField => {
@@ -105,15 +145,11 @@ export const useCheckboxInput = (id: string): UseCustomOptionField => {
     'CHECKBOX'
   ) as CustomOptionField
 
-  const { register, registerCustom, registerCustomInput, options } =
-    useCustomOption(context!, field)
+  const customOption = useCustomOption(context!, field)
 
   return {
-    ...(field as CustomOptionField),
-    options,
-    register,
-    registerCustom,
-    registerCustomInput
+    ...(field as BaseField),
+    ...customOption
   }
 }
 
@@ -122,15 +158,11 @@ export const useRadioInput = (id: string): UseCustomOptionField => {
 
   const field = getFieldFromContext(context, id, 'RADIO') as CustomOptionField
 
-  const { register, registerCustom, registerCustomInput, options } =
-    useCustomOption(context!, field)
+  const customOption = useCustomOption(context!, field)
 
   return {
     ...(field as CustomOptionField),
-    options,
-    register,
-    registerCustom,
-    registerCustomInput
+    ...customOption
   }
 }
 

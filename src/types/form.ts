@@ -6,7 +6,7 @@ export interface CustomizableOption extends Option {
   custom?: boolean
 }
 
-interface BaseField {
+export interface BaseField {
   id: string
   label: string
   required: boolean
@@ -18,7 +18,6 @@ export interface TextField extends BaseField {
 
 export interface CustomOptionField extends BaseField {
   type: 'CHECKBOX' | 'RADIO'
-  hasCustom: boolean
   options: Array<CustomizableOption>
 }
 

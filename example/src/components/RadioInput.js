@@ -17,25 +17,28 @@ const CheckboxContainer = styled.div`
 `
 
 export default function RadioInput({ id }) {
-  const { options, register, hasCustom, registerCustom, registerCustomInput } =
-    useRadioInput(id)
+  const { options, customOption } = useRadioInput(id)
 
   return (
     <Container>
       {options.map((o) => (
-        <CheckboxContainer key={o.label}>
-          <input type='radio' value={o.label} {...register()} />
-          <label htmlFor={id}>{o.label}</label>
+        <CheckboxContainer key={o.id}>
+          <input type='radio' id={o.id} {...o.registerOption()} />
+          <label htmlFor={o.id}>{o.label}</label>
         </CheckboxContainer>
       ))}
-      {hasCustom && (
+      {customOption && (
         <CheckboxContainer>
-          <input type='radio' {...registerCustom()} />
-          <label htmlFor={id}>Outra</label>
+          <input
+            type='radio'
+            id={customOption.id}
+            {...customOption.registerOption()}
+          />
+          <label htmlFor={customOption.id}>Outra</label>
           <input
             type='text'
             placeholder='Resposta aqui'
-            {...registerCustomInput()}
+            {...customOption.registerCustomInput()}
           />
         </CheckboxContainer>
       )}

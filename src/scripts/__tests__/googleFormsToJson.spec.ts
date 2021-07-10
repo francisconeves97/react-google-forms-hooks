@@ -30,7 +30,6 @@ describe('googleFormsToJson', () => {
           "fbzx": "2765906482982597825",
           "fields": Object {
             "1387297716": Object {
-              "hasCustom": true,
               "id": "1387297716",
               "label": "Multiple choice question",
               "options": Array [
@@ -170,7 +169,6 @@ describe('googleFormsToJson', () => {
               "type": "RADIO_GRID",
             },
             "705101286": Object {
-              "hasCustom": true,
               "id": "705101286",
               "label": "Checkbox question",
               "options": Array [

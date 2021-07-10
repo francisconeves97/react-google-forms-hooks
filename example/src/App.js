@@ -14,7 +14,7 @@ const Form = styled.form`
 `
 
 const QuestionContainer = styled.div`
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `
 
 const QuestionLabel = styled.h3`

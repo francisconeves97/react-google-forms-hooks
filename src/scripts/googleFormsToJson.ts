@@ -143,7 +143,6 @@ const parseField = (rawField: Array<any>): Field => {
       const fieldInfo = rawField[4][0]
       field.id = toString(fieldInfo[0])
       field.options = parseCustomizableOptions(fieldInfo[1])
-      field.hasCustom = field.options.some((o) => o.custom)
       field.required = toBool(fieldInfo[2])
       break
     }

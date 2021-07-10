@@ -17,10 +17,18 @@ export type RegisterReturn = {
   register: (options: RegisterOptions) => UseFormRegisterReturn
 }
 
-export type UseCustomOptionReturn = RegisterReturn & {
-  registerCustom: (options: RegisterOptions) => UseFormRegisterReturn
+export type OptionRegister = Option & {
+  id: string
+  registerOption: (options: RegisterOptions) => UseFormRegisterReturn
+}
+
+export type CustomOptionRegister = OptionRegister & {
   registerCustomInput: (options: RegisterOptions) => UseFormRegisterReturn
-  options: Array<Option>
+}
+
+export type UseCustomOptionReturn = {
+  options: Array<OptionRegister>
+  customOption?: CustomOptionRegister
 }
 
 export type LineRenderer = Line & {
