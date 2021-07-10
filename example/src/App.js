@@ -6,6 +6,8 @@ import { GoogleFormProvider, useGoogleForm } from 'react-google-forms'
 import CheckboxInput from './components/CheckboxInput'
 import form from './scripts/form.json'
 import RadioInput from './components/RadioInput'
+import ShortAnswerInput from './components/ShortAnswerInput'
+import LongAnswerInput from './components/LongAnswerInput'
 
 const Form = styled.form`
   max-width: 600px;
@@ -34,6 +36,12 @@ const Questions = () => {
             break
           case 'RADIO':
             questionInput = <RadioInput id={id} />
+            break
+          case 'SHORT_ANSWER':
+            questionInput = <ShortAnswerInput id={id} />
+            break
+          case 'LONG_ANSWER':
+            questionInput = <LongAnswerInput id={id} />
             break
         }
 
