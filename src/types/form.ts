@@ -61,8 +61,8 @@ export type Field =
 
 export type FieldTypes = Field['type']
 
-export interface Fields {
-  [fieldId: string]: Field
+export type FieldsOrder = {
+  [fieldId: string]: number
 }
 
 export type GoogleForm = {
@@ -70,7 +70,6 @@ export type GoogleForm = {
   fvv: number
   pageHistory: number
   fbzx: string
-  fields: {
-    [fieldId: string]: Field
-  }
+  fields: Array<Field>
+  fieldsOrder: FieldsOrder
 }

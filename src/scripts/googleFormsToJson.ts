@@ -4,11 +4,11 @@ import axios from 'axios'
 import {
   GoogleForm,
   Field,
-  Fields,
   CustomizableOption,
   Option,
   Column,
-  Line
+  Line,
+  FieldsOrder
 } from '../types/form'
 
 type FormData = {
@@ -174,15 +174,18 @@ const parseField = (rawField: Array<any>): Field => {
   return field
 }
 
-const parseFields = (rawFields: Array<any>): Fields => {
-  const fields = {} as Fields
+const parseFields = (
+  rawFields: Array<any>
+): { fields: Array<Field>; fieldsOrder: FieldsOrder } => {
+  const fieldsOrder = {}
 
-  rawFields.forEach((rawField: Array<any>) => {
+  const fields = rawFields.map((rawField: Array<any>, i: number) => {
     const field = parseField(rawField)
-    fields[field.id] = field
+    fieldsOrder[`${field.id}`] = i
+    return field
   })
 
-  return fields
+  return { fields, fieldsOrder }
 }
 
 const parseFormData = ({ formData, fbzx }: FormData): GoogleForm => {
@@ -193,7 +196,9 @@ const parseFormData = ({ formData, fbzx }: FormData): GoogleForm => {
   googleForm.fbzx = fbzx
   googleForm.action = formData[14]
 
-  googleForm.fields = parseFields(formData[1][1])
+  const { fields, fieldsOrder } = parseFields(formData[1][1])
+  googleForm.fields = fields
+  googleForm.fieldsOrder = fieldsOrder
 
   return googleForm
 }

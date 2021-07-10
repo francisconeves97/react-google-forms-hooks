@@ -3,11 +3,13 @@ import styled from 'styled-components'
 
 import { GoogleFormProvider, useGoogleForm } from 'react-google-forms'
 
-import CheckboxInput from './components/CheckboxInput'
 import form from './scripts/form.json'
+
+import CheckboxInput from './components/CheckboxInput'
 import RadioInput from './components/RadioInput'
 import ShortAnswerInput from './components/ShortAnswerInput'
 import LongAnswerInput from './components/LongAnswerInput'
+import RadioGridInput from './components/RadioGridInput'
 
 const Form = styled.form`
   max-width: 600px;
@@ -26,8 +28,8 @@ const QuestionLabel = styled.h3`
 const Questions = () => {
   return (
     <div>
-      {Object.keys(form.fields).map((id) => {
-        const field = form.fields[id]
+      {form.fields.map((field) => {
+        const { id } = field
 
         let questionInput = null
         switch (field.type) {
@@ -42,6 +44,9 @@ const Questions = () => {
             break
           case 'LONG_ANSWER':
             questionInput = <LongAnswerInput id={id} />
+            break
+          case 'RADIO_GRID':
+            questionInput = <RadioGridInput id={id} />
             break
         }
 

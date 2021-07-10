@@ -41,6 +41,6 @@ export type ColumnRenderer = Column & {
 export type RenderLineFunction = (line: LineRenderer) => JSX.Element
 export type RenderColumnFunction = (column: ColumnRenderer) => JSX.Element
 
-export type UseGridReturn = RegisterReturn & {
+export type UseGridReturn = {
   renderGrid: (render: RenderLineFunction) => JSX.Element[]
 }

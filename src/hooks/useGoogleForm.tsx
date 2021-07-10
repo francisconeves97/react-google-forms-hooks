@@ -20,7 +20,8 @@ import {
 } from '../types'
 
 const resolveField = (id: string, form: GoogleForm) => {
-  return form.fields[id]
+  const fieldIndex = form.fieldsOrder[id]
+  return form.fields[fieldIndex]
 }
 
 export const useGoogleForm = ({ form }: { form: GoogleForm }) => {
@@ -161,7 +162,7 @@ export const useRadioInput = (id: string): UseCustomOptionField => {
   const customOption = useCustomOption(context!, field)
 
   return {
-    ...(field as CustomOptionField),
+    ...(field as BaseField),
     ...customOption
   }
 }
@@ -190,7 +191,7 @@ export const useShortAnswerInput = (id: string) => {
   return useTextInput(id, 'SHORT_ANSWER')
 }
 
-type UseGridFieldReturn = UseGridReturn & RegisterReturn
+type UseGridFieldReturn = GridField & UseGridReturn
 
 const useGridInput = (
   id: string,
@@ -199,9 +200,6 @@ const useGridInput = (
   const context = useGoogleFormContext()
 
   const field = getFieldFromContext(context, id, type) as GridField
-
-  const register = (options = {}) =>
-    context!.register(id, { required: field.required, ...options })
 
   const renderGrid = (render: RenderLineFunction): JSX.Element[] => {
     return field.lines.map((l) => {
@@ -220,7 +218,7 @@ const useGridInput = (
     })
   }
 
-  return { ...field, register, renderGrid }
+  return { ...field, renderGrid }
 }
 
 export const useRadioGridInput = (id: string) => {
