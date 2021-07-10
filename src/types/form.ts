@@ -12,7 +12,7 @@ interface BaseField {
   required: boolean
 }
 
-interface TextField extends BaseField {
+export interface TextField extends BaseField {
   type: 'SHORT_ANSWER' | 'LONG_ANSWER'
 }
 

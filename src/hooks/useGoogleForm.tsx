@@ -7,7 +7,8 @@ import {
   UseCustomOptionReturn,
   UseGoogleFormReturn,
   CustomOptionField,
-  FieldTypes
+  FieldTypes,
+  TextField
 } from '../types'
 
 const resolveField = (id: string, form: GoogleForm) => {
@@ -118,4 +119,26 @@ export const useRadioInput = (id: string): UseCustomOptionField => {
     registerCustom,
     registerCustomInput
   }
+}
+
+const useTextInput = (
+  id: string,
+  fieldType: 'LONG_ANSWER' | 'SHORT_ANSWER'
+) => {
+  const context = useGoogleFormContext()
+
+  const field = getFieldFromContext(context, id, fieldType) as TextField
+
+  const register = (options = {}) =>
+    context!.register(id, { required: field.required, ...options })
+
+  return { ...field, register }
+}
+
+export const useLongAnswerInput = (id: string) => {
+  useTextInput(id, 'LONG_ANSWER')
+}
+
+export const useShortAnswerInput = (id: string) => {
+  useTextInput(id, 'SHORT_ANSWER')
 }
