@@ -21,7 +21,7 @@ export interface CustomOptionField extends BaseField {
   options: Array<CustomizableOption>
 }
 
-interface DropdownField extends BaseField {
+export interface DropdownField extends BaseField {
   type: 'DROPDOWN'
   options: Array<Option>
 }

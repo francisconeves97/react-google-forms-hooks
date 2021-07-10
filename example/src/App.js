@@ -11,6 +11,7 @@ import ShortAnswerInput from './components/ShortAnswerInput'
 import LongAnswerInput from './components/LongAnswerInput'
 import RadioGridInput from './components/RadioGridInput'
 import CheckboxGridInput from './components/CheckboxGridInput'
+import DropdownInput from './components/DropdownInput'
 
 const Form = styled.form`
   max-width: 600px;
@@ -51,6 +52,9 @@ const Questions = () => {
             break
           case 'CHECKBOX_GRID':
             questionInput = <CheckboxGridInput id={id} />
+            break
+          case 'DROPDOWN':
+            questionInput = <DropdownInput id={id} />
             break
         }
 

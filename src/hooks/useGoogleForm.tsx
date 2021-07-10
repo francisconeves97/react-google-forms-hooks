@@ -16,7 +16,8 @@ import {
   RenderColumnFunction,
   UseGridReturn,
   Option,
-  BaseField
+  BaseField,
+  DropdownField
 } from '../types'
 
 const resolveField = (id: string, form: GoogleForm) => {
@@ -227,4 +228,17 @@ export const useRadioGridInput = (id: string) => {
 
 export const useCheckboxGridInput = (id: string) => {
   return useGridInput(id, 'CHECKBOX_GRID')
+}
+
+type UseDropdownReturn = DropdownField & RegisterReturn
+
+export const useDropdownInput = (id: string): UseDropdownReturn => {
+  const context = useGoogleFormContext()
+
+  const field = getFieldFromContext(context, id, 'DROPDOWN') as DropdownField
+
+  const register = (options = {}) =>
+    context!.register(id, { required: field.required, ...options })
+
+  return { ...field, register }
 }

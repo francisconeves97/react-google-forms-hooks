@@ -1,7 +1,7 @@
 {
   "fvv": 1,
   "pageHistory": 0,
-  "fbzx": "-1559327621621444133",
+  "fbzx": "4580089610065997581",
   "action": "e/1FAIpQLSe5U3qvg8WHs4nkU-e6h2RlAD7fKoCkou6HO2w2-tXYIA_F8g",
   "fields": [
     {
@@ -123,7 +123,7 @@
           "label": "Opção 5"
         }
       ],
-      "required": false
+      "required": true
     },
     {
       "label": "Linear scale",
