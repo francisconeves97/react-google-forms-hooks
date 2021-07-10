@@ -19,7 +19,7 @@ import {
   BaseField,
   DropdownField,
   LinearField,
-  OptionRegister
+  UseOptionReturn
 } from '../types'
 
 const resolveField = (id: string, form: GoogleForm) => {
@@ -245,9 +245,7 @@ export const useDropdownInput = (id: string): UseDropdownReturn => {
   return { ...field, register }
 }
 
-type UseLinearInputReturn = LinearField & {
-  options: Array<OptionRegister>
-}
+type UseLinearInputReturn = UseOptionReturn & LinearField
 
 export const useLinearInput = (id: string): UseLinearInputReturn => {
   const context = useGoogleFormContext()

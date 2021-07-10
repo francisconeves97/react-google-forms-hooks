@@ -31,6 +31,10 @@ export type UseCustomOptionReturn = {
   customOption?: CustomOptionRegister
 }
 
+export type UseOptionReturn = {
+  options: Array<OptionRegister>
+}
+
 export type LineRenderer = Line & {
   renderColumns: (render: RenderColumnFunction) => JSX.Element[]
 }
