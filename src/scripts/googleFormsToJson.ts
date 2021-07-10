@@ -16,6 +16,10 @@ type FormData = {
   fbzx: string
 }
 
+const toBool = (n: number): boolean => n === 1
+
+const toString = (n: number): string => `${n}`
+
 const assertValidUrl = (formUrl: string): void => {
   const googleFormsHost = 'docs.google.com'
   const url = new URL(formUrl)
@@ -112,13 +116,11 @@ const flattenArray = (array: Array<Array<string>>): Array<Option | Column> => {
 const parseLines = (lines: Array<any>): Array<Line> => {
   return lines.map((rawLine) => {
     const line = {} as Line
-    line.id = rawLine[0]
+    line.id = toString(rawLine[0])
     line.label = rawLine[3][0]
     return line
   })
 }
-
-const toBool = (n: number): boolean => n === 1
 
 const parseField = (rawField: Array<any>): Field => {
   const field = {} as Field
@@ -132,14 +134,14 @@ const parseField = (rawField: Array<any>): Field => {
     case 'SHORT_ANSWER':
     case 'LONG_ANSWER': {
       const fieldInfo = rawField[4][0]
-      field.id = fieldInfo[0]
+      field.id = toString(fieldInfo[0])
       field.required = toBool(fieldInfo[2])
       break
     }
     case 'CHECKBOX':
     case 'RADIO': {
       const fieldInfo = rawField[4][0]
-      field.id = fieldInfo[0]
+      field.id = toString(fieldInfo[0])
       field.options = parseCustomizableOptions(fieldInfo[1])
       field.hasCustom = field.options.some((o) => o.custom)
       field.required = toBool(fieldInfo[2])
@@ -147,14 +149,14 @@ const parseField = (rawField: Array<any>): Field => {
     }
     case 'DROPDOWN': {
       const fieldInfo = rawField[4][0]
-      field.id = fieldInfo[0]
+      field.id = toString(fieldInfo[0])
       field.options = parseOptions(fieldInfo[1])
       field.required = toBool(fieldInfo[2])
       break
     }
     case 'LINEAR': {
       const fieldInfo = rawField[4][0]
-      field.id = fieldInfo[0]
+      field.id = toString(fieldInfo[0])
       const [labelFirst, labelLast] = fieldInfo[3]
       field.legend = { labelFirst, labelLast }
       field.options = flattenArray(fieldInfo[1])
@@ -163,7 +165,7 @@ const parseField = (rawField: Array<any>): Field => {
     }
     case 'CHECKBOX_GRID':
     case 'RADIO_GRID': {
-      field.id = rawField[0]
+      field.id = toString(rawField[0])
       field.columns = flattenArray(rawField[4][0][1])
       field.lines = parseLines(rawField[4])
       break

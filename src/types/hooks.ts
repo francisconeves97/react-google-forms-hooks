@@ -5,7 +5,7 @@ import {
 } from 'react-hook-form'
 import { Field } from './form'
 
-type GetField = (id: string) => Field
+type GetField = (id: string) => Field | undefined
 
 type GetFieldReturn = {
   getField: GetField

@@ -1,15 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
-import { googleFormsToJson, GoogleFormProvider, useGoogleForm, useRadioInput } from 'react-google-forms'
+import { GoogleFormProvider, useGoogleForm, useRadioInput } from 'react-google-forms'
 
 import form from './scripts/form.json'
 
 const CheckboxInput = () => {
-  const methods = useRadioInput('1387297716')
-
-  return <div>
-    ola
-  </div>
+  const { options, register, hasCustom, registerCustom, registerCustomInput } = useRadioInput('1387297716')
+  
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      {options.map(o => (
+        <React.Fragment key={o.label}>
+          <input type='radio' value={o.label} {...register()} />{o.label}
+        </React.Fragment>
+      ))}
+      {hasCustom && (
+        <div>
+          <input type='radio' {...registerCustom()} />Outra
+          <input type='text' placeholder='Resposta aqui' {...registerCustomInput()} />
+        </div>
+      )}
+    </div>
+  )
 }
 
 const Form = ({ form }) => {

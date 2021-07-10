@@ -29,11 +29,19 @@ const buildCustomFieldId = (id: string) => {
 type UseCustomOptionField = CustomOptionField & UseCustomOptionReturn
 
 const getFieldFromContext = (
-  context: UseGoogleFormReturn,
+  context: UseGoogleFormReturn | null,
   id: string,
   type: FieldTypes
 ) => {
+  if (context === null) {
+    throw new Error('You need to wrap your form with a GoogleFormProvider')
+  }
+
   const field = context.getField(id)
+
+  if (field === undefined) {
+    throw new Error(`Field with id ${id} wasn't found in your form`)
+  }
 
   // can't put this in a function because control flow for typescript doesnt work this way
   if (field.type !== type) {
@@ -48,7 +56,7 @@ const useCustomOption = (
   field: CustomOptionField
 ): UseCustomOptionReturn => {
   const [customInputRequired, setCustomInputRequired] = useState<boolean>(false)
-  const { id } = field
+  const id = field.id
 
   const register = (options = {}) =>
     context.register(id, { required: field.required, ...options })
@@ -75,10 +83,6 @@ const useCustomOption = (
 export const useCheckboxInput = (id: string): UseCustomOptionField => {
   const context = useGoogleFormContext()
 
-  if (context === null) {
-    throw new Error('You need to wrap your form with a GoogleFormProvider')
-  }
-
   const field = getFieldFromContext(
     context,
     id,
@@ -86,7 +90,7 @@ export const useCheckboxInput = (id: string): UseCustomOptionField => {
   ) as CustomOptionField
 
   const { register, registerCustom, registerCustomInput } = useCustomOption(
-    context,
+    context!,
     field
   )
 
@@ -101,14 +105,10 @@ export const useCheckboxInput = (id: string): UseCustomOptionField => {
 export const useRadioInput = (id: string): UseCustomOptionField => {
   const context = useGoogleFormContext()
 
-  if (context === null) {
-    throw new Error('You need to wrap your form with a GoogleFormProvider')
-  }
-
   const field = getFieldFromContext(context, id, 'RADIO') as CustomOptionField
 
   const { register, registerCustom, registerCustomInput } = useCustomOption(
-    context,
+    context!,
     field
   )
 

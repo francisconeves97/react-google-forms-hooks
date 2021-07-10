@@ -31,7 +31,7 @@ describe('googleFormsToJson', () => {
           "fields": Object {
             "1387297716": Object {
               "hasCustom": true,
-              "id": 1387297716,
+              "id": "1387297716",
               "label": "Multiple choice question",
               "options": Array [
                 Object {
@@ -73,26 +73,26 @@ describe('googleFormsToJson', () => {
                   "label": "Coluna 4",
                 },
               ],
-              "id": 1632852916,
+              "id": "1632852916",
               "label": "Grid question",
               "lines": Array [
                 Object {
-                  "id": 1872810205,
+                  "id": "1872810205",
                   "label": "Linha 1",
                 },
                 Object {
-                  "id": 540613778,
+                  "id": "540613778",
                   "label": "Linha 2",
                 },
                 Object {
-                  "id": 1477014245,
+                  "id": "1477014245",
                   "label": "Linha 3",
                 },
               ],
               "type": "RADIO_GRID",
             },
             "1740631530": Object {
-              "id": 1740631530,
+              "id": "1740631530",
               "label": "Long answer",
               "required": false,
               "type": "LONG_ANSWER",
@@ -112,26 +112,26 @@ describe('googleFormsToJson', () => {
                   "label": "Coluna 4",
                 },
               ],
-              "id": 1999750833,
+              "id": "1999750833",
               "label": "Multiple choice verification grid",
               "lines": Array [
                 Object {
-                  "id": 1403312854,
+                  "id": "1403312854",
                   "label": "Linha 1",
                 },
                 Object {
-                  "id": 983011973,
+                  "id": "983011973",
                   "label": "Linha 2",
                 },
                 Object {
-                  "id": 1226242907,
+                  "id": "1226242907",
                   "label": "Linha 3",
                 },
               ],
               "type": "CHECKBOX_GRID",
             },
             "461850935": Object {
-              "id": 461850935,
+              "id": "461850935",
               "label": "Short answer",
               "required": true,
               "type": "SHORT_ANSWER",
@@ -151,19 +151,19 @@ describe('googleFormsToJson', () => {
                   "label": "Coluna 4",
                 },
               ],
-              "id": 617310276,
+              "id": "617310276",
               "label": "Multiple choice grid",
               "lines": Array [
                 Object {
-                  "id": 1243133950,
+                  "id": "1243133950",
                   "label": "Linha 1",
                 },
                 Object {
-                  "id": 146706513,
+                  "id": "146706513",
                   "label": "Linha 2",
                 },
                 Object {
-                  "id": 1808973121,
+                  "id": "1808973121",
                   "label": "Linha 3",
                 },
               ],
@@ -171,7 +171,7 @@ describe('googleFormsToJson', () => {
             },
             "705101286": Object {
               "hasCustom": true,
-              "id": 705101286,
+              "id": "705101286",
               "label": "Checkbox question",
               "options": Array [
                 Object {
@@ -195,7 +195,7 @@ describe('googleFormsToJson', () => {
               "type": "CHECKBOX",
             },
             "718815240": Object {
-              "id": 718815240,
+              "id": "718815240",
               "label": "Linear scale",
               "legend": Object {
                 "labelFirst": "Low number",
@@ -222,7 +222,7 @@ describe('googleFormsToJson', () => {
               "type": "LINEAR",
             },
             "906890030": Object {
-              "id": 906890030,
+              "id": "906890030",
               "label": "Dropdown",
               "options": Array [
                 Object {
