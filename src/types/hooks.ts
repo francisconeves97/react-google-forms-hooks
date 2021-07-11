@@ -3,7 +3,7 @@ import {
   UseFormRegisterReturn,
   RegisterOptions
 } from 'react-hook-form'
-import { Column, Field, Line, Option } from './form'
+import { Column, Field, Line, Option, BaseField } from './form'
 
 type GetField = (id: string) => Field
 
@@ -48,3 +48,5 @@ export type RenderColumnFunction = (column: ColumnRenderer) => JSX.Element
 export type UseGridReturn = {
   renderGrid: (render: RenderLineFunction) => JSX.Element[]
 }
+
+export type UseCustomOptionField = BaseField & UseCustomOptionReturn
