@@ -6,11 +6,7 @@ import getFieldFromContext from './utils/getFieldFromContext'
 import {
   GoogleForm,
   UseGoogleFormReturn,
-  GridField,
   RegisterReturn,
-  RenderLineFunction,
-  RenderColumnFunction,
-  UseGridReturn,
   DropdownField,
   LinearField,
   UseOptionReturn
@@ -32,44 +28,6 @@ export const useGoogleForm = ({ form }: { form: GoogleForm }) => {
   methods.getField = (id: string) => resolveField(id, form)
 
   return methods
-}
-
-type UseGridFieldReturn = GridField & UseGridReturn
-
-const useGridInput = (
-  id: string,
-  type: 'RADIO_GRID' | 'CHECKBOX_GRID'
-): UseGridFieldReturn => {
-  const context = useGoogleFormContext()
-
-  const field = getFieldFromContext(context, id, type) as GridField
-
-  const renderGrid = (render: RenderLineFunction): JSX.Element[] => {
-    return field.lines.map((l) => {
-      const registerLine = (options = {}) =>
-        context!.register(l.id, { required: field.required, ...options })
-
-      const renderColumns = (render: RenderColumnFunction): JSX.Element[] => {
-        return field.columns.map((c) => {
-          const registerColumn = () => ({ ...registerLine(), value: c.label })
-
-          return render({ ...c, registerColumn })
-        })
-      }
-
-      return render({ ...l, renderColumns })
-    })
-  }
-
-  return { ...field, renderGrid }
-}
-
-export const useRadioGridInput = (id: string) => {
-  return useGridInput(id, 'RADIO_GRID')
-}
-
-export const useCheckboxGridInput = (id: string) => {
-  return useGridInput(id, 'CHECKBOX_GRID')
 }
 
 type UseDropdownReturn = DropdownField & RegisterReturn
