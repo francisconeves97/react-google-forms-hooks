@@ -24,7 +24,12 @@ import {
 
 const resolveField = (id: string, form: GoogleForm) => {
   const fieldIndex = form.fieldsOrder[id]
-  return form.fields[fieldIndex]
+  if (fieldIndex === undefined) {
+    throw new Error(`Field with id ${id} wasn't found in your form`)
+  }
+
+  const field = form.fields[fieldIndex]
+  return field
 }
 
 export const useGoogleForm = ({ form }: { form: GoogleForm }) => {
@@ -51,10 +56,6 @@ const getFieldFromContext = (
   }
 
   const field = context.getField(id)
-
-  if (field === undefined) {
-    throw new Error(`Field with id ${id} wasn't found in your form`)
-  }
 
   if (field.type !== type) {
     throw new Error(`Field with id ${field.id} is not of type ${type}`)
