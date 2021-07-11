@@ -6,7 +6,6 @@ import getFieldFromContext from './utils/getFieldFromContext'
 import {
   GoogleForm,
   UseGoogleFormReturn,
-  TextField,
   GridField,
   RegisterReturn,
   RenderLineFunction,
@@ -33,30 +32,6 @@ export const useGoogleForm = ({ form }: { form: GoogleForm }) => {
   methods.getField = (id: string) => resolveField(id, form)
 
   return methods
-}
-
-type UseTextFieldReturn = TextField & RegisterReturn
-
-const useTextInput = (
-  id: string,
-  fieldType: 'LONG_ANSWER' | 'SHORT_ANSWER'
-): UseTextFieldReturn => {
-  const context = useGoogleFormContext()
-
-  const field = getFieldFromContext(context, id, fieldType) as TextField
-
-  const register = (options = {}) =>
-    context!.register(id, { required: field.required, ...options })
-
-  return { ...field, register }
-}
-
-export const useLongAnswerInput = (id: string) => {
-  return useTextInput(id, 'LONG_ANSWER')
-}
-
-export const useShortAnswerInput = (id: string) => {
-  return useTextInput(id, 'SHORT_ANSWER')
 }
 
 type UseGridFieldReturn = GridField & UseGridReturn
