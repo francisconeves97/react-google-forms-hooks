@@ -1,10 +1,7 @@
-import React from 'react'
 import { act, renderHook } from '@testing-library/react-hooks'
 
-import {
-  GoogleFormProvider,
-  useGoogleFormContext
-} from '../useGoogleFormContext'
+import { useGoogleFormContext } from '../useGoogleFormContext'
+import { getContextWrapper } from './utils'
 
 describe('GoogleFormProvider', () => {
   it('has access to all methods in context using useGoogleFormContext', () => {
@@ -13,12 +10,10 @@ describe('GoogleFormProvider', () => {
 
     const { result } = renderHook(() => useGoogleFormContext(), {
       /* eslint-disable-next-line react/display-name */
-      wrapper: ({ children }: { children?: React.ReactNode }) => (
-        // @ts-ignore
-        <GoogleFormProvider register={mockRegister} getField={mockGetField}>
-          {children}
-        </GoogleFormProvider>
-      )
+      wrapper: getContextWrapper({
+        register: mockRegister,
+        getField: mockGetField
+      })
     })
 
     const { register, getField } = result.current!
