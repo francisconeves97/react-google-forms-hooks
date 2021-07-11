@@ -11,7 +11,9 @@ import {
   Option,
   BaseField,
   TextField,
-  GridField
+  GridField,
+  DropdownField,
+  LinearField
 } from './form'
 
 type GetField = (id: string) => Field
@@ -63,3 +65,7 @@ export type UseCustomOptionField = BaseField & UseCustomOptionReturn
 export type UseTextFieldReturn = TextField & RegisterReturn
 
 export type UseGridFieldReturn = GridField & UseGridReturn
+
+export type UseDropdownReturn = DropdownField & RegisterReturn
+
+export type UseLinearInputReturn = UseOptionReturn & LinearField
