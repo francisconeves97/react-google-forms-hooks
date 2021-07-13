@@ -31,7 +31,7 @@
     {
       "label": "Short answer",
       "type": "SHORT_ANSWER",
-      "id": "461850935",
+      "id": "short_answer",
       "required": true
     },
     {
@@ -222,7 +222,7 @@
     }
   ],
   "fieldsOrder": {
-    "461850935": 1,
+    "short_answer": 1,
     "617310276": 7,
     "705101286": 0,
     "718815240": 6,

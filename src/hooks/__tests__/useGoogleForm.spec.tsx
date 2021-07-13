@@ -5,7 +5,7 @@ import { useGoogleForm } from '../useGoogleForm'
 import exampleForm from './examples/form1.json'
 
 describe('useGoogleForm', () => {
-  it('should methods from react-hook-form', () => {
+  it('returns methods from react-hook-form', () => {
     const { result } = renderHook(() =>
       useGoogleForm({ form: exampleForm as GoogleForm })
     )
@@ -16,7 +16,7 @@ describe('useGoogleForm', () => {
     expect(watch).toBeDefined()
   })
 
-  it('should return getField method', () => {
+  it('returns the getField method', () => {
     const { result } = renderHook(() =>
       useGoogleForm({ form: exampleForm as GoogleForm })
     )
@@ -27,7 +27,7 @@ describe('useGoogleForm', () => {
   })
 
   describe('getField', () => {
-    it('should return the field with the given id', () => {
+    it('returns the field with the given id', () => {
       const { result } = renderHook(() =>
         useGoogleForm({ form: exampleForm as GoogleForm })
       )
