@@ -4,14 +4,14 @@ import { renderHook } from '@testing-library/react-hooks'
 import { render, fireEvent, screen, act } from '@testing-library/react'
 
 import { TextField } from '../../types'
-import { useShortAnswerInput } from '../useShortAnswerInput'
+import { useLongAnswerInput } from '../useLongAnswerInput'
 import { MockGoogleFormComponent, mockGetField } from './helpers/utils'
 
-describe('useShortAnswerInput', () => {
-  const mockShortAnswerField: TextField = {
-    id: 'short_answer',
-    label: 'Short Answer Question',
-    type: 'SHORT_ANSWER',
+describe('useLongAnswerInput', () => {
+  const mockLongAnswerField: TextField = {
+    id: 'long_answer',
+    label: 'Long Answer Question',
+    type: 'LONG_ANSWER',
     required: false
   }
   let output = {}
@@ -19,11 +19,11 @@ describe('useShortAnswerInput', () => {
     output = data
   }
 
-  const ShortAnswerComponent = (props: { options?: RegisterOptions }) => {
-    const { register, error } = useShortAnswerInput(mockShortAnswerField.id)
+  const LongAnswerComponent = (props: { options?: RegisterOptions }) => {
+    const { register, error } = useLongAnswerInput(mockLongAnswerField.id)
     return (
       <>
-        <input type='text' {...register(props.options)} />
+        <textarea {...register(props.options)} />
         {error && <span>Error {error.type}</span>}
       </>
     )
@@ -32,7 +32,7 @@ describe('useShortAnswerInput', () => {
   const renderComponent = (options?: RegisterOptions) =>
     render(
       <MockGoogleFormComponent onSubmit={onSubmit}>
-        <ShortAnswerComponent options={options}></ShortAnswerComponent>
+        <LongAnswerComponent options={options}></LongAnswerComponent>
       </MockGoogleFormComponent>
     )
 
@@ -51,7 +51,7 @@ describe('useShortAnswerInput', () => {
   }
 
   beforeEach(() => {
-    mockGetField.mockImplementation(() => mockShortAnswerField)
+    mockGetField.mockImplementation(() => mockLongAnswerField)
   })
 
   afterEach(() => {
@@ -60,13 +60,13 @@ describe('useShortAnswerInput', () => {
 
   it('returns the correspondent field information', () => {
     const { result } = renderHook(
-      () => useShortAnswerInput(mockShortAnswerField.id),
+      () => useLongAnswerInput(mockLongAnswerField.id),
       {
         wrapper: MockGoogleFormComponent
       }
     )
 
-    expect(result.current).toMatchObject(mockShortAnswerField)
+    expect(result.current).toMatchObject(mockLongAnswerField)
   })
 
   it('registers the field correctly', async () => {
@@ -77,13 +77,13 @@ describe('useShortAnswerInput', () => {
     await submitForm()
 
     expect(output).toEqual({
-      [mockShortAnswerField.id]: 'xico'
+      [mockLongAnswerField.id]: 'xico'
     })
   })
 
   describe('when the field is required', () => {
     const requiredMockField = {
-      ...mockShortAnswerField,
+      ...mockLongAnswerField,
       required: true
     }
     beforeEach(() => {
