@@ -4,6 +4,7 @@ import { GoogleForm, UseGoogleFormReturn } from '../types'
 
 const resolveField = (id: string, form: GoogleForm) => {
   const fieldIndex = form.fieldsOrder[id]
+
   if (fieldIndex === undefined) {
     throw new Error(`Field with id ${id} wasn't found in your form`)
   }

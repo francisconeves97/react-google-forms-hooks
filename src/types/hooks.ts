@@ -17,7 +17,7 @@ import {
   LinearField
 } from './form'
 
-type GetField = (id: string) => Field
+export type GetField = (id: string) => Field
 
 type GetFieldReturn = {
   getField: GetField
