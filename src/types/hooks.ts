@@ -26,16 +26,16 @@ type GetFieldReturn = {
 export type UseGoogleFormReturn = UseFormReturn & GetFieldReturn
 
 export type RegisterReturn = {
-  register: (options: RegisterOptions) => UseFormRegisterReturn
+  register: (options?: RegisterOptions) => UseFormRegisterReturn
 }
 
 export type OptionRegister = Option & {
   id: string
-  registerOption: (options: RegisterOptions) => UseFormRegisterReturn
+  registerOption: (options?: RegisterOptions) => UseFormRegisterReturn
 }
 
 export type CustomOptionRegister = OptionRegister & {
-  registerCustomInput: (options: RegisterOptions) => UseFormRegisterReturn
+  registerCustomInput: (options?: RegisterOptions) => UseFormRegisterReturn
 }
 
 export type UseCustomOptionReturn = {

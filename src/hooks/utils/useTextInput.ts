@@ -1,3 +1,5 @@
+import { RegisterOptions } from 'react-hook-form'
+
 import { UseTextFieldReturn, TextField } from '../../types'
 import { useGoogleFormContext } from '../useGoogleFormContext'
 import getFieldFromContext from './getFieldFromContext'
@@ -12,7 +14,7 @@ export default (
 
   const error = context!.formState.errors[field.id]
 
-  const register = (options = {}) =>
+  const register = (options?: RegisterOptions) =>
     context!.register(id, { required: field.required, ...options })
 
   return { ...field, register, error }

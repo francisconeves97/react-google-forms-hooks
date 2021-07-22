@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 
 import { useGoogleFormContext } from '../useGoogleFormContext'
-import { getContextWrapper } from './utils'
+import { getContextWrapper } from './helpers/utils'
 
 describe('GoogleFormProvider', () => {
   it('has access to all methods in context using useGoogleFormContext', () => {

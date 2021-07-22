@@ -1,11 +1,12 @@
 import React from 'react'
+import { RegisterOptions } from 'react-hook-form'
 import { renderHook } from '@testing-library/react-hooks'
 import { render, fireEvent, screen, act } from '@testing-library/react'
 
 import { GoogleForm, TextField } from '../../types'
 import { useGoogleForm } from '../useGoogleForm'
 import { useShortAnswerInput } from '../useShortAnswerInput'
-import { getContextWrapper } from './utils'
+import { getContextWrapper } from './helpers/utils'
 
 describe('useShortAnswerInput', () => {
   const mockShortAnswerField: TextField = {
@@ -37,7 +38,7 @@ describe('useShortAnswerInput', () => {
     )
   }
 
-  const ShortAnswerComponent = (props: { options?: any }) => {
+  const ShortAnswerComponent = (props: { options?: RegisterOptions }) => {
     const { register, error } = useShortAnswerInput(mockShortAnswerField.id)
     return (
       <>

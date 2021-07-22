@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { GoogleFormProvider } from '../useGoogleFormContext'
+import { GoogleFormProvider } from '../../useGoogleFormContext'
 
 export const getContextWrapper = (props = {}) =>
   function ContextWrapper({ children }: { children?: React.ReactNode }) {
