@@ -1,7 +1,8 @@
 import {
   UseFormReturn,
   UseFormRegisterReturn,
-  RegisterOptions
+  RegisterOptions,
+  FieldError
 } from 'react-hook-form'
 
 import {
@@ -60,9 +61,13 @@ export type UseGridReturn = {
   renderGrid: (render: RenderLineFunction) => JSX.Element[]
 }
 
+export type Error = {
+  error?: FieldError
+}
+
 export type UseCustomOptionField = BaseField & UseCustomOptionReturn
 
-export type UseTextFieldReturn = TextField & RegisterReturn
+export type UseTextFieldReturn = TextField & RegisterReturn & Error
 
 export type UseGridFieldReturn = GridField & UseGridReturn
 

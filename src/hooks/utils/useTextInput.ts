@@ -10,8 +10,10 @@ export default (
 
   const field = getFieldFromContext(context, id, fieldType) as TextField
 
+  const error = context!.formState.errors[field.id]
+
   const register = (options = {}) =>
     context!.register(id, { required: field.required, ...options })
 
-  return { ...field, register }
+  return { ...field, register, error }
 }
