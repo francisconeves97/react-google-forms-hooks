@@ -3,12 +3,12 @@ import { RegisterOptions } from 'react-hook-form'
 import { renderHook } from '@testing-library/react-hooks'
 import { render, fireEvent, screen, act } from '@testing-library/react'
 
-import { TextField } from '../../types'
-import { useShortAnswerInput } from '../useShortAnswerInput'
-import { MockGoogleFormComponent, mockGetField } from './helpers/utils'
+import { TextField } from '../../../types'
+import useTextInput from '../../utils/useTextInput'
+import { MockGoogleFormComponent, mockGetField } from '../helpers/utils'
 
-describe('useShortAnswerInput', () => {
-  const mockShortAnswerField: TextField = {
+describe('useTextInput', () => {
+  const mockTextAnswerField: TextField = {
     id: 'short_answer',
     label: 'Short Answer Question',
     type: 'SHORT_ANSWER',
@@ -20,7 +20,10 @@ describe('useShortAnswerInput', () => {
   }
 
   const ShortAnswerComponent = (props: { options?: RegisterOptions }) => {
-    const { register, error } = useShortAnswerInput(mockShortAnswerField.id)
+    const { register, error } = useTextInput(
+      mockTextAnswerField.id,
+      mockTextAnswerField.type
+    )
     return (
       <>
         <input type='text' {...register(props.options)} />
@@ -51,7 +54,7 @@ describe('useShortAnswerInput', () => {
   }
 
   beforeEach(() => {
-    mockGetField.mockImplementation(() => mockShortAnswerField)
+    mockGetField.mockImplementation(() => mockTextAnswerField)
   })
 
   afterEach(() => {
@@ -60,13 +63,13 @@ describe('useShortAnswerInput', () => {
 
   it('returns the correspondent field information', () => {
     const { result } = renderHook(
-      () => useShortAnswerInput(mockShortAnswerField.id),
+      () => useTextInput(mockTextAnswerField.id, mockTextAnswerField.type),
       {
         wrapper: MockGoogleFormComponent
       }
     )
 
-    expect(result.current).toMatchObject(mockShortAnswerField)
+    expect(result.current).toMatchObject(mockTextAnswerField)
   })
 
   it('registers the field correctly', async () => {
@@ -77,13 +80,13 @@ describe('useShortAnswerInput', () => {
     await submitForm()
 
     expect(output).toEqual({
-      [mockShortAnswerField.id]: 'xico'
+      [mockTextAnswerField.id]: 'xico'
     })
   })
 
   describe('when the field is required', () => {
     const requiredMockField = {
-      ...mockShortAnswerField,
+      ...mockTextAnswerField,
       required: true
     }
     beforeEach(() => {
