@@ -3,10 +3,13 @@ import slugify from 'slugify'
 
 import {
   UseCustomOptionReturn,
-  UseGoogleFormReturn,
-  CustomOptionField,
-  Option
+  Option,
+  BaseField,
+  UseCustomOptionField,
+  CustomOptionField
 } from '../../types'
+import getFieldFromContext from './getFieldFromContext'
+import { useGoogleFormContext } from '../useGoogleFormContext'
 
 const OTHER_OPTION = '__other_option__'
 
@@ -15,21 +18,23 @@ const buildCustomFieldId = (id: string) => {
 }
 
 export default (
-  context: UseGoogleFormReturn,
-  field: CustomOptionField
-): UseCustomOptionReturn => {
+  id: string,
+  type: 'CHECKBOX' | 'RADIO'
+): UseCustomOptionField => {
+  const context = useGoogleFormContext()
+  const field = getFieldFromContext(context, id, type) as CustomOptionField
+
   const [customInputRequired, setCustomInputRequired] = useState<boolean>(false)
-  const id = field.id
 
   const register = (options = {}) =>
-    context.register(id, { required: field.required, ...options })
+    context!.register(id, { required: field.required, ...options })
 
-  const currentValue = context.watch(id)
+  const currentValue = context!.watch(id)
 
   useEffect(() => {
     if (field.type === 'RADIO') {
       setCustomInputRequired(currentValue && currentValue === OTHER_OPTION)
-    } else {
+    } else if (field.type === 'CHECKBOX') {
       setCustomInputRequired(
         currentValue &&
           currentValue.length === 1 &&
@@ -72,7 +77,7 @@ export default (
       value: OTHER_OPTION
     })
     const registerCustomInput = (options = {}) => {
-      return context.register(buildCustomFieldId(id), {
+      return context!.register(buildCustomFieldId(id), {
         required: customInputRequired,
         ...options
       })
@@ -86,5 +91,8 @@ export default (
     }
   }
 
-  return result
+  return {
+    ...(field as BaseField),
+    ...result
+  }
 }
