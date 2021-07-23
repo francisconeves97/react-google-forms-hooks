@@ -5,7 +5,11 @@ import { render, fireEvent, screen, act } from '@testing-library/react'
 
 import { TextField } from '../../../types'
 import useTextInput from '../../utils/useTextInput'
-import { MockGoogleFormComponent, mockGetField } from '../helpers/utils'
+import {
+  MockGoogleFormComponent,
+  mockGetField,
+  submitForm
+} from '../helpers/utils'
 
 describe('useTextInput', () => {
   const mockTextAnswerField: TextField = {
@@ -38,12 +42,6 @@ describe('useTextInput', () => {
         <ShortAnswerComponent options={options}></ShortAnswerComponent>
       </MockGoogleFormComponent>
     )
-
-  const submitForm = async () => {
-    await act(async () => {
-      fireEvent.click(screen.getByRole('button', { name: 'submit' }))
-    })
-  }
 
   const fillTextField = async (value: string) => {
     await act(async () => {
@@ -89,6 +87,7 @@ describe('useTextInput', () => {
       ...mockTextAnswerField,
       required: true
     }
+
     beforeEach(() => {
       mockGetField.mockClear()
       mockGetField.mockImplementation(() => requiredMockField)
@@ -104,7 +103,19 @@ describe('useTextInput', () => {
   })
 
   describe('when other validations are passed to the register method', () => {
-    it('gives a validation error when it does not comply the validation', async () => {
+    it('submits the form successfully when it does comply with the validation', async () => {
+      renderComponent({ minLength: 3 })
+
+      await fillTextField('xico')
+
+      await submitForm()
+
+      expect(output).toEqual({
+        [mockTextAnswerField.id]: 'xico'
+      })
+    })
+
+    it('gives a validation error when it does not comply with the validation', async () => {
       renderComponent({ minLength: 3 })
 
       await fillTextField('xi')

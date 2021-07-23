@@ -1,4 +1,5 @@
 import slugify from 'slugify'
+import { RegisterOptions } from 'react-hook-form'
 
 import { useGoogleFormContext } from './useGoogleFormContext'
 import getFieldFromContext from './utils/getFieldFromContext'
@@ -9,16 +10,18 @@ export const useLinearInput = (id: string): UseLinearInputReturn => {
 
   const field = getFieldFromContext(context, id, 'LINEAR') as LinearField
 
-  const register = (options = {}) =>
+  const register = (options?: RegisterOptions) =>
     context!.register(id, { required: field.required, ...options })
 
   const buildId = (value: string) => {
     return `${field.id}-${slugify(value)}`
   }
 
+  const error = context!.formState.errors[field.id]
+
   const options = field.options.map((o) => {
     const id = buildId(o.label)
-    const registerOption = (options = {}) => ({
+    const registerOption = (options?: RegisterOptions) => ({
       ...register(options),
       value: o.label
     })
@@ -30,5 +33,5 @@ export const useLinearInput = (id: string): UseLinearInputReturn => {
     }
   })
 
-  return { ...field, options }
+  return { ...field, options, error }
 }

@@ -73,4 +73,4 @@ export type UseGridFieldReturn = GridField & UseGridReturn
 
 export type UseDropdownReturn = DropdownField & RegisterReturn
 
-export type UseLinearInputReturn = UseOptionReturn & LinearField
+export type UseLinearInputReturn = UseOptionReturn & LinearField & Error

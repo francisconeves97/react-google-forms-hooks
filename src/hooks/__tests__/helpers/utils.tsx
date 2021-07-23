@@ -1,4 +1,5 @@
 import React from 'react'
+import { fireEvent, screen, act } from '@testing-library/react'
 
 import { GoogleFormProvider } from '../../useGoogleFormContext'
 import { useGoogleForm } from '../../useGoogleForm'
@@ -31,4 +32,10 @@ export const MockGoogleFormComponent = ({
       </form>
     </GoogleFormContext>
   )
+}
+
+export const submitForm = async () => {
+  await act(async () => {
+    fireEvent.click(screen.getByRole('button', { name: 'submit' }))
+  })
 }
