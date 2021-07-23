@@ -29,8 +29,11 @@ export type RegisterReturn = {
   register: (options?: RegisterOptions) => UseFormRegisterReturn
 }
 
-export type OptionRegister = Option & {
+export type OptionId = Option & {
   id: string
+}
+
+export type OptionRegister = OptionId & {
   registerOption: (options?: RegisterOptions) => UseFormRegisterReturn
 }
 
@@ -41,6 +44,10 @@ export type CustomOptionRegister = OptionRegister & {
 export type UseCustomOptionReturn = {
   options: Array<OptionRegister>
   customOption?: CustomOptionRegister
+}
+
+export type Options = {
+  options: Array<OptionId>
 }
 
 export type UseOptionReturn = {
@@ -71,6 +78,6 @@ export type UseTextFieldReturn = TextField & RegisterReturn & Error
 
 export type UseGridFieldReturn = GridField & UseGridReturn
 
-export type UseDropdownReturn = DropdownField & RegisterReturn
+export type UseDropdownReturn = Options & DropdownField & RegisterReturn & Error
 
 export type UseLinearInputReturn = UseOptionReturn & LinearField & Error

@@ -3,23 +3,19 @@ import { RegisterOptions } from 'react-hook-form'
 import { renderHook } from '@testing-library/react-hooks'
 import { render, fireEvent, screen, act } from '@testing-library/react'
 
-import { useLinearInput } from '../useLinearInput'
-import { LinearField } from '../../types'
+import { useDropdownInput } from '../useDropdownInput'
+import { DropdownField } from '../../types'
 import {
   MockGoogleFormComponent,
   mockGetField,
   submitForm
 } from './helpers/utils'
 
-jest.mock('slugify', () => {
-  return (s: string) => s
-})
-
-describe('useLinearInput', () => {
-  const mockLinearField: LinearField = {
-    id: 'linear_field',
-    label: 'Linear Field Question',
-    type: 'LINEAR',
+describe('useDropdownInput', () => {
+  const mockDropdownField: DropdownField = {
+    id: 'dropdown_field',
+    label: 'Dropdown Field Question',
+    type: 'DROPDOWN',
     required: false,
     options: [
       {
@@ -34,35 +30,31 @@ describe('useLinearInput', () => {
       {
         label: '4'
       }
-    ],
-    legend: {
-      labelFirst: 'Left',
-      labelLast: 'Right'
-    }
+    ]
   }
-  const options = mockLinearField.options
-  const firstLabel = options[0].label
-  const lastLabel = options[options.length - 1].label
+  const options = mockDropdownField.options
+  const firstOption = options[0].label
+  const lastOption = options[options.length - 1].label
   let output = {}
   const onSubmit = (data: object) => {
     output = data
   }
 
-  const LinearInputComponent = (props: { options?: RegisterOptions }) => {
-    const { options, error } = useLinearInput(mockLinearField.id)
+  const DropdownComponent = (props: { options?: RegisterOptions }) => {
+    const { register, options, error } = useDropdownInput(mockDropdownField.id)
 
     return (
       <>
-        {options.map((o) => (
-          <React.Fragment key={o.id}>
-            <input
-              type='radio'
-              id={o.id}
-              {...o.registerOption(props.options)}
-            />
-            <label htmlFor={o.id}>{o.label}</label>
-          </React.Fragment>
-        ))}
+        <select {...register(props.options)} data-testid='select'>
+          <option value=''>Select option</option>
+          {options.map((o) => {
+            return (
+              <option key={o.label} value={o.label}>
+                {o.label}
+              </option>
+            )
+          })}
+        </select>
         {error && <span>Error {error.type}</span>}
       </>
     )
@@ -71,18 +63,20 @@ describe('useLinearInput', () => {
   const renderComponent = (options?: RegisterOptions) =>
     render(
       <MockGoogleFormComponent onSubmit={onSubmit}>
-        <LinearInputComponent options={options}></LinearInputComponent>
+        <DropdownComponent options={options}></DropdownComponent>
       </MockGoogleFormComponent>
     )
 
   const clickOption = async (label: string) => {
     await act(async () => {
-      fireEvent.click(screen.getByLabelText(label))
+      fireEvent.change(screen.getByTestId('select'), {
+        target: { value: label }
+      })
     })
   }
 
   beforeEach(() => {
-    mockGetField.mockImplementation(() => mockLinearField)
+    mockGetField.mockImplementation(() => mockDropdownField)
   })
 
   afterEach(() => {
@@ -90,17 +84,23 @@ describe('useLinearInput', () => {
   })
 
   it('returns the correspondent field information', () => {
-    const { result } = renderHook(() => useLinearInput(mockLinearField.id), {
-      wrapper: MockGoogleFormComponent
-    })
+    const { result } = renderHook(
+      () => useDropdownInput(mockDropdownField.id),
+      {
+        wrapper: MockGoogleFormComponent
+      }
+    )
 
-    expect(result.current).toMatchObject(mockLinearField)
+    expect(result.current).toMatchObject(mockDropdownField)
   })
 
   it('builds the options ids correctly', () => {
-    const { result } = renderHook(() => useLinearInput(mockLinearField.id), {
-      wrapper: MockGoogleFormComponent
-    })
+    const { result } = renderHook(
+      () => useDropdownInput(mockDropdownField.id),
+      {
+        wrapper: MockGoogleFormComponent
+      }
+    )
 
     result.current.options.forEach((o) =>
       expect(o.id).toBe(`${result.current.id}-${o.label}`)
@@ -110,35 +110,35 @@ describe('useLinearInput', () => {
   it('registers the options correctly', async () => {
     renderComponent()
 
-    await clickOption(firstLabel)
+    await clickOption(firstOption)
 
     await submitForm()
 
     expect(output).toEqual({
-      [mockLinearField.id]: firstLabel
+      [mockDropdownField.id]: firstOption
     })
   })
 
   it('changes between options correctly', async () => {
     renderComponent()
-    await clickOption(firstLabel)
+    await clickOption(firstOption)
     await submitForm()
 
     expect(output).toEqual({
-      [mockLinearField.id]: firstLabel
+      [mockDropdownField.id]: firstOption
     })
 
-    await clickOption(lastLabel)
+    await clickOption(lastOption)
     await submitForm()
 
     expect(output).toEqual({
-      [mockLinearField.id]: lastLabel
+      [mockDropdownField.id]: lastOption
     })
   })
 
   describe('when the field is required', () => {
     const requiredMockField = {
-      ...mockLinearField,
+      ...mockDropdownField,
       required: true
     }
 
@@ -158,21 +158,21 @@ describe('useLinearInput', () => {
 
   describe('when other validations are passed to the register method', () => {
     it('submits the form successfully when it does comply with the validation', async () => {
-      renderComponent({ validate: (value) => value === lastLabel })
+      renderComponent({ validate: (value) => value === lastOption })
 
-      await clickOption(lastLabel)
+      await clickOption(lastOption)
 
       await submitForm()
 
       expect(output).toEqual({
-        [mockLinearField.id]: lastLabel
+        [mockDropdownField.id]: lastOption
       })
     })
 
     it('gives a validation error when it does not comply with the validation', async () => {
-      renderComponent({ validate: (value) => value === lastLabel })
+      renderComponent({ validate: (value) => value === lastOption })
 
-      await clickOption(firstLabel)
+      await clickOption(firstOption)
 
       await submitForm()
 
