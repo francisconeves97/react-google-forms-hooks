@@ -10,6 +10,7 @@ import {
 } from '../../types'
 import getFieldFromContext from './getFieldFromContext'
 import { useGoogleFormContext } from '../useGoogleFormContext'
+import { RegisterOptions } from 'react-hook-form'
 
 const OTHER_OPTION = '__other_option__'
 
@@ -26,7 +27,7 @@ export default (
 
   const [customInputRequired, setCustomInputRequired] = useState<boolean>(false)
 
-  const register = (options = {}) =>
+  const register = (options?: RegisterOptions) =>
     context!.register(id, { required: field.required, ...options })
 
   const currentValue = context!.watch(id)
@@ -53,7 +54,7 @@ export default (
 
   const buildOptionRegister = (o: Option) => {
     const id = buildId(o.label)
-    const registerOption = (options = {}) => ({
+    const registerOption = (options: RegisterOptions) => ({
       ...register({ ...options }),
       value: o.label
     })
@@ -83,16 +84,22 @@ export default (
       })
     }
 
+    const error = context!.formState.errors[id]
+
     result.customOption = {
       ...customOption,
       id,
       registerOption,
-      registerCustomInput
+      registerCustomInput,
+      error
     }
   }
 
+  const error = context!.formState.errors[field.id]
+
   return {
     ...(field as BaseField),
-    ...result
+    ...result,
+    error
   }
 }

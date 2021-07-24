@@ -39,7 +39,7 @@ export type OptionRegister = OptionId & {
 
 export type CustomOptionRegister = OptionRegister & {
   registerCustomInput: (options?: RegisterOptions) => UseFormRegisterReturn
-}
+} & Error
 
 export type UseCustomOptionReturn = {
   options: Array<OptionRegister>
@@ -72,7 +72,7 @@ export type Error = {
   error?: FieldError
 }
 
-export type UseCustomOptionField = BaseField & UseCustomOptionReturn
+export type UseCustomOptionField = BaseField & UseCustomOptionReturn & Error
 
 export type UseTextFieldReturn = TextField & RegisterReturn & Error
 
