@@ -58,7 +58,7 @@ export type LineRenderer = Line & {
   renderColumns: (render: RenderColumnFunction) => JSX.Element[]
 }
 export type ColumnRenderer = Column & {
-  registerColumn: () => UseFormRegisterReturn
+  registerColumn: (options?: RegisterOptions) => UseFormRegisterReturn
 }
 
 export type RenderLineFunction = (line: LineRenderer) => JSX.Element

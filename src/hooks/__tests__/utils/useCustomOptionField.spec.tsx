@@ -100,7 +100,7 @@ describe('useCustomOptionField', () => {
   const renderComponent = ({
     options,
     customInputOptions,
-    type = 'radio'
+    type
   }: {
     options?: RegisterOptions
     customInputOptions?: RegisterOptions

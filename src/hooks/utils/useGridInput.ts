@@ -7,6 +7,7 @@ import {
   RenderLineFunction,
   RenderColumnFunction
 } from '../../types'
+import { RegisterOptions } from 'react-hook-form'
 
 export default (
   id: string,
@@ -18,12 +19,15 @@ export default (
 
   const renderGrid = (render: RenderLineFunction): JSX.Element[] => {
     return field.lines.map((l) => {
-      const registerLine = (options = {}) =>
+      const registerLine = (options?: RegisterOptions) =>
         context!.register(l.id, { required: field.required, ...options })
 
       const renderColumns = (render: RenderColumnFunction): JSX.Element[] => {
         return field.columns.map((c) => {
-          const registerColumn = () => ({ ...registerLine(), value: c.label })
+          const registerColumn = (options?: RegisterOptions) => ({
+            ...registerLine(options),
+            value: c.label
+          })
 
           return render({ ...c, registerColumn })
         })
