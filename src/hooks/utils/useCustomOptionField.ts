@@ -12,9 +12,9 @@ import getFieldFromContext from './getFieldFromContext'
 import { useGoogleFormContext } from '../useGoogleFormContext'
 import { RegisterOptions } from 'react-hook-form'
 
-const OTHER_OPTION = '__other_option__'
+export const OTHER_OPTION = '__other_option__'
 
-const buildCustomFieldId = (id: string) => {
+export const buildCustomFieldId = (id: string) => {
   return `${id}-other_option_response`
 }
 
@@ -34,10 +34,13 @@ export default (
 
   useEffect(() => {
     if (field.type === 'RADIO') {
-      setCustomInputRequired(currentValue && currentValue === OTHER_OPTION)
+      setCustomInputRequired(
+        field.required && currentValue && currentValue === OTHER_OPTION
+      )
     } else if (field.type === 'CHECKBOX') {
       setCustomInputRequired(
-        currentValue &&
+        field.required &&
+          currentValue &&
           currentValue.length === 1 &&
           currentValue.includes(OTHER_OPTION)
       )
@@ -77,14 +80,17 @@ export default (
       ...register({ ...options }),
       value: OTHER_OPTION
     })
+
+    const customOptionId = buildCustomFieldId(id)
+
     const registerCustomInput = (options = {}) => {
-      return context!.register(buildCustomFieldId(id), {
+      return context!.register(customOptionId, {
         required: customInputRequired,
         ...options
       })
     }
 
-    const error = context!.formState.errors[id]
+    const error = context!.formState.errors[customOptionId]
 
     result.customOption = {
       ...customOption,

@@ -4,7 +4,10 @@ import { renderHook } from '@testing-library/react-hooks'
 import { render, fireEvent, screen, act } from '@testing-library/react'
 
 import { CustomOptionField } from '../../../types'
-import useCustomOptionField from '../../utils/useCustomOptionField'
+import useCustomOptionField, {
+  OTHER_OPTION,
+  buildCustomFieldId
+} from '../../utils/useCustomOptionField'
 import {
   MockGoogleFormComponent,
   mockGetField,
@@ -16,8 +19,8 @@ jest.mock('slugify', () => {
 })
 
 describe('useCustomOptionField', () => {
-  const mockCustomOptionField: CustomOptionField = {
-    id: 'custom_option_answer',
+  const mockOptionField: CustomOptionField = {
+    id: 'id',
     label: 'Radio Answer Queston',
     type: 'RADIO',
     required: false,
@@ -36,9 +39,10 @@ describe('useCustomOptionField', () => {
       }
     ]
   }
-  const options = mockCustomOptionField.options
+  const options = mockOptionField.options
   const firstLabel = options[0].label
   const lastLabel = options[options.length - 1].label
+  const customOptionLabel = 'Custom option'
   let output = {}
   const onSubmit = (data: object) => {
     output = data
@@ -54,7 +58,7 @@ describe('useCustomOptionField', () => {
     type?: 'radio' | 'checkbox'
   }) => {
     const { customOption, options, error } = useCustomOptionField(
-      mockCustomOptionField.id,
+      mockOptionField.id,
       type.toUpperCase() as 'RADIO' | 'CHECKBOX'
     )
     return (
@@ -76,14 +80,15 @@ describe('useCustomOptionField', () => {
               id={customOption.id}
               {...customOption.registerOption(registerOptions)}
             />
-            <label htmlFor={customOption.id}>Custom option</label>
+            <label htmlFor={customOption.id}>{customOptionLabel}</label>
             <input
               type='text'
-              placeholder='Resposta aqui'
               {...customOption.registerCustomInput(customInputOptions)}
             />
             {customOption.error && (
-              <span>Custom option error {customOption.error.type}</span>
+              <span>
+                {customOptionLabel} error {customOption.error.type}
+              </span>
             )}
           </>
         )}
@@ -117,8 +122,16 @@ describe('useCustomOptionField', () => {
     })
   }
 
+  const fillCustomOption = async (value: string) => {
+    await act(async () => {
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: { value: value }
+      })
+    })
+  }
+
   beforeEach(() => {
-    mockGetField.mockImplementation(() => mockCustomOptionField)
+    mockGetField.mockImplementation(() => mockOptionField)
   })
 
   afterEach(() => {
@@ -127,26 +140,18 @@ describe('useCustomOptionField', () => {
 
   it('returns the correspondent field information', () => {
     const { result } = renderHook(
-      () =>
-        useCustomOptionField(
-          mockCustomOptionField.id,
-          mockCustomOptionField.type
-        ),
+      () => useCustomOptionField(mockOptionField.id, mockOptionField.type),
       {
         wrapper: MockGoogleFormComponent
       }
     )
 
-    expect(result.current).toMatchObject(mockCustomOptionField)
+    expect(result.current).toMatchObject(mockOptionField)
   })
 
   it('builds the options ids correctly', () => {
     const { result } = renderHook(
-      () =>
-        useCustomOptionField(
-          mockCustomOptionField.id,
-          mockCustomOptionField.type
-        ),
+      () => useCustomOptionField(mockOptionField.id, mockOptionField.type),
       {
         wrapper: MockGoogleFormComponent
       }
@@ -165,7 +170,7 @@ describe('useCustomOptionField', () => {
     await submitForm()
 
     expect(output).toEqual({
-      [mockCustomOptionField.id]: firstLabel
+      [mockOptionField.id]: firstLabel
     })
   })
 
@@ -176,21 +181,21 @@ describe('useCustomOptionField', () => {
       await submitForm()
 
       expect(output).toEqual({
-        [mockCustomOptionField.id]: firstLabel
+        [mockOptionField.id]: firstLabel
       })
 
       await clickOption(lastLabel)
       await submitForm()
 
       expect(output).toEqual({
-        [mockCustomOptionField.id]: lastLabel
+        [mockOptionField.id]: lastLabel
       })
     })
   })
 
   describe('when the field type is CHECKBOX', () => {
     const mockCheckboxField: CustomOptionField = {
-      ...mockCustomOptionField,
+      ...mockOptionField,
       label: 'Checkbox Answer Queston',
       type: 'CHECKBOX'
     }
@@ -206,28 +211,28 @@ describe('useCustomOptionField', () => {
       await submitForm()
 
       expect(output).toEqual({
-        [mockCustomOptionField.id]: [firstLabel]
+        [mockOptionField.id]: [firstLabel]
       })
 
       await clickOption(lastLabel)
       await submitForm()
 
       expect(output).toEqual({
-        [mockCustomOptionField.id]: [firstLabel, lastLabel]
+        [mockOptionField.id]: [firstLabel, lastLabel]
       })
 
       await clickOption(lastLabel)
       await submitForm()
 
       expect(output).toEqual({
-        [mockCustomOptionField.id]: [firstLabel]
+        [mockOptionField.id]: [firstLabel]
       })
     })
   })
 
   describe('when the field is required', () => {
     const requiredMockField = {
-      ...mockCustomOptionField,
+      ...mockOptionField,
       required: true
     }
 
@@ -254,7 +259,7 @@ describe('useCustomOptionField', () => {
       await submitForm()
 
       expect(output).toEqual({
-        [mockCustomOptionField.id]: lastLabel
+        [mockOptionField.id]: lastLabel
       })
     })
 
@@ -266,6 +271,250 @@ describe('useCustomOptionField', () => {
       await submitForm()
 
       expect(screen.getByText('Error validate')).toBeVisible()
+    })
+  })
+
+  describe('when the field has a custom option', () => {
+    const mockCustomOptionField: CustomOptionField = {
+      ...mockOptionField,
+      options: [
+        ...mockOptionField.options,
+        {
+          label: '',
+          custom: true
+        }
+      ]
+    }
+
+    describe('when the field type is RADIO', () => {
+      beforeEach(() => {
+        mockGetField.mockClear()
+        mockGetField.mockImplementation(() => mockCustomOptionField)
+      })
+
+      it('registers the custom option correctly', async () => {
+        renderComponent()
+
+        await clickOption(customOptionLabel)
+
+        await submitForm()
+
+        expect(output).toEqual({
+          [mockOptionField.id]: OTHER_OPTION,
+          [buildCustomFieldId(`${mockOptionField.id}-${OTHER_OPTION}`)]: ''
+        })
+      })
+
+      it('changes between options correctly', async () => {
+        renderComponent()
+
+        await clickOption(customOptionLabel)
+        await submitForm()
+
+        expect(output).toEqual({
+          [mockOptionField.id]: OTHER_OPTION,
+          [buildCustomFieldId(`${mockOptionField.id}-${OTHER_OPTION}`)]: ''
+        })
+
+        await clickOption(firstLabel)
+        await submitForm()
+
+        expect(output).toEqual({
+          [mockOptionField.id]: firstLabel,
+          [buildCustomFieldId(`${mockOptionField.id}-${OTHER_OPTION}`)]: ''
+        })
+      })
+
+      describe('when the field is required', () => {
+        const mockCustomOptionRequiredField: CustomOptionField = {
+          ...mockCustomOptionField,
+          required: true
+        }
+
+        beforeEach(() => {
+          mockGetField.mockClear()
+          mockGetField.mockImplementation(() => mockCustomOptionRequiredField)
+        })
+
+        describe('when no option is selected', () => {
+          it('gives an error on the field', async () => {
+            renderComponent()
+
+            await submitForm()
+
+            expect(screen.getByText('Error required')).toBeVisible()
+          })
+
+          it('gives no error on the option field', async () => {
+            renderComponent()
+
+            await submitForm()
+
+            expect(
+              screen.queryByText(`${customOptionLabel} error required`)
+            ).not.toBeInTheDocument()
+          })
+        })
+
+        describe('when the custom option is selected and not filled', () => {
+          it('gives no error on the field', async () => {
+            renderComponent()
+
+            await clickOption(customOptionLabel)
+
+            await submitForm()
+
+            expect(screen.queryByText('Error required')).not.toBeInTheDocument()
+          })
+
+          it('gives no error on the option field', async () => {
+            renderComponent()
+
+            await clickOption(customOptionLabel)
+
+            await submitForm()
+
+            expect(
+              screen.getByText(`${customOptionLabel} error required`)
+            ).toBeVisible()
+          })
+        })
+
+        describe('when the custom option is selected and filled', () => {
+          it('gives no error on the option field', async () => {
+            renderComponent()
+
+            await clickOption(customOptionLabel)
+            await fillCustomOption('xico')
+
+            await submitForm()
+
+            expect(output).toEqual({
+              [mockOptionField.id]: OTHER_OPTION,
+              [buildCustomFieldId(`${mockOptionField.id}-${OTHER_OPTION}`)]:
+                'xico'
+            })
+          })
+        })
+      })
+    })
+
+    describe('when the field type is CHECKBOX', () => {
+      const mockCheckboxCustomOptionField: CustomOptionField = {
+        ...mockCustomOptionField,
+        type: 'CHECKBOX'
+      }
+
+      beforeEach(() => {
+        mockGetField.mockClear()
+        mockGetField.mockImplementation(() => mockCheckboxCustomOptionField)
+      })
+
+      it('registers the custom option correctly', async () => {
+        renderComponent({ type: 'checkbox' })
+
+        await clickOption(customOptionLabel)
+
+        await submitForm()
+
+        expect(output).toEqual({
+          [mockOptionField.id]: [OTHER_OPTION],
+          [buildCustomFieldId(`${mockOptionField.id}-${OTHER_OPTION}`)]: ''
+        })
+      })
+
+      it('selects the options correctly', async () => {
+        renderComponent({ type: 'checkbox' })
+
+        await clickOption(customOptionLabel)
+        await submitForm()
+
+        expect(output).toEqual({
+          [mockOptionField.id]: [OTHER_OPTION],
+          [buildCustomFieldId(`${mockOptionField.id}-${OTHER_OPTION}`)]: ''
+        })
+
+        await clickOption(firstLabel)
+        await submitForm()
+
+        expect(output).toEqual({
+          [mockOptionField.id]: [firstLabel, OTHER_OPTION],
+          [buildCustomFieldId(`${mockOptionField.id}-${OTHER_OPTION}`)]: ''
+        })
+      })
+
+      describe('when the field is required', () => {
+        const mockCheckboxCustomRequiredField: CustomOptionField = {
+          ...mockCheckboxCustomOptionField,
+          required: true
+        }
+
+        beforeEach(() => {
+          mockGetField.mockClear()
+          mockGetField.mockImplementation(() => mockCheckboxCustomRequiredField)
+        })
+
+        describe('when no option is selected', () => {
+          it('gives an error on the field', async () => {
+            renderComponent({ type: 'checkbox' })
+
+            await submitForm()
+
+            expect(screen.getByText('Error required')).toBeVisible()
+          })
+
+          it('gives no error on the option field', async () => {
+            renderComponent({ type: 'checkbox' })
+
+            await submitForm()
+
+            expect(
+              screen.queryByText(`${customOptionLabel} error required`)
+            ).not.toBeInTheDocument()
+          })
+        })
+
+        describe('when the custom option is selected and not filled', () => {
+          it('gives no error on the field', async () => {
+            renderComponent({ type: 'checkbox' })
+
+            await clickOption(customOptionLabel)
+
+            await submitForm()
+
+            expect(screen.queryByText('Error required')).not.toBeInTheDocument()
+          })
+
+          it('gives no error on the option field', async () => {
+            renderComponent({ type: 'checkbox' })
+
+            await clickOption(customOptionLabel)
+
+            await submitForm()
+
+            expect(
+              screen.getByText(`${customOptionLabel} error required`)
+            ).toBeVisible()
+          })
+        })
+
+        describe('when the custom option is selected and filled', () => {
+          it('gives no error on the option field', async () => {
+            renderComponent({ type: 'checkbox' })
+
+            await clickOption(customOptionLabel)
+            await fillCustomOption('xico')
+
+            await submitForm()
+
+            expect(output).toEqual({
+              [mockOptionField.id]: [OTHER_OPTION],
+              [buildCustomFieldId(`${mockOptionField.id}-${OTHER_OPTION}`)]:
+                'xico'
+            })
+          })
+        })
+      })
     })
   })
 })
