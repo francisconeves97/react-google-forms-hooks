@@ -37,7 +37,7 @@ export default (
       setCustomInputRequired(
         field.required && currentValue && currentValue === OTHER_OPTION
       )
-    } else if (field.type === 'CHECKBOX') {
+    } else {
       setCustomInputRequired(
         field.required &&
           currentValue &&
