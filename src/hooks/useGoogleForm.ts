@@ -22,7 +22,6 @@ const resolveField = (id: string, form: GoogleForm) => {
 }
 
 export const formatQuestionName = (id: string) => {
-  console.log(id, 'hereeee')
   if (id.includes(OTHER_OPTION_RESPONSE)) {
     return `entry.${id.replace(
       `-${OTHER_OPTION}-${OTHER_OPTION_RESPONSE}`,
