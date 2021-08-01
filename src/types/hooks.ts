@@ -19,11 +19,10 @@ import {
 
 export type GetField = (id: string) => Field
 
-type GetFieldReturn = {
+export type UseGoogleFormReturn = UseFormReturn & {
   getField: GetField
+  submitToGoogleForms: (form: FormData) => Promise<void>
 }
-
-export type UseGoogleFormReturn = UseFormReturn & GetFieldReturn
 
 export type RegisterReturn = {
   register: (options?: RegisterOptions) => UseFormRegisterReturn

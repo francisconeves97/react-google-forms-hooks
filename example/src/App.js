@@ -79,7 +79,10 @@ const Questions = () => {
 
 const App = () => {
   const methods = useGoogleForm({ form })
-  const onSubmit = (data) => console.log('>>> Here  are the data', data)
+  const onSubmit = (data) => {
+    console.log('>>> Here is the data', data)
+    methods.submitToGoogleForms(data)
+  }
 
   console.log('>>> Here are the errors!!!', methods.formState.errors)
 

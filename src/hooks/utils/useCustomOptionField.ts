@@ -13,9 +13,10 @@ import { useGoogleFormContext } from '../useGoogleFormContext'
 import { RegisterOptions } from 'react-hook-form'
 
 export const OTHER_OPTION = '__other_option__'
+export const OTHER_OPTION_RESPONSE = 'other_option_response'
 
 export const buildCustomFieldId = (id: string) => {
-  return `${id}-other_option_response`
+  return `${id}-${OTHER_OPTION_RESPONSE}`
 }
 
 export default (
