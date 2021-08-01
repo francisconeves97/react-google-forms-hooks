@@ -79,9 +79,10 @@ const Questions = () => {
 
 const App = () => {
   const methods = useGoogleForm({ form })
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log('>>> Here is the data', data)
-    methods.submitToGoogleForms(data)
+    await methods.submitToGoogleForms(data)
+    alert('Form submitted with success!')
   }
 
   console.log('>>> Here are the errors!!!', methods.formState.errors)

@@ -16,8 +16,13 @@ const CheckboxContainer = styled.div`
   }
 `
 
+const ErrorLabel = styled.span`
+  color: red;
+  padding: 10px 0;
+`
+
 export default function RadioInput({ id }) {
-  const { options, customOption } = useRadioInput(id)
+  const { options, customOption, error } = useRadioInput(id)
 
   return (
     <Container>
@@ -42,6 +47,7 @@ export default function RadioInput({ id }) {
           />
         </CheckboxContainer>
       )}
+      <ErrorLabel>{error && 'This field is required'}</ErrorLabel>
     </Container>
   )
 }
