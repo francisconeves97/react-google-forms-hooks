@@ -20,6 +20,7 @@
     "test:lint": "eslint src/**/*.ts",
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom --coverage --testMatch '**/__tests__/**/*.spec.[jt]s?(x)'",
     "test:watch": "react-scripts test --env=jsdom --coverage --testMatch '**/__tests__/**/*.spec.[jt]s?(x)'",
+    "test:cov": "react-scripts test --env=jsdom --coverage --watchAll --testMatch '**/__tests__/**/*.spec.[jt]s?(x)'",
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build"
   },

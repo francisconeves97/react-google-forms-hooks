@@ -59,7 +59,7 @@ export type LineRenderer = Line & {
 }
 export type ColumnRenderer = Column & {
   registerColumn: (options?: RegisterOptions) => UseFormRegisterReturn
-}
+} & { id: string }
 
 export type RenderLineFunction = (line: LineRenderer) => JSX.Element
 export type RenderColumnFunction = (column: ColumnRenderer) => JSX.Element
@@ -72,11 +72,19 @@ export type Error = {
   error?: FieldError
 }
 
+export type GridErrors = {
+  [fieldId: string]: FieldError
+}
+
+export type Errors = {
+  errors?: GridErrors
+}
+
 export type UseCustomOptionField = BaseField & UseCustomOptionReturn & Error
 
 export type UseTextFieldReturn = TextField & RegisterReturn & Error
 
-export type UseGridFieldReturn = GridField & UseGridReturn
+export type UseGridFieldReturn = GridField & UseGridReturn & Errors
 
 export type UseDropdownReturn = Options & DropdownField & RegisterReturn & Error
 

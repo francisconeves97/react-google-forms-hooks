@@ -11,6 +11,10 @@ import {
   submitForm
 } from '../helpers/utils'
 
+jest.mock('slugify', () => {
+  return (s: string) => s
+})
+
 describe('useGridInput', () => {
   const mockGridField: GridField = {
     id: 'grid_field',
@@ -50,6 +54,14 @@ describe('useGridInput', () => {
       }
     ]
   }
+  const firstLine = mockGridField.lines[0]
+  const lastLine = mockGridField.lines[mockGridField.lines.length - 1]
+  const firstColumn = mockGridField.columns[0]
+  const lastColumn = mockGridField.columns[mockGridField.columns.length - 1]
+  const linesOutput = mockGridField.lines.reduce((acc, l) => {
+    acc[l.id] = null
+    return acc
+  }, {})
   let output = {}
   const onSubmit = (data: object) => {
     output = data
@@ -62,7 +74,7 @@ describe('useGridInput', () => {
     options?: RegisterOptions
     type?: 'radio' | 'checkbox'
   }) => {
-    const { columns, renderGrid } = useGridInput(
+    const { columns, renderGrid, errors } = useGridInput(
       mockGridField.id,
       `${type.toUpperCase()}_GRID` as 'RADIO_GRID' | 'CHECKBOX_GRID'
     )
@@ -76,12 +88,23 @@ describe('useGridInput', () => {
           <div key={l.label}>
             <div>{l.label}</div>
             {l.renderColumns((c) => (
-              <div key={c.label}>
-                <input type={type} {...c.registerColumn(registerOptions)} />
+              <div key={c.id}>
+                <input
+                  type={type}
+                  data-testid={c.id}
+                  {...c.registerColumn(registerOptions)}
+                />
               </div>
             ))}
           </div>
         ))}
+        {errors && <span>Error</span>}
+        {errors &&
+          Object.keys(errors).map((lineId) => (
+            <span key={lineId}>
+              Error {lineId} {errors[lineId].type}
+            </span>
+          ))}
       </>
     )
   }
@@ -98,6 +121,14 @@ describe('useGridInput', () => {
         <GridComponent options={options} type={type}></GridComponent>
       </MockGoogleFormComponent>
     )
+
+  const clickOption = async (lineId: string, label: string) => {
+    await act(async () => {
+      fireEvent.click(
+        screen.getByTestId(`${mockGridField.id}-${lineId}-${label}`)
+      )
+    })
+  }
 
   beforeEach(() => {
     mockGetField.mockImplementation(() => mockGridField)
@@ -132,5 +163,47 @@ describe('useGridInput', () => {
     mockGridField.lines.forEach((l) =>
       expect(screen.getByText(l.label)).toBeVisible()
     )
+  })
+
+  it('registers the field correctly', async () => {
+    renderComponent()
+
+    await clickOption(firstLine.id, lastColumn.label)
+    await clickOption(lastLine.id, firstColumn.label)
+
+    await submitForm()
+
+    expect(output).toEqual({
+      ...linesOutput,
+      [firstLine.id]: lastColumn.label,
+      [lastLine.id]: firstColumn.label
+    })
+
+    expect(screen.queryByText('Error')).not.toBeInTheDocument()
+  })
+
+  describe('when the field is required', () => {
+    const requiredMockField: GridField = {
+      ...mockGridField,
+      required: true
+    }
+
+    beforeEach(() => {
+      mockGetField.mockClear()
+      mockGetField.mockImplementation(() => requiredMockField)
+    })
+
+    it('gives errors when lines are not selected', async () => {
+      renderComponent()
+
+      await clickOption(firstLine.id, lastColumn.label)
+
+      await submitForm()
+
+      expect(screen.getByText('Error')).toBeVisible()
+      mockGridField.lines.splice(1).forEach((l) => {
+        expect(screen.getByText(`Error ${l.id} required`)).toBeVisible()
+      })
+    })
   })
 })
