@@ -59,6 +59,11 @@ export const useGoogleForm = ({ form }: { form: GoogleForm }) => {
         }
       )
     } catch (err) {
+      // We need to catch the error here because of CORS
+      // However the form will still be submitted to Google Forms if every field is correct
+      // Otherwise we don't have observability if the form submission failed.
+      // TODO: we could implement the suggestion on this stackoverflow about having an invisible iframe
+      // to perform the submission https://stackoverflow.com/a/61359999/13194919
       return
     }
   }
