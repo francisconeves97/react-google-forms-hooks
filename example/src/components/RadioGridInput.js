@@ -1,5 +1,5 @@
 import React from 'react'
-import { useRadioGridInput } from 'react-google-forms'
+import { useRadioGridInput } from 'react-google-forms-hooks'
 import styled from 'styled-components'
 
 const GridQuestionContainer = styled.div`

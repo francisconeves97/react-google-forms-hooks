@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useDropdownInput } from 'react-google-forms'
+import { useDropdownInput } from 'react-google-forms-hooks'
 
 export default function DropdownInput({ id }) {
   const { register, options } = useDropdownInput(id)

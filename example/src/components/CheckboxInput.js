@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { useCheckboxInput } from 'react-google-forms'
+import { useCheckboxInput } from 'react-google-forms-hooks'
 
 const Container = styled.div`
   display: flex;

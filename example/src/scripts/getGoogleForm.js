@@ -1,4 +1,4 @@
-const { googleFormsToJson } = require('react-google-forms')
+const { googleFormsToJson } = require('react-google-forms-hooks')
 const fs = require('fs')
 const path = require('path')
 

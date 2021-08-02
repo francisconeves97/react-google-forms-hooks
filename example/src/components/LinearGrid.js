@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { useLinearInput } from 'react-google-forms'
+import { useLinearInput } from 'react-google-forms-hooks'
 
 const Container = styled.div`
   display: flex;

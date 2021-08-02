@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { useRadioInput } from 'react-google-forms'
+import { useRadioInput } from 'react-google-forms-hooks'
 
 const Container = styled.div`
   display: flex;

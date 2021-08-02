@@ -4,10 +4,14 @@
 
 This library allows you to build a UI for your Google Forms using React. It provides a set of tools and hooks to give you a good experience while developing. It's build as a wrapper on top of [react-hook-forms](https://github.com/react-hook-form/react-hook-form).
 
+## Example
+
+You can check an example form built using this library here: https://francisconeves97.github.io/react-google-forms/
+
 ## Install
 
 ```bash
-npm install --save react-google-forms
+npm install --save react-google-forms-hooks
 ```
 
 ## Usage
@@ -15,7 +19,7 @@ npm install --save react-google-forms
 Use the `googleFormsToJson` script to convert your google form into a json and save it into a file.
 
 ```javascript
-import { googleFormsToJson } from 'react-google-forms'
+import { googleFormsToJson } from 'react-google-forms-hooks'
 
 const result = await googleFormsToJson(
   'https://docs.google.com/forms/d/e/1FAIpQLSe5U3qvg8WHs4nkU-e6h2RlAD7fKoCkou6HO2w2-tXYIA_F8g/viewform'
@@ -37,7 +41,7 @@ console.log(result.fields)
 Pass the form object to the `useGoogleForm` hook and wrap your form in a `GoogleFormProvider`. Then you can build your custom components to render the form as beautiful as you like.
 
 ```javascript
-import { GoogleFormProvider, useGoogleForm, useShortAnswerInput } from 'react-google-forms'
+import { GoogleFormProvider, useGoogleForm, useShortAnswerInput } from 'react-google-forms-hooks'
 
 import form from './form.json'
 

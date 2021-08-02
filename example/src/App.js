@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { GoogleFormProvider, useGoogleForm } from 'react-google-forms'
+import { GoogleFormProvider, useGoogleForm } from 'react-google-forms-hooks'
 
 import form from './scripts/form.json'
 
