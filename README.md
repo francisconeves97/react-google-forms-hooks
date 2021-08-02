@@ -50,10 +50,11 @@ import { GoogleFormProvider, useGoogleForm, useShortAnswerInput } from 'react-go
 import form from './form.json'
 
 export default function ShortAnswerInput({ id }) {
-  const { register } = useShortAnswerInput(id)
+  const { register, label } = useShortAnswerInput(id)
 
   return (
     <div>
+      <p>{label}</p>
       <input type='text' {...register()} />
     </div>
   )
@@ -79,15 +80,18 @@ const App = () => {
 export default App
 ```
 
-## Todos/Caveats
+You can check a more complete example in the [example](https://github.com/francisconeves97/react-google-forms/tree/master/example) folder.
+
+## Caveats
 
 - Right now there is no observability on errors when submitting a form. See this [comment on the code](https://github.com/francisconeves97/react-google-forms/blob/ca5018e578cfb0e230f9be58dfeee4117db28160/src/hooks/useGoogleForm.ts#L61-L65).
 - No support for multi page, sections and images. However you can build your React form with multiple pages, by saving the `data` from `handleSubmit` and only `submitToGoogleForms` on the last page.
 - The list of supported inputs doesn't feature every input from google forms. Supported inputs: Short Answer, Long Answer, Checkbox, Radio, Dropdown, Linear, Radio Grid, Checkbox Grid
+- Because of CORS you have to run the `googleFormsToJson` script in build time.
 
 ## Contributing
 
-This library was born as a result of a side project I did and it is probably tailored/biased towards my needs. If you have suggestions/improments/ideas feel free to open issues or PRs. I am very happy to hear them.
+This library was born as a result of a side project I did and it is tailored/biased towards my needs. If you have suggestions/improments/ideas feel free to open issues or PRs. :rocket:
 
 ## License
 
