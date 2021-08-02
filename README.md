@@ -4,9 +4,11 @@
 
 This library allows you to build a UI for your Google Forms using React. It provides a set of tools and hooks to give you a good experience while developing. It's build as a wrapper on top of [react-hook-forms](https://github.com/react-hook-form/react-hook-form).
 
-## Example
+## Live demo
 
 You can check an example form built using this library here: https://francisconeves97.github.io/react-google-forms/
+
+You can also play around on the example on this [CodeSandbox](https://codesandbox.io/s/pedantic-gould-w0ib1?file=/src/App.js).
 
 ## Install
 
