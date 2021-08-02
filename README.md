@@ -6,7 +6,7 @@ This library allows you to build a UI for your Google Forms using React. It prov
 
 ## Live demo
 
-You can check an example form built using this library here: https://francisconeves97.github.io/react-google-forms/
+You can check an example form built using this library here: https://francisconeves97.github.io/react-google-forms-hooks/
 
 You can also play around on the example on this [CodeSandbox](https://codesandbox.io/s/pedantic-gould-w0ib1?file=/src/App.js).
 
@@ -78,11 +78,11 @@ const App = () => {
 export default App
 ```
 
-You can check a more complete example in the [example](https://github.com/francisconeves97/react-google-forms/blob/master/example/src/App.js) folder.
+You can check a more complete example in the [example](https://github.com/francisconeves97/react-google-forms-hooks/blob/master/example/src/App.js) folder.
 
 ## Caveats
 
-- Right now there is no observability on errors when submitting a form. See this [comment on the code](https://github.com/francisconeves97/react-google-forms/blob/ca5018e578cfb0e230f9be58dfeee4117db28160/src/hooks/useGoogleForm.ts#L61-L65).
+- Right now there is no observability on errors when submitting a form. See this [comment on the code](https://github.com/francisconeves97/react-google-forms-hooks/blob/ca5018e578cfb0e230f9be58dfeee4117db28160/src/hooks/useGoogleForm.ts#L61-L65).
 - No support for multi page, sections, images and other Google Forms functionalities. However you can build your React form with multiple pages, by saving the `data` from `handleSubmit` and only `submitToGoogleForms` on the last page.
 - The list of supported inputs doesn't feature every input from Google Forms. Supported inputs: Short Answer, Long Answer, Checkbox, Radio, Dropdown, Linear, Radio Grid, Checkbox Grid
 - Because of CORS you have to run the `googleFormsToJson` script in build time.

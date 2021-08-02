@@ -1,10 +1,14 @@
 {
   "name": "react-google-forms-hooks",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Library to create forms using React backed by Google Forms.",
   "author": "francisconeves97",
+  "keywords": [
+    "react",
+    "google-forms"
+  ],
   "license": "MIT",
-  "repository": "francisconeves97/react-google-forms",
+  "repository": "francisconeves97/react-google-forms-hooks",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
