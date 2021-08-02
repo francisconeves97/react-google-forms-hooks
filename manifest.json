@@ -1,6 +1,6 @@
 {
-  "short_name": "react-google-forms",
-  "name": "react-google-forms",
+  "short_name": "react-google-forms-hooks",
+  "name": "react-google-forms-hooks",
   "icons": [
     {
       "src": "favicon.ico",
