@@ -26,6 +26,8 @@ export default (
   const context = useGoogleFormContext()
   const field = getFieldFromContext(context, id, type) as CustomOptionField
 
+  const [isCustomOptionSelected, setIsCustomOptionSelected] =
+    useState<boolean>(false)
   const [customInputRequired, setCustomInputRequired] = useState<boolean>(false)
 
   const register = (options?: RegisterOptions) =>
@@ -35,16 +37,17 @@ export default (
 
   useEffect(() => {
     if (field.type === 'RADIO') {
-      setCustomInputRequired(
-        field.required && currentValue && currentValue === OTHER_OPTION
-      )
+      const isCustomOptionSelected =
+        currentValue && currentValue === OTHER_OPTION
+      setCustomInputRequired(field.required && isCustomOptionSelected)
+      setIsCustomOptionSelected(isCustomOptionSelected)
     } else {
-      setCustomInputRequired(
-        field.required &&
-          currentValue &&
-          currentValue.length === 1 &&
-          currentValue.includes(OTHER_OPTION)
-      )
+      const isCustomOptionSelected =
+        currentValue &&
+        currentValue.length === 1 &&
+        currentValue.includes(OTHER_OPTION)
+      setCustomInputRequired(field.required && isCustomOptionSelected)
+      setIsCustomOptionSelected(isCustomOptionSelected)
     }
   }, [currentValue, customInputRequired])
 
@@ -107,6 +110,7 @@ export default (
   return {
     ...(field as BaseField),
     ...result,
-    error
+    error,
+    isCustomOptionSelected
   }
 }

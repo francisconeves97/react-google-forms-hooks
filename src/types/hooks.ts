@@ -43,6 +43,7 @@ export type CustomOptionRegister = OptionRegister & {
 export type UseCustomOptionReturn = {
   options: Array<OptionRegister>
   customOption?: CustomOptionRegister
+  isCustomOptionSelected?: boolean
 }
 
 export type Options = {

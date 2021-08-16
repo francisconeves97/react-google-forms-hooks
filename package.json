@@ -1,6 +1,6 @@
 {
   "name": "react-google-forms-hooks",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Library to create forms using React backed by Google Forms.",
   "author": "francisconeves97",
   "keywords": [

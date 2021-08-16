@@ -57,10 +57,11 @@ describe('useCustomOptionField', () => {
     customInputOptions?: RegisterOptions
     type?: 'radio' | 'checkbox'
   }) => {
-    const { customOption, options, error } = useCustomOptionField(
-      mockOptionField.id,
-      type.toUpperCase() as 'RADIO' | 'CHECKBOX'
-    )
+    const { customOption, options, error, isCustomOptionSelected } =
+      useCustomOptionField(
+        mockOptionField.id,
+        type.toUpperCase() as 'RADIO' | 'CHECKBOX'
+      )
     return (
       <>
         {options.map((o) => (
@@ -90,6 +91,7 @@ describe('useCustomOptionField', () => {
                 {customOptionLabel} error {customOption.error.type}
               </span>
             )}
+            {isCustomOptionSelected && <span>Custom option selected</span>}
           </>
         )}
         {error && <span>Error {error.type}</span>}
@@ -305,6 +307,18 @@ describe('useCustomOptionField', () => {
         })
       })
 
+      it('computes isCustomOptionSelected correctly', async () => {
+        renderComponent()
+
+        expect(
+          screen.queryByText('Custom option selected')
+        ).not.toBeInTheDocument()
+
+        await clickOption(customOptionLabel)
+
+        expect(screen.getByText('Custom option selected')).toBeVisible()
+      })
+
       it('changes between options correctly', async () => {
         renderComponent()
 
@@ -421,6 +435,18 @@ describe('useCustomOptionField', () => {
           [mockOptionField.id]: [OTHER_OPTION],
           [buildCustomFieldId(`${mockOptionField.id}-${OTHER_OPTION}`)]: ''
         })
+      })
+
+      it('computes isCustomOptionSelected correctly', async () => {
+        renderComponent({ type: 'checkbox' })
+
+        expect(
+          screen.queryByText('Custom option selected')
+        ).not.toBeInTheDocument()
+
+        await clickOption(customOptionLabel)
+
+        expect(screen.getByText('Custom option selected')).toBeVisible()
       })
 
       it('selects the options correctly', async () => {
