@@ -8,7 +8,7 @@ import {
 } from './utils/useCustomOptionField'
 import { GoogleForm, UseGoogleFormReturn } from '../types'
 
-const GOOGLE_FORMS_URL = 'https://docs.google.com/forms/d'
+export const GOOGLE_FORMS_URL = 'https://docs.google.com/forms/d'
 
 const resolveField = (id: string, form: GoogleForm) => {
   const fieldIndex = form.fieldsOrder[id]
