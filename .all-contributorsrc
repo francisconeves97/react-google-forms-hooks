@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "juliangsibecas",
+      "name": "Julián Gómez Sibecas",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25715495?v=4",
+      "profile": "https://github.com/juliangsibecas",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "react-google-forms-hooks",
+  "projectOwner": "francisconeves97",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
