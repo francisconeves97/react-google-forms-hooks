@@ -21,16 +21,20 @@ const toBool = (n: number): boolean => n === 1
 const toString = (n: number): string => `${n}`
 
 const assertValidUrl = (formUrl: string): void => {
-  const googleFormsHost = 'docs.google.com'
+  const googleFormsHosts = ['docs.google.com', 'forms.gle']
   const url = new URL(formUrl)
 
-  if (url.host !== googleFormsHost) {
+  if (!googleFormsHosts.includes(url.host)) {
     throw new Error(
-      `Invalid google forms host. It must be ${googleFormsHost} and is ${url.host}.`
+      `Invalid google forms host. ${
+        url.host
+      } is expected to be ${googleFormsHosts
+        .join(', ')
+        .replace(/, ([^,]*)$/, ' or $1')}.`
     )
   }
 
-  if (!url.pathname.endsWith('/viewform')) {
+  if (url.host === googleFormsHosts[0] && !url.pathname.endsWith('/viewform')) {
     throw new Error(`Please use the form's public URL.`)
   }
 }
