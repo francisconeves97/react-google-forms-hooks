@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import { GoogleFormProvider, useGoogleForm } from 'react-google-forms-hooks'
@@ -13,6 +13,7 @@ import RadioGridInput from './components/RadioGridInput'
 import CheckboxGridInput from './components/CheckboxGridInput'
 import DropdownInput from './components/DropdownInput'
 import LinearGrid from './components/LinearGrid'
+import DateInput from './components/DateInput'
 
 const Form = styled.form`
   max-width: 600px;
@@ -60,6 +61,8 @@ const Questions = () => {
           case 'LINEAR':
             questionInput = <LinearGrid id={id} />
             break
+          case 'DATE':
+            questionInput = <DateInput id={id} />
         }
 
         if (!questionInput) {
@@ -78,6 +81,7 @@ const Questions = () => {
 }
 
 const App = () => {
+  const [date, setDate] = useState()
   const methods = useGoogleForm({ form })
   const onSubmit = async (data) => {
     console.log('>>> Here is the data', data)
@@ -87,11 +91,14 @@ const App = () => {
 
   console.log('>>> Here are the errors!!!', methods.formState.errors)
 
+  console.log(date)
+
   return (
     <GoogleFormProvider {...methods}>
       <Form onSubmit={methods.handleSubmit(onSubmit)}>
         <Questions />
-        <button type='submit'>Submeter</button>
+        <input type='date' onChange={(e) => setDate(e.target.value)} />
+        <button type='submit'>Submit</button>
       </Form>
     </GoogleFormProvider>
   )

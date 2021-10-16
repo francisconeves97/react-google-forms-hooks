@@ -16,6 +16,12 @@ export interface TextField extends BaseField {
   type: 'SHORT_ANSWER' | 'LONG_ANSWER'
 }
 
+export interface DateField extends BaseField {
+  type: 'DATE'
+  year: boolean
+  hour: boolean
+}
+
 export interface CustomOptionField extends BaseField {
   type: 'CHECKBOX' | 'RADIO'
   options: Array<CustomizableOption>
@@ -58,6 +64,7 @@ export type Field =
   | DropdownField
   | GridField
   | LinearField
+  | DateField
 
 export type FieldTypes = Field['type']
 

@@ -86,7 +86,11 @@ const parseFieldType = (rawField: Array<object>, fieldId: number) => {
     'RADIO',
     'DROPDOWN',
     'CHECKBOX',
-    'LINEAR'
+    'LINEAR',
+    undefined,
+    undefined,
+    undefined,
+    'DATE'
   ] as const
 
   if (fieldId === 7) {
@@ -97,7 +101,13 @@ const parseFieldType = (rawField: Array<object>, fieldId: number) => {
     }
   }
 
-  return fieldTypes[fieldId]
+  const fieldType = fieldTypes[fieldId]
+
+  if (!fieldType) {
+    throw new Error('One of the fields on your form is not supported')
+  }
+
+  return fieldType
 }
 
 const parseOptions = (options: Array<object>): Array<Option> => {
@@ -172,6 +182,14 @@ const parseField = (rawField: Array<any>): Field => {
       field.columns = flattenArray(rawField[4][0][1])
       field.lines = parseLines(rawField[4])
       field.required = toBool(rawField[4][0][2])
+      break
+    }
+    case 'DATE': {
+      const fieldInfo = rawField[4][0]
+      field.id = toString(fieldInfo[0])
+      field.required = toBool(fieldInfo[2])
+      field.year = toBool(fieldInfo[7][1])
+      field.hour = toBool(fieldInfo[7][0])
       break
     }
   }

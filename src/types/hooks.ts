@@ -4,6 +4,7 @@ import {
   RegisterOptions,
   FieldError
 } from 'react-hook-form'
+import { DateField } from '.'
 
 import {
   Column,
@@ -24,8 +25,10 @@ export type UseGoogleFormReturn = UseFormReturn & {
   submitToGoogleForms: (form: FormData) => Promise<void>
 }
 
+type RegisterFunction = (options?: RegisterOptions) => UseFormRegisterReturn
+
 export type RegisterReturn = {
-  register: (options?: RegisterOptions) => UseFormRegisterReturn
+  register: RegisterFunction
 }
 
 export type OptionId = Option & {
@@ -33,11 +36,11 @@ export type OptionId = Option & {
 }
 
 export type OptionRegister = OptionId & {
-  registerOption: (options?: RegisterOptions) => UseFormRegisterReturn
+  registerOption: RegisterFunction
 }
 
 export type CustomOptionRegister = OptionRegister & {
-  registerCustomInput: (options?: RegisterOptions) => UseFormRegisterReturn
+  registerCustomInput: RegisterFunction
 } & Error
 
 export type UseCustomOptionReturn = {
@@ -58,7 +61,7 @@ export type LineRenderer = Line & {
   renderColumns: (render: RenderColumnFunction) => JSX.Element[]
 }
 export type ColumnRenderer = Column & {
-  registerColumn: (options?: RegisterOptions) => UseFormRegisterReturn
+  registerColumn: RegisterFunction
 } & { id: string }
 
 export type RenderLineFunction = (line: LineRenderer) => JSX.Element
@@ -89,3 +92,13 @@ export type UseGridFieldReturn = GridField & UseGridReturn & Errors
 export type UseDropdownReturn = Options & DropdownField & RegisterReturn & Error
 
 export type UseLinearInputReturn = UseOptionReturn & LinearField & Error
+
+type UseDateReturn = {
+  registerDay: RegisterFunction
+  registerMonth: RegisterFunction
+  registerYear?: RegisterFunction
+  registerHour?: RegisterFunction
+  registerMinute?: RegisterFunction
+}
+
+export type UseDateInputReturn = DateField & UseDateReturn & Error
