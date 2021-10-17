@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { RegisterOptions } from 'react-hook-form'
 import { UseDateInputReturn, DateField } from '../types'
 import { useGoogleFormContext } from './useGoogleFormContext'
@@ -8,6 +8,20 @@ const LEAP_YEAR = '2020'
 
 const isUndefinedOrEmpty = (str?: string): boolean =>
   !str || str.trim().length === 0
+
+const fillLeadingZeros = (str: string, expectedLength: number) =>
+  str.padStart(expectedLength, '0')
+
+// from https://usehooks.com/usePrevious/
+const usePrevious = (value: any) => {
+  const ref = useRef()
+
+  useEffect(() => {
+    ref.current = value
+  }, [value])
+
+  return ref.current
+}
 
 export const useDateInput = (id: string): UseDateInputReturn => {
   const context = useGoogleFormContext()
@@ -32,16 +46,25 @@ export const useDateInput = (id: string): UseDateInputReturn => {
 
   // Not the best performance but need a way to revalidate the different date
   // fields after one of them changes, to have better ux.
-  useEffect(
-    () => {
-      if (error) {
-        fieldIds.forEach((fieldId) => {
-          trigger(fieldId)
-        })
+  const fieldValues = watch(fieldIds)
+  const previousFieldValues = usePrevious(fieldValues)
+  useEffect(() => {
+    if (error) {
+      if (!previousFieldValues) {
+        return
       }
-    },
-    fieldIds.map((fieldId) => watch(fieldId))
-  )
+
+      const fieldIdsToTrigger: Array<string> = []
+      fieldValues.forEach((value, i) => {
+        const previousValue = previousFieldValues?.[i]
+        if (value !== previousValue) {
+          fieldIdsToTrigger.push(fieldIds[i])
+        }
+      })
+
+      trigger(fieldIdsToTrigger)
+    }
+  }, fieldValues)
 
   const validateDate = () => {
     const dateParts = []
@@ -52,7 +75,9 @@ export const useDateInput = (id: string): UseDateInputReturn => {
 
     if (field.year) {
       const year = context!.getValues(yearId)
-      dateParts.push(year)
+      if (!isUndefinedOrEmpty(year)) {
+        dateParts.push(fillLeadingZeros(year, 4))
+      }
     } else {
       dateParts.push(LEAP_YEAR)
     }
@@ -74,19 +99,38 @@ export const useDateInput = (id: string): UseDateInputReturn => {
       ? dateParts
       : [...dateParts].slice(1)
 
+    const filledDateParts = datePartsWithoutDefaultYear.reduce(
+      (acc, datePart) => {
+        const isFilled = !isUndefinedOrEmpty(datePart)
+
+        return acc + (isFilled ? 1 : 0)
+      },
+      0
+    )
+
+    let filledHourParts = 0
+    if (field.hour) {
+      filledHourParts = hourParts.reduce((acc, hourPart) => {
+        const isFilled = !isUndefinedOrEmpty(hourPart)
+
+        return acc + (isFilled ? 1 : 0)
+      }, 0)
+    }
+
     // When date field is not required, empty dates should be valid
-    if (
-      !field.required &&
-      !datePartsWithoutDefaultYear.some(
-        (datePart) => !isUndefinedOrEmpty(datePart)
-      ) &&
-      !hourParts.some((hourPart) => !isUndefinedOrEmpty(hourPart))
-    ) {
+    if (!field.required && filledDateParts === 0 && filledHourParts === 0) {
       return true
     }
 
     const date = new Date(dateString)
-    const isValidDate = !isNaN(date.getTime())
+    const areDatePartsFilled = field.year
+      ? filledDateParts === 3
+      : filledDateParts === 2
+    const areHourPartsFilled = field.hour
+      ? filledHourParts === 2
+      : filledHourParts === 0
+    const isValidDate =
+      !isNaN(date.getTime()) && areDatePartsFilled && areHourPartsFilled
 
     return isValidDate
   }
