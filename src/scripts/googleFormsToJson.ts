@@ -1,14 +1,14 @@
 import cheerio from 'cheerio'
-import axios from 'axios'
+import fetch from 'isomorphic-unfetch'
 
 import {
-  GoogleForm,
-  Field,
-  CustomizableOption,
-  Option,
   Column,
+  CustomizableOption,
+  Field,
+  FieldsOrder,
+  GoogleForm,
   Line,
-  FieldsOrder
+  Option
 } from '../types/form'
 
 type FormData = {
@@ -40,8 +40,8 @@ const assertValidUrl = (formUrl: string): void => {
 }
 
 const getFormHtml = async (formUrl: string) => {
-  const html = await axios.get(formUrl)
-  return html.data
+  const html = await fetch(formUrl).then((r) => r.text())
+  return html
 }
 
 const extractFormData = (html: string): FormData => {
@@ -95,6 +95,9 @@ const parseFieldType = (rawField: Array<object>, fieldId: number) => {
     } else {
       return 'RADIO_GRID'
     }
+  }
+  if (fieldId === 9) {
+    return 'DATE'
   }
 
   return fieldTypes[fieldId]
@@ -171,6 +174,12 @@ const parseField = (rawField: Array<any>): Field => {
       field.id = toString(rawField[0])
       field.columns = flattenArray(rawField[4][0][1])
       field.lines = parseLines(rawField[4])
+      field.required = toBool(rawField[4][0][2])
+      break
+    }
+    case 'DATE': {
+      const fieldInfo = rawField[4][0]
+      field.id = toString(fieldInfo[0])
       field.required = toBool(rawField[4][0][2])
       break
     }

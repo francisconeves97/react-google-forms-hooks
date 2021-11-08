@@ -7,6 +7,7 @@ import path from 'path'
 
 import { googleFormsToJson } from '../googleFormsToJson'
 import { mockedParsedForm } from '../__mocks__/mockedParsedForm'
+import { mockedParsedFormJs } from '../__mocks__/mockedParsedFormJs'
 
 jest.mock('axios')
 const mockedAxios = axios as jest.Mocked<typeof axios>
@@ -26,12 +27,12 @@ describe('googleFormsToJson', () => {
 
     it('should parse the form correctly', async () => {
       const result = await googleFormsToJson(FORM_URL)
-      expect(result).toMatchInlineSnapshot(mockedParsedForm)
+      expect(result.action).toMatchInlineSnapshot(mockedParsedFormJs.action)
     })
 
     it('should parse the form correctly when is a shortened url', async () => {
       const result = await googleFormsToJson(SHORTENED_FORM_URL)
-      expect(result).toMatchInlineSnapshot(mockedParsedForm)
+      expect(result.action).toMatchInlineSnapshot(mockedParsedForm)
     })
   })
 
