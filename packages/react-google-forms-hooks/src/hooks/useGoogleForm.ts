@@ -35,6 +35,8 @@ export const formatQuestionName = (id: string) => {
 export const useGoogleForm = ({ form }: { form: GoogleForm }) => {
   const methods = useForm() as UseGoogleFormReturn
 
+  console.log('>>> oioioioi pois foiii yeahhh')
+
   methods.getField = (id: string) => resolveField(id, form)
 
   const submitToGoogleForms = async (formData: object) => {

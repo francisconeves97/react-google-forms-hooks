@@ -1,76 +1,11 @@
 {
-  "name": "react-google-forms-hooks",
-  "version": "1.0.4",
-  "description": "Library to create forms using React backed by Google Forms.",
   "author": "francisconeves97",
   "keywords": [
     "react",
     "google-forms"
   ],
-  "license": "MIT",
-  "repository": "francisconeves97/react-google-forms-hooks",
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
-  "source": "src/index.ts",
-  "engines": {
-    "node": ">=10"
-  },
-  "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs",
-    "start": "microbundle-crl watch --no-compress --format modern,cjs",
-    "prepare": "run-s build",
-    "test": "run-s test:unit test:lint test:build",
-    "test:build": "run-s build",
-    "test:lint": "eslint src/**/*.ts",
-    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom --coverage --testMatch '**/__tests__/**/*.spec.[jt]s?(x)'",
-    "test:watch": "react-scripts test --env=jsdom --coverage --testMatch '**/__tests__/**/*.spec.[jt]s?(x)'",
-    "test:cov": "react-scripts test --env=jsdom --coverage --watchAll --testMatch '**/__tests__/**/*.spec.[jt]s?(x)'",
-    "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
-  },
-  "peerDependencies": {
-    "react": "^16.0.0"
-  },
-  "devDependencies": {
-    "@testing-library/react-hooks": "^7.0.1",
-    "@testing-library/user-event": "^7.2.1",
-    "@types/jest": "^26.0.24",
-    "@types/node": "^12.12.38",
-    "@types/react": "^16.9.27",
-    "@types/react-dom": "^16.9.7",
-    "@typescript-eslint/eslint-plugin": "^2.26.0",
-    "@typescript-eslint/parser": "^2.26.0",
-    "babel-eslint": "^10.0.3",
-    "cross-env": "^7.0.2",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.7.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-config-standard-react": "^9.2.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.17.0",
-    "eslint-plugin-standard": "^4.0.1",
-    "gh-pages": "^2.2.0",
-    "microbundle-crl": "^0.13.10",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.0.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1",
-    "typescript": "^4.3.5"
-  },
-  "files": [
-    "dist"
-  ],
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^12.0.0",
-    "axios": "^0.21.1",
-    "cheerio": "^1.0.0-rc.10",
-    "query-string": "^7.0.1",
-    "react-hook-form": "^7.10.1",
-    "slugify": "^1.5.3"
-  }
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
 }
