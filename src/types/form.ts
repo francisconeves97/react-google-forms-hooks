@@ -16,7 +16,7 @@ export interface TextField extends BaseField {
   type: 'SHORT_ANSWER' | 'LONG_ANSWER'
 }
 
-export interface DateField extends BaseField{
+export interface DateField extends BaseField {
   type: 'DATE'
 }
 

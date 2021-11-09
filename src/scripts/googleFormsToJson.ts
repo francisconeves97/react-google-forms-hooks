@@ -40,7 +40,8 @@ const assertValidUrl = (formUrl: string): void => {
 }
 
 const getFormHtml = async (formUrl: string) => {
-  const html = await fetch(formUrl).then((r) => r.text())
+  const response = await fetch(formUrl)
+  const html = await response.text()
   return html
 }
 

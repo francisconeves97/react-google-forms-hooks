@@ -1,6 +1,9 @@
 import fetch from 'isomorphic-unfetch'
 import { GoogleForm } from '../types'
-import { OTHER_OPTION, OTHER_OPTION_RESPONSE } from '../hooks/utils/useCustomOptionField'
+import {
+  OTHER_OPTION,
+  OTHER_OPTION_RESPONSE
+} from '../hooks/utils/useCustomOptionField'
 
 export const GOOGLE_FORMS_URL = 'https://docs.google.com/forms/d'
 
