@@ -1,15 +1,12 @@
 /**
  * @jest-environment node
  */
-import axios from 'axios'
 import fs from 'fs'
 import path from 'path'
+import fetch, { mockFetchText } from '../../__mocks__/isomorphic-unfetch'
 
 import { googleFormsToJson } from '../googleFormsToJson'
 import { mockedParsedForm } from '../__mocks__/mockedParsedForm'
-
-jest.mock('axios')
-const mockedAxios = axios as jest.Mocked<typeof axios>
 
 describe('googleFormsToJson', () => {
   const FORM_URL =
@@ -21,7 +18,7 @@ describe('googleFormsToJson', () => {
         path.join(__dirname, 'examples', 'form1.html'),
         { encoding: 'utf8' }
       )
-      mockedAxios.get.mockResolvedValueOnce({ data: exampleForm1 })
+      mockFetchText(exampleForm1)
     })
 
     it('should parse the form correctly', async () => {
@@ -44,7 +41,7 @@ describe('googleFormsToJson', () => {
 
   describe('when it fails to fetch the page', () => {
     beforeEach(() => {
-      mockedAxios.get.mockRejectedValue('error')
+      fetch.mockRejectedValue('error')
     })
 
     it('throws an error', async () => {
@@ -62,7 +59,7 @@ describe('googleFormsToJson', () => {
 
   describe("when it can't find the fbzx field", () => {
     beforeEach(() => {
-      mockedAxios.get.mockResolvedValueOnce({ data: 'incorrect_html' })
+      mockFetchText('incorrect_html')
     })
 
     it('throws an error', async () => {
@@ -76,7 +73,7 @@ describe('googleFormsToJson', () => {
         path.join(__dirname, 'examples', 'incorrectForm.html'),
         { encoding: 'utf8' }
       )
-      mockedAxios.get.mockResolvedValueOnce({ data: incorrectForm })
+      mockFetchText(incorrectForm)
     })
 
     it('throws an error', async () => {

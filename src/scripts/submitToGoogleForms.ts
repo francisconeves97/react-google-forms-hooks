@@ -1,29 +1,47 @@
-import queryString from 'query-string'
-import axios from 'axios'
-
-import { formatQuestionName, GOOGLE_FORMS_URL } from '../hooks/useGoogleForm'
+import fetch from 'isomorphic-unfetch'
 import { GoogleForm } from '../types'
+import {
+  OTHER_OPTION,
+  OTHER_OPTION_RESPONSE
+} from '../hooks/utils/useCustomOptionField'
+
+export const GOOGLE_FORMS_URL = 'https://docs.google.com/forms/d'
+
+export const formatQuestionName = (id: string) => {
+  if (id.includes(OTHER_OPTION_RESPONSE)) {
+    return `entry.${id.replace(
+      `-${OTHER_OPTION}-${OTHER_OPTION_RESPONSE}`,
+      ''
+    )}.${OTHER_OPTION_RESPONSE}`
+  }
+
+  return `entry.${id}`
+}
 
 export const submitToGoogleForms = async (
   form: GoogleForm,
   formData: object
 ) => {
-  const fields = {}
+  const urlParams = new URLSearchParams()
   Object.keys(formData).forEach((key) => {
-    fields[formatQuestionName(key)] = formData[key]
+    if (formData[key]) {
+      urlParams.append(formatQuestionName(key), formData[key])
+    }
   })
 
-  const params = queryString.stringify(fields, {
-    skipNull: true,
-    skipEmptyString: true
-  })
-
-  return axios.get(
-    `${GOOGLE_FORMS_URL}/${form.action}/formResponse?${params}&submit=Submit`,
+  const fetchedResult = await fetch(
+    `${GOOGLE_FORMS_URL}/${
+      form.action
+    }/formResponse?submit=Submit&${urlParams.toString()}`,
     {
+      method: 'GET',
+      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     }
   )
+  if (!fetchedResult.ok || fetchedResult.status >= 300) {
+    console.warn('the result of GoogleForm is not correct.', fetchedResult)
+  }
 }

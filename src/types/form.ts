@@ -16,6 +16,10 @@ export interface TextField extends BaseField {
   type: 'SHORT_ANSWER' | 'LONG_ANSWER'
 }
 
+export interface DateField extends BaseField {
+  type: 'DATE'
+}
+
 export interface CustomOptionField extends BaseField {
   type: 'CHECKBOX' | 'RADIO'
   options: Array<CustomizableOption>
@@ -54,6 +58,7 @@ export interface GridField extends BaseField {
 
 export type Field =
   | TextField
+  | DateField
   | CustomOptionField
   | DropdownField
   | GridField

@@ -17,21 +17,3 @@ const run = async () => {
 }
 
 run()
-
-export default {
-  fvv: 1,
-  pageHistory: 0,
-  fbzx: '4367206215934512302',
-  action: 'e/1FAIpQLSe5U3qvg8WHs4nkU-e6h2RlAD7fKoCkou6HO2w2-tXYIA_F8g',
-  fields: [
-    {
-      label: 'Do you want to give some feedback?',
-      type: 'LONG_ANSWER',
-      id: '1864908950',
-      required: false
-    }
-  ],
-  fieldsOrder: {
-    1864908950: 2
-  }
-}
