@@ -23,6 +23,16 @@
         "ideas",
         "code"
       ]
+    },
+    {
+      "login": "kbalisnomo",
+      "name": "Kyle Philip Balisnomo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42983430?v=4",
+      "profile": "https://github.com/kbalisnomo",
+      "contributions": [
+        "code",
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
