@@ -55,6 +55,48 @@ describe('submitToGoogleForms', () => {
     })
   })
 
+  describe('when there is an id that is from a multi option answer', () => {
+    const stubFormData = {
+      id1: 'id1value',
+      id2: 'id2value',
+      id3: ['id3value_1', 'id3value_2', 'id3value_3']
+    }
+
+    it('calls google forms with the correct params', async () => {
+      await submitToGoogleForms(stubForm, stubFormData)
+
+      expect(fetch).toHaveBeenCalledWith(
+        'https://docs.google.com/forms/d/action/formResponse?submit=Submit&entry.id1=id1value&entry.id2=id2value&entry.id3=id3value_1&entry.id3=id3value_2&entry.id3=id3value_3',
+        {
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          method: 'GET',
+          mode: 'no-cors'
+        }
+      )
+    })
+  })
+
+  describe('when there is an id with an undefined value', () => {
+    const stubFormData = {
+      id1: 'id1value',
+      id2: 'id2value',
+      id3: undefined
+    }
+
+    it('calls google forms with the correct params', async () => {
+      await submitToGoogleForms(stubForm, stubFormData)
+
+      expect(fetch).toHaveBeenCalledWith(
+        'https://docs.google.com/forms/d/action/formResponse?submit=Submit&entry.id1=id1value&entry.id2=id2value',
+        {
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          method: 'GET',
+          mode: 'no-cors'
+        }
+      )
+    })
+  })
+
   describe('when the call to google forms is successful', () => {
     beforeEach(() => {
       fetch.mockResolvedValue({
