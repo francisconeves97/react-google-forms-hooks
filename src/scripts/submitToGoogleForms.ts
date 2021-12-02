@@ -25,7 +25,13 @@ export const submitToGoogleForms = async (
   const urlParams = new URLSearchParams()
   Object.keys(formData).forEach((key) => {
     if (formData[key]) {
-      urlParams.append(formatQuestionName(key), formData[key])
+      if (formData[key].constructor === Array) {
+        formData[key].forEach((answer: string) => {
+          urlParams.append(formatQuestionName(key), answer)
+        })
+      } else {
+        urlParams.append(formatQuestionName(key), formData[key])
+      }
     }
   })
 
