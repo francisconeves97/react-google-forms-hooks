@@ -134,6 +134,7 @@ const parseField = (rawField: Array<any>): Field => {
   const field = {} as Field
 
   field.label = rawField[1]
+  field.description = rawField[2]
 
   const fieldId = rawField[3]
   field.type = parseFieldType(rawField, fieldId)
@@ -210,6 +211,8 @@ const parseFormData = ({ formData, fbzx }: FormData): GoogleForm => {
   googleForm.pageHistory = 0
   googleForm.fbzx = fbzx
   googleForm.action = formData[14]
+  googleForm.title = formData[1][8]
+  googleForm.description = formData[1][0]
 
   const { fields, fieldsOrder } = parseFields(formData[1][1])
   googleForm.fields = fields
