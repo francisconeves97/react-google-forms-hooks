@@ -28,6 +28,12 @@ const QuestionLabel = styled.h3`
   margin-bottom: 10px;
 `
 
+const QuestionHelp = styled.p`
+  font-size: 0.8rem;
+  color: #5c5c5c;
+  margin-top: 0px;
+`
+
 const Questions = () => {
   return (
     <div>
@@ -70,6 +76,7 @@ const Questions = () => {
           <QuestionContainer key={id}>
             <QuestionLabel>{field.label}</QuestionLabel>
             {questionInput}
+            <QuestionHelp>{field.description}</QuestionHelp>
           </QuestionContainer>
         )
       })}
@@ -90,6 +97,14 @@ const App = () => {
   return (
     <GoogleFormProvider {...methods}>
       <Form onSubmit={methods.handleSubmit(onSubmit)}>
+        {form.title && (
+          <>
+            <h1>{form.title}</h1>
+            {form.description && (
+              <p style={{ fontSize: '.8rem' }}>{form.description}</p>
+            )}
+          </>
+        )}
         <Questions />
         <button type='submit'>Submeter</button>
       </Form>
