@@ -1,9 +1,11 @@
 export const mockedParsedForm = `
         Object {
           "action": "e/1FAIpQLSe5U3qvg8WHs4nkU-e6h2RlAD7fKoCkou6HO2w2-tXYIA_F8g",
+          "description": "",
           "fbzx": "2765906482982597825",
           "fields": Array [
             Object {
+              "description": "Helloooo",
               "id": "705101286",
               "label": "Checkbox question",
               "options": Array [
@@ -28,18 +30,21 @@ export const mockedParsedForm = `
               "type": "CHECKBOX",
             },
             Object {
+              "description": null,
               "id": "461850935",
               "label": "Short answer",
               "required": true,
               "type": "SHORT_ANSWER",
             },
             Object {
+              "description": null,
               "id": "1740631530",
               "label": "Long answer",
               "required": false,
               "type": "LONG_ANSWER",
             },
             Object {
+              "description": null,
               "id": "1387297716",
               "label": "Multiple choice question",
               "options": Array [
@@ -82,6 +87,7 @@ export const mockedParsedForm = `
                   "label": "Coluna 4",
                 },
               ],
+              "description": null,
               "id": "1632852916",
               "label": "Grid question",
               "lines": Array [
@@ -102,6 +108,7 @@ export const mockedParsedForm = `
               "type": "RADIO_GRID",
             },
             Object {
+              "description": null,
               "id": "906890030",
               "label": "Dropdown",
               "options": Array [
@@ -125,6 +132,7 @@ export const mockedParsedForm = `
               "type": "DROPDOWN",
             },
             Object {
+              "description": null,
               "id": "718815240",
               "label": "Linear scale",
               "legend": Object {
@@ -166,6 +174,7 @@ export const mockedParsedForm = `
                   "label": "Coluna 4",
                 },
               ],
+              "description": null,
               "id": "617310276",
               "label": "Multiple choice grid",
               "lines": Array [
@@ -200,6 +209,7 @@ export const mockedParsedForm = `
                   "label": "Coluna 4",
                 },
               ],
+              "description": null,
               "id": "1999750833",
               "label": "Multiple choice verification grid",
               "lines": Array [
@@ -233,5 +243,6 @@ export const mockedParsedForm = `
           },
           "fvv": 1,
           "pageHistory": 0,
+          "title": "Test Form",
         }
       `

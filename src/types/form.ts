@@ -9,6 +9,7 @@ export interface CustomizableOption extends Option {
 export interface BaseField {
   id: string
   label: string
+  description?: string
   required: boolean
 }
 
@@ -71,6 +72,8 @@ export type FieldsOrder = {
 }
 
 export type GoogleForm = {
+  title: string
+  description?: string
   action: string
   fvv: number
   pageHistory: number
