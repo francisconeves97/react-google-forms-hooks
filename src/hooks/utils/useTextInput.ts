@@ -1,6 +1,7 @@
 import { RegisterOptions } from 'react-hook-form'
 
 import { UseTextFieldReturn, TextField } from '../../types'
+import { validationFunctionFactory } from '../../validation/validationFunctionFactory'
 import { useGoogleFormContext } from '../useGoogleFormContext'
 import getFieldFromContext from './getFieldFromContext'
 
@@ -14,8 +15,19 @@ export default (
 
   const error = context!.formState.errors[field.id]
 
-  const register = (options?: RegisterOptions) =>
-    context!.register(id, { required: field.required, ...options })
+  const register = (options?: RegisterOptions) => {
+    let validateFn: ((args: any) => any) | undefined = undefined
+
+    if (field.validation) {
+      validateFn = validationFunctionFactory(field.validation, field.required)
+    }
+
+    return context!.register(id, {
+      required: field.required,
+      validate: validateFn,
+      ...options
+    })
+  }
 
   return { ...field, register, error }
 }

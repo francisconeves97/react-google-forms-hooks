@@ -1,3 +1,5 @@
+import { LengthValidation } from './validation'
+
 export interface Option {
   label: string
 }
@@ -15,6 +17,7 @@ export interface BaseField {
 
 export interface TextField extends BaseField {
   type: 'SHORT_ANSWER' | 'LONG_ANSWER'
+  validation?: LengthValidation
 }
 
 export interface DateField extends BaseField {
