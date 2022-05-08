@@ -7,6 +7,7 @@ import fetch, { mockFetchText } from '../../__mocks__/isomorphic-unfetch'
 
 import { googleFormsToJson } from '../googleFormsToJson'
 import { mockedParsedForm } from '../__mocks__/mockedParsedForm'
+import { mockParsedSpecialCharacterForm } from '../__mocks__/mockParsedSpecialCharacterForm'
 
 describe('googleFormsToJson', () => {
   const FORM_URL =
@@ -29,6 +30,21 @@ describe('googleFormsToJson', () => {
     it('should parse the form correctly when is a shortened url', async () => {
       const result = await googleFormsToJson(SHORTENED_FORM_URL)
       expect(result).toMatchInlineSnapshot(mockedParsedForm)
+    })
+  })
+
+  describe('when the form has special characters', () => {
+    beforeEach(() => {
+      const exampleForm1 = fs.readFileSync(
+        path.join(__dirname, 'examples', 'specialCharactersForm.html'),
+        { encoding: 'utf8' }
+      )
+      mockFetchText(exampleForm1)
+    })
+
+    it('should parse the form correctly', async () => {
+      const result = await googleFormsToJson(FORM_URL)
+      expect(result).toMatchInlineSnapshot(mockParsedSpecialCharacterForm)
     })
   })
 

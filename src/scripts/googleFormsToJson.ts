@@ -65,7 +65,7 @@ const extractFormData = (html: string): FormData => {
     throw new Error(`Invalid form. Couldn't find script tag.`)
   }
 
-  scriptHtml = scriptHtml.replace(';', '')
+  scriptHtml = scriptHtml.slice(0, -1)
   scriptHtml = scriptHtml.replace(scriptStringIdentifier, '')
 
   const formDataRaw = JSON.parse(scriptHtml)
