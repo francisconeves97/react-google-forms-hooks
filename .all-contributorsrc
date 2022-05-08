@@ -43,6 +43,15 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "DanielOrtel",
+      "name": "Daniel Ferenc Balogh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19431728?v=4",
+      "profile": "https://github.com/DanielOrtel",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
