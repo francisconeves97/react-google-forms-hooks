@@ -14,11 +14,7 @@ export interface BaseField {
 }
 
 export interface TextField extends BaseField {
-  type: 'SHORT_ANSWER' | 'LONG_ANSWER'
-}
-
-export interface DateField extends BaseField {
-  type: 'DATE'
+  type: 'SHORT_ANSWER' | 'LONG_ANSWER' | 'DATE' | 'TIME'
 }
 
 export interface CustomOptionField extends BaseField {
@@ -59,7 +55,6 @@ export interface GridField extends BaseField {
 
 export type Field =
   | TextField
-  | DateField
   | CustomOptionField
   | DropdownField
   | GridField

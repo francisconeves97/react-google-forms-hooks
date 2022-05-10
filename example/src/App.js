@@ -9,6 +9,8 @@ import CheckboxInput from './components/CheckboxInput'
 import RadioInput from './components/RadioInput'
 import ShortAnswerInput from './components/ShortAnswerInput'
 import LongAnswerInput from './components/LongAnswerInput'
+import DateInput from './components/DateInput'
+import TimeInput from "./components/TimeInput"
 import RadioGridInput from './components/RadioGridInput'
 import CheckboxGridInput from './components/CheckboxGridInput'
 import DropdownInput from './components/DropdownInput'
@@ -53,6 +55,12 @@ const Questions = () => {
             break
           case 'LONG_ANSWER':
             questionInput = <LongAnswerInput id={id} />
+            break
+          case 'DATE':
+            questionInput = <DateInput id={id} />
+            break
+          case 'TIMe':
+            questionInput = <TimeInput id={id} />
             break
           case 'RADIO_GRID':
             questionInput = <RadioGridInput id={id} />

@@ -100,6 +100,9 @@ const parseFieldType = (rawField: Array<object>, fieldId: number) => {
   if (fieldId === 9) {
     return 'DATE'
   }
+  if (fieldId === 10) {
+    return 'TIME'
+  }
 
   return fieldTypes[fieldId]
 }
@@ -141,7 +144,9 @@ const parseField = (rawField: Array<any>): Field => {
 
   switch (field.type) {
     case 'SHORT_ANSWER':
-    case 'LONG_ANSWER': {
+    case 'LONG_ANSWER':
+    case 'DATE':
+    case 'TIME': {
       const fieldInfo = rawField[4][0]
       field.id = toString(fieldInfo[0])
       field.required = toBool(fieldInfo[2])
@@ -176,12 +181,6 @@ const parseField = (rawField: Array<any>): Field => {
       field.id = toString(rawField[0])
       field.columns = flattenArray(rawField[4][0][1])
       field.lines = parseLines(rawField[4])
-      field.required = toBool(rawField[4][0][2])
-      break
-    }
-    case 'DATE': {
-      const fieldInfo = rawField[4][0]
-      field.id = toString(fieldInfo[0])
       field.required = toBool(rawField[4][0][2])
       break
     }
