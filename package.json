@@ -1,0 +1,24 @@
+{
+  "name": "google-forms-js",
+  "version": "0.0.1",
+  "description": "Monorepo with dev tools to help building custom forms backed by Google Forms.",
+  "repository": {
+    "url": "https://github.com/francisconeves97/google-forms-js"
+  },
+  "author": "francisconeves97",
+  "license": "MIT",
+  "workspaces": [
+    "./packages/*"
+  ],
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.4"
+  }
+}
