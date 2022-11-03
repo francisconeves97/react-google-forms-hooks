@@ -1,3 +1,5 @@
-import { parseGoogleForm } from "@google-forms-js/parser";
+import { parseGoogleForm, GoogleForm } from "@google-forms-js/parser";
 
-parseGoogleForm("ola");
+const a: Promise<GoogleForm> = parseGoogleForm("ola");
+
+console.log(a);

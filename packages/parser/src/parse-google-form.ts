@@ -9,7 +9,7 @@ import {
   GoogleForm,
   Line,
   Option,
-} from "./types";
+} from "@google-forms-js/types";
 
 type FormData = {
   formData: any;

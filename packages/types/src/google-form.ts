@@ -82,7 +82,7 @@ type GoogleForm = {
   fieldsOrder: FieldsOrder;
 };
 
-export {
+export type {
   Option,
   CustomizableOption,
   BaseField,
