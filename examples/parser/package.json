@@ -1,0 +1,17 @@
+{
+  "name": "@google-forms-js/examples-parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-forms-js/parser": "file:../packages/parser"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1"
+  }
+}

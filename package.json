@@ -8,7 +8,8 @@
   "author": "francisconeves97",
   "license": "MIT",
   "workspaces": [
-    "./packages/*"
+    "./packages/*",
+    "./examples/*"
   ],
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.42.0",
