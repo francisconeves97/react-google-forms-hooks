@@ -1,18 +1,46 @@
-import { BaseField } from "@google-forms-js/types";
+import { BaseField, CustomOptionField, Field } from "@google-forms-js/types";
 
 export type BooleanNumber = 0 | 1;
 
-export type RawFieldType = 0 | 1;
+export enum RawFieldType {
+  SHORT_ANSWER = 0,
+  PARAGRAPH = 1,
+  MULTIPLE_CHOICE = 2,
+  DROPDOWN = 3,
+  CHECKBOXES = 4,
+}
 
 export type RawTextField = [
   _: number,
   label: string,
   description: string | null,
-  fieldTypeId: 0 | 1,
+  fieldTypeId: RawFieldType.SHORT_ANSWER | RawFieldType.PARAGRAPH,
   fieldInfoArray: [fieldInfo: [id: number, _: null, isRequired: BooleanNumber]]
 ];
 
-export type RawField = RawTextField;
+export type RawCustomOptionField = [
+  _: number,
+  label: string,
+  description: string | null,
+  fieldTypeId: RawFieldType.MULTIPLE_CHOICE | RawFieldType.CHECKBOXES,
+  fieldInfoArray: [
+    fieldInfo: [
+      id: number,
+      optionsArray: [
+        option: [
+          label: string,
+          _: null,
+          _: null,
+          _: null,
+          isCustomOption: BooleanNumber
+        ]
+      ],
+      isRequired: BooleanNumber
+    ]
+  ]
+];
+
+export type RawField = RawTextField | RawCustomOptionField;
 
 export type RawFormDataTuple = [
   _: null,
@@ -47,6 +75,6 @@ export interface RawFormData {
   fbzx: string;
 }
 
-export interface RawFieldParser<T extends RawField, K extends BaseField> {
-  (rawField: T): K;
+export interface RawFieldParser<T extends RawField> {
+  (rawField: T): BaseField | CustomOptionField;
 }

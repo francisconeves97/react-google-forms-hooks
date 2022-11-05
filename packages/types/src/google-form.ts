@@ -13,24 +13,27 @@ export interface ShortAnswerField extends BaseField {
   type: "SHORT_ANSWER";
 }
 
-export interface LongAnswerField extends BaseField {
-  type: "LONG_ANSWER";
+export interface ParagraphField extends BaseField {
+  type: "PARAGRAPH";
 }
 
 export interface DateField extends BaseField {
   type: "DATE";
 }
 
-export interface CheckboxesField extends BaseField {
-  type: "CHECKBOXES";
+export interface CustomOptionField extends BaseField {
   options: Option[];
-  hasOtherOption: boolean;
+  hasCustomOption: boolean;
 }
 
-export interface MultipleChoiceField extends BaseField {
+export interface CheckboxesField extends CustomOptionField {
+  type: "CHECKBOXES";
+}
+
+export interface MultipleChoiceField extends CustomOptionField {
   type: "MULTIPLE_CHOICE";
   options: Option[];
-  hasOtherOption: boolean;
+  hasCustomOption: boolean;
 }
 
 export interface DropdownField extends BaseField {
@@ -69,7 +72,7 @@ export interface TickBoxGrid extends GridField {
 
 export type Field =
   | ShortAnswerField
-  | LongAnswerField
+  | ParagraphField
   | DateField
   | CheckboxesField
   | MultipleChoiceField

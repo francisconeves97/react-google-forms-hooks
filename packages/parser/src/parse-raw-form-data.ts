@@ -1,25 +1,26 @@
 import {
   GoogleForm,
-  FieldType,
   FieldsPositionMap,
-  BaseField,
   Field,
+  FieldType,
 } from "@google-forms-js/types";
-import { textFieldParser } from "./parsers/text-field-parser";
-import { RawField, RawFieldType, RawFieldParser, RawFormData } from "./types";
+import { baseFieldParser } from "./parsers/base-field-parser";
+import { customOptionFieldParser } from "./parsers/custom-option-field-parser";
+import { RawField, RawFieldType, RawFormData } from "./types";
 
-const fieldTypeParsers: Record<
-  RawFieldType,
-  RawFieldParser<RawField, BaseField>
-> = {
-  0: textFieldParser,
-  1: textFieldParser,
-};
+const fieldTypeParsers: Record<RawFieldType, any> = {
+  [RawFieldType.SHORT_ANSWER]: baseFieldParser,
+  [RawFieldType.PARAGRAPH]: baseFieldParser,
+  [RawFieldType.MULTIPLE_CHOICE]: customOptionFieldParser,
+  [RawFieldType.CHECKBOXES]: customOptionFieldParser,
+} as const;
 
 const fieldTypeMap: Record<RawFieldType, FieldType> = {
-  0: "SHORT_ANSWER",
-  1: "LONG_ANSWER",
-};
+  [RawFieldType.SHORT_ANSWER]: "SHORT_ANSWER",
+  [RawFieldType.PARAGRAPH]: "PARAGRAPH",
+  [RawFieldType.MULTIPLE_CHOICE]: "MULTIPLE_CHOICE",
+  [RawFieldType.CHECKBOXES]: "CHECKBOXES",
+} as const;
 
 interface ParseFields {
   (rawFields: RawField[]): {
@@ -29,20 +30,27 @@ interface ParseFields {
 }
 
 const parseFields: ParseFields = (rawFields) => {
+  const fields: Field[] = [];
+
   const fieldsPositionMap = {} as FieldsPositionMap;
 
-  const fields = rawFields.map((rawField, i) => {
+  rawFields.forEach((rawField, i) => {
     const rawFieldType = rawField[3];
 
     const fieldParser = fieldTypeParsers[rawFieldType];
+
+    if (!fieldParser) {
+      return;
+    }
+
     const fieldData = fieldParser(rawField);
 
     fieldsPositionMap[fieldData.id] = i;
 
-    return {
+    fields.push({
       type: fieldTypeMap[rawFieldType],
       ...fieldParser(rawField),
-    } as Field;
+    } as Field);
   });
 
   return { fields, fieldsPositionMap };
