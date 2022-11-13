@@ -6,20 +6,36 @@ import {
 } from "@google-forms-js/types";
 import { baseFieldParser } from "./parsers/base-field-parser";
 import { customOptionFieldParser } from "./parsers/custom-option-field-parser";
+import { dropdownFieldParser } from "./parsers/dropdown-field-parser";
 import { RawField, RawFieldType, RawFormData } from "./types";
 
-const fieldTypeParsers: Record<RawFieldType, any> = {
-  [RawFieldType.SHORT_ANSWER]: baseFieldParser,
-  [RawFieldType.PARAGRAPH]: baseFieldParser,
-  [RawFieldType.MULTIPLE_CHOICE]: customOptionFieldParser,
-  [RawFieldType.CHECKBOXES]: customOptionFieldParser,
-} as const;
-
-const fieldTypeMap: Record<RawFieldType, FieldType> = {
-  [RawFieldType.SHORT_ANSWER]: "SHORT_ANSWER",
-  [RawFieldType.PARAGRAPH]: "PARAGRAPH",
-  [RawFieldType.MULTIPLE_CHOICE]: "MULTIPLE_CHOICE",
-  [RawFieldType.CHECKBOXES]: "CHECKBOXES",
+const fieldTypeParsers: Record<
+  RawFieldType,
+  {
+    parser: any;
+    type: FieldType;
+  }
+> = {
+  [RawFieldType.SHORT_ANSWER]: {
+    parser: baseFieldParser,
+    type: "SHORT_ANSWER",
+  },
+  [RawFieldType.PARAGRAPH]: {
+    parser: baseFieldParser,
+    type: "PARAGRAPH",
+  },
+  [RawFieldType.MULTIPLE_CHOICE]: {
+    parser: customOptionFieldParser,
+    type: "MULTIPLE_CHOICE",
+  },
+  [RawFieldType.CHECKBOXES]: {
+    parser: customOptionFieldParser,
+    type: "CHECKBOXES",
+  },
+  [RawFieldType.DROPDOWN]: {
+    parser: dropdownFieldParser,
+    type: "DROPDOWN",
+  },
 } as const;
 
 interface ParseFields {
@@ -43,13 +59,13 @@ const parseFields: ParseFields = (rawFields) => {
       return;
     }
 
-    const fieldData = fieldParser(rawField);
+    const fieldData = fieldParser.parser(rawField);
 
     fieldsPositionMap[fieldData.id] = i;
 
     fields.push({
-      type: fieldTypeMap[rawFieldType],
-      ...fieldParser(rawField),
+      type: fieldParser.type,
+      ...fieldData,
     } as Field);
   });
 

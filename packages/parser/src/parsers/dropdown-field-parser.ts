@@ -1,14 +1,10 @@
-import {
-  CustomOptionField,
-  DropdownField,
-  Option,
-} from "@google-forms-js/types";
-import { RawCustomOptionField, RawFieldParser } from "../types";
+import { DropdownField, Option } from "@google-forms-js/types";
+import { RawDropdownField } from "../types";
 import { baseFieldParser } from "./base-field-parser";
 
-const dropdownFieldParser: RawFieldParser<RawCustomOptionField> = (
-  rawField
-): CustomOptionField => {
+const dropdownFieldParser = (
+  rawField: RawDropdownField
+): Omit<DropdownField, "type"> => {
   const options: Option[] = [];
 
   const fieldInfo = rawField[4][0];
@@ -23,7 +19,6 @@ const dropdownFieldParser: RawFieldParser<RawCustomOptionField> = (
   return {
     ...baseFieldParser(rawField),
     options,
-    asdasd: "asdads",
   };
 };
 

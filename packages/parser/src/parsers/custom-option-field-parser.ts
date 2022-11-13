@@ -1,12 +1,11 @@
 import { CustomOptionField, Option } from "@google-forms-js/types";
-import { RawCustomOptionField, RawFieldParser } from "../types";
+import { RawCustomOptionField } from "../types";
 import { baseFieldParser } from "./base-field-parser";
 import { numberToBoolean } from "./helpers/number-to-boolean";
 
-const customOptionFieldParser: RawFieldParser<
-  RawCustomOptionField,
-  CustomOptionField
-> = (rawField) => {
+const customOptionFieldParser = (
+  rawField: RawCustomOptionField
+): CustomOptionField => {
   const options: Option[] = [];
   let hasCustomOption = false;
 

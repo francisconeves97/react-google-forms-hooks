@@ -1,5 +1,3 @@
-import { BaseField, CustomOptionField, Field } from "@google-forms-js/types";
-
 export type BooleanNumber = 0 | 1;
 
 export enum RawFieldType {
@@ -40,7 +38,23 @@ export type RawCustomOptionField = [
   ]
 ];
 
-export type RawField = RawTextField | RawCustomOptionField;
+export type RawDropdownField = [
+  _: number,
+  label: string,
+  description: string | null,
+  fieldTypeId: RawFieldType.DROPDOWN,
+  fieldInfoArray: [
+    fieldInfo: [
+      id: number,
+      optionsArray: [
+        option: [label: string, _: null, _: null, _: null, _: BooleanNumber]
+      ],
+      isRequired: BooleanNumber
+    ]
+  ]
+];
+
+export type RawField = RawTextField | RawCustomOptionField | RawDropdownField;
 
 export type RawFormDataTuple = [
   _: null,
@@ -73,8 +87,4 @@ export type RawFormDataTuple = [
 export interface RawFormData {
   rawFormDataTuple: RawFormDataTuple;
   fbzx: string;
-}
-
-export interface RawFieldParser<T extends RawField> {
-  (rawField: T): BaseField | CustomOptionField;
 }
