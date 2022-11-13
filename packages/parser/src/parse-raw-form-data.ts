@@ -7,6 +7,7 @@ import {
 import { baseFieldParser } from "./parsers/base-field-parser";
 import { customOptionFieldParser } from "./parsers/custom-option-field-parser";
 import { dropdownFieldParser } from "./parsers/dropdown-field-parser";
+import { linearFieldParser } from "./parsers/linear-field-parser";
 import { RawField, RawFieldType, RawFormData } from "./types";
 
 const fieldTypeParsers: Record<
@@ -35,6 +36,10 @@ const fieldTypeParsers: Record<
   [RawFieldType.DROPDOWN]: {
     parser: dropdownFieldParser,
     type: "DROPDOWN",
+  },
+  [RawFieldType.LINEAR_SCALE]: {
+    parser: linearFieldParser,
+    type: "LINEAR_SCALE",
   },
 } as const;
 

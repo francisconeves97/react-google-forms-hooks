@@ -6,6 +6,7 @@ export enum RawFieldType {
   MULTIPLE_CHOICE = 2,
   DROPDOWN = 3,
   CHECKBOXES = 4,
+  LINEAR_SCALE = 5,
 }
 
 export type RawTextField = [
@@ -54,7 +55,26 @@ export type RawDropdownField = [
   ]
 ];
 
-export type RawField = RawTextField | RawCustomOptionField | RawDropdownField;
+export type RawLinearField = [
+  _: number,
+  label: string,
+  description: string | null,
+  fieldTypeId: RawFieldType.LINEAR_SCALE,
+  fieldInfoArray: [
+    fieldInfo: [
+      id: number,
+      options: [option: string][],
+      isRequired: BooleanNumber,
+      labels: [minNumberLabel: string, maxNumberLabel: string]
+    ]
+  ]
+];
+
+export type RawField =
+  | RawTextField
+  | RawCustomOptionField
+  | RawDropdownField
+  | RawLinearField;
 
 export type RawFormDataTuple = [
   _: null,
