@@ -45,6 +45,10 @@ const fieldTypeParsers: Record<
   [RawFieldType.GRID]: {
     parser: gridFieldParser,
   },
+  [RawFieldType.DATE]: {
+    parser: baseFieldParser,
+    type: "DATE",
+  },
 } as const;
 
 interface ParseFields {

@@ -8,13 +8,17 @@ export enum RawFieldType {
   CHECKBOXES = 4,
   LINEAR_SCALE = 5,
   GRID = 7,
+  DATE = 9,
 }
 
 export type RawTextField = [
   _: number,
   label: string,
   description: string | null,
-  fieldTypeId: RawFieldType.SHORT_ANSWER | RawFieldType.PARAGRAPH,
+  fieldTypeId:
+    | RawFieldType.SHORT_ANSWER
+    | RawFieldType.PARAGRAPH
+    | RawFieldType.DATE,
   fieldInfoArray: [fieldInfo: [id: number, _: null, isRequired: BooleanNumber]]
 ];
 
