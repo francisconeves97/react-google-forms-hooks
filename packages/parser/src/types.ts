@@ -7,7 +7,7 @@ export enum RawFieldType {
   DROPDOWN = 3,
   CHECKBOXES = 4,
   LINEAR_SCALE = 5,
-  MULTIPLE_CHOICE_GRID = 7,
+  GRID = 7,
 }
 
 export type RawTextField = [
@@ -75,13 +75,21 @@ export type RawGridField = [
   _: number,
   label: string,
   description: string | null,
-  fieldTypeId: RawFieldType.MULTIPLE_CHOICE_GRID,
+  fieldTypeId: RawFieldType.GRID,
   rowsArray: [
     row: [
       rowId: number,
       columns: [column: string][],
       isRequired: BooleanNumber,
-      labelArray: [label: string]
+      rowLabelArray: [rowLabel: string],
+      _: null,
+      _: null,
+      _: null,
+      _: null,
+      _: null,
+      _: null,
+      _: null,
+      isTickboxGridArray: [isTickboxGrid: BooleanNumber]
     ]
   ]
 ];

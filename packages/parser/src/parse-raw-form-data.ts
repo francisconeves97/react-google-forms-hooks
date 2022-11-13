@@ -15,7 +15,7 @@ const fieldTypeParsers: Record<
   RawFieldType,
   {
     parser: any;
-    type: FieldType;
+    type?: FieldType;
   }
 > = {
   [RawFieldType.SHORT_ANSWER]: {
@@ -42,9 +42,8 @@ const fieldTypeParsers: Record<
     parser: linearFieldParser,
     type: "LINEAR_SCALE",
   },
-  [RawFieldType.MULTIPLE_CHOICE_GRID]: {
+  [RawFieldType.GRID]: {
     parser: gridFieldParser,
-    type: "MULTIPLE_CHOICE_GRID",
   },
 } as const;
 
@@ -73,10 +72,15 @@ const parseFields: ParseFields = (rawFields) => {
 
     fieldsPositionMap[fieldData.id] = i;
 
-    fields.push({
-      type: fieldParser.type,
+    const field = {
       ...fieldData,
-    } as Field);
+    } as Field;
+
+    if (fieldParser.type) {
+      field.type = fieldParser.type;
+    }
+
+    fields.push(field);
   });
 
   return { fields, fieldsPositionMap };
