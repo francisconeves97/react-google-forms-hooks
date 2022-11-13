@@ -1,10 +1,7 @@
-import { LinearScaleField, Option } from "@google-forms-js/types";
+import { LinearScaleField } from "@google-forms-js/types";
 import { RawLinearField } from "../types";
 import { baseFieldParser } from "./base-field-parser";
-
-const flattenArray = (array: string[][]): Option[] => {
-  return array.map((item) => ({ label: item[0] }));
-};
+import { flattenOptionsArray } from "./helpers/flatten-options-array";
 
 const linearFieldParser = (
   rawField: RawLinearField
@@ -17,7 +14,7 @@ const linearFieldParser = (
     ...baseFieldParser(rawField),
     minNumberLabel,
     maxNumberLabel,
-    options: flattenArray(fieldInfo[1]),
+    options: flattenOptionsArray(fieldInfo[1]),
   };
 };
 

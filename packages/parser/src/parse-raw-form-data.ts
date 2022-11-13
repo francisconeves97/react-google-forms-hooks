@@ -7,6 +7,7 @@ import {
 import { baseFieldParser } from "./parsers/base-field-parser";
 import { customOptionFieldParser } from "./parsers/custom-option-field-parser";
 import { dropdownFieldParser } from "./parsers/dropdown-field-parser";
+import { gridFieldParser } from "./parsers/grid-field-parser";
 import { linearFieldParser } from "./parsers/linear-field-parser";
 import { RawField, RawFieldType, RawFormData } from "./types";
 
@@ -40,6 +41,10 @@ const fieldTypeParsers: Record<
   [RawFieldType.LINEAR_SCALE]: {
     parser: linearFieldParser,
     type: "LINEAR_SCALE",
+  },
+  [RawFieldType.MULTIPLE_CHOICE_GRID]: {
+    parser: gridFieldParser,
+    type: "MULTIPLE_CHOICE_GRID",
   },
 } as const;
 
