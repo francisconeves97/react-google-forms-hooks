@@ -13,16 +13,18 @@
   },
   "devDependencies": {
     "@types/node-fetch": "^2.6.2",
+    "@vitest/coverage-c8": "^0.25.2",
     "esbuild": "^0.15.12",
     "esbuild-plugin-eslint": "^0.1.1",
+    "fetch-mock": "^9.11.0",
     "tsup": "^6.3.0",
     "vite": "^3.2.2",
-    "vitest": "^0.24.5"
+    "vitest": "^0.24.5",
+    "@google-forms-js/types": "file:../packages/parser"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
-    "node-fetch": "^2.6.1",
-    "@google-forms-js/types": "file:../packages/parser"
+    "node-fetch": "^2.6.1"
   },
   "files": [
     "dist"

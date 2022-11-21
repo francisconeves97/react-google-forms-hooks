@@ -1,0 +1,863 @@
+// Vitest Snapshot v1
+
+exports[`parseGoogleForm > form with all field types > should parse the form correctly 1`] = `
+{
+  "description": "form description",
+  "fields": [
+    {
+      "description": null,
+      "id": "1973567836",
+      "label": "Short answer question",
+      "required": false,
+      "type": "SHORT_ANSWER",
+    },
+    {
+      "description": "With description",
+      "id": "1027526081",
+      "label": "Short answer question (required)",
+      "required": true,
+      "type": "SHORT_ANSWER",
+    },
+    {
+      "description": null,
+      "id": "103082236",
+      "label": "Paragraph question",
+      "required": false,
+      "type": "PARAGRAPH",
+    },
+    {
+      "description": "With description",
+      "id": "1047017538",
+      "label": "Paragraph question (required)",
+      "required": true,
+      "type": "PARAGRAPH",
+    },
+    {
+      "description": null,
+      "hasCustomOption": true,
+      "id": "279371716",
+      "label": "Multiple choice",
+      "options": [
+        {
+          "label": "Option 1",
+        },
+        {
+          "label": "Option 2",
+        },
+        {
+          "label": "Option 3",
+        },
+      ],
+      "required": false,
+      "type": "MULTIPLE_CHOICE",
+    },
+    {
+      "description": "With description",
+      "hasCustomOption": false,
+      "id": "37251313",
+      "label": "Multiple choice (required)",
+      "options": [
+        {
+          "label": "Option 1",
+        },
+        {
+          "label": "Option 2",
+        },
+        {
+          "label": "Option 3",
+        },
+      ],
+      "required": true,
+      "type": "MULTIPLE_CHOICE",
+    },
+    {
+      "description": null,
+      "hasCustomOption": true,
+      "id": "1523245781",
+      "label": "Checkboxes",
+      "options": [
+        {
+          "label": "Option 1",
+        },
+        {
+          "label": "Option 2",
+        },
+        {
+          "label": "Option 3",
+        },
+      ],
+      "required": false,
+      "type": "CHECKBOXES",
+    },
+    {
+      "description": "With description",
+      "hasCustomOption": false,
+      "id": "357735393",
+      "label": "Multiple choice (required)",
+      "options": [
+        {
+          "label": "Option 1",
+        },
+        {
+          "label": "Option 2",
+        },
+        {
+          "label": "Option 3",
+        },
+      ],
+      "required": true,
+      "type": "CHECKBOXES",
+    },
+    {
+      "description": null,
+      "id": "248358011",
+      "label": "Dropdown",
+      "options": [
+        {
+          "label": "Option 1",
+        },
+        {
+          "label": "Option 2",
+        },
+        {
+          "label": "Option 3",
+        },
+      ],
+      "required": false,
+      "type": "DROPDOWN",
+    },
+    {
+      "description": "With description",
+      "id": "882375941",
+      "label": "Dropdown (required)",
+      "options": [
+        {
+          "label": "Option 1",
+        },
+        {
+          "label": "Option 2",
+        },
+        {
+          "label": "Option 3",
+        },
+      ],
+      "required": true,
+      "type": "DROPDOWN",
+    },
+    {
+      "description": null,
+      "id": "55542064",
+      "label": "Linear scale",
+      "maxNumberLabel": "",
+      "minNumberLabel": "",
+      "options": [
+        {
+          "label": "1",
+        },
+        {
+          "label": "2",
+        },
+        {
+          "label": "3",
+        },
+        {
+          "label": "4",
+        },
+        {
+          "label": "5",
+        },
+      ],
+      "required": false,
+      "type": "LINEAR_SCALE",
+    },
+    {
+      "description": "With description",
+      "id": "718227682",
+      "label": "Linear scale (required)",
+      "maxNumberLabel": "Max number label",
+      "minNumberLabel": "Min number label",
+      "options": [
+        {
+          "label": "0",
+        },
+        {
+          "label": "1",
+        },
+        {
+          "label": "2",
+        },
+        {
+          "label": "3",
+        },
+        {
+          "label": "4",
+        },
+        {
+          "label": "5",
+        },
+        {
+          "label": "6",
+        },
+        {
+          "label": "7",
+        },
+        {
+          "label": "8",
+        },
+        {
+          "label": "9",
+        },
+        {
+          "label": "10",
+        },
+      ],
+      "required": true,
+      "type": "LINEAR_SCALE",
+    },
+    {
+      "columns": [
+        {
+          "label": "Column 1",
+        },
+        {
+          "label": "Column 2",
+        },
+        {
+          "label": "Column 3",
+        },
+      ],
+      "description": null,
+      "id": "498463833",
+      "label": "Multiple choice grid",
+      "lines": [
+        {
+          "id": "498463833",
+          "label": "Row 1",
+        },
+        {
+          "id": "1786304611",
+          "label": "Row 2",
+        },
+        {
+          "id": "1040425630",
+          "label": "Row 3",
+        },
+        {
+          "id": "1772075609",
+          "label": "Row 4",
+        },
+      ],
+      "required": false,
+      "type": "MULTIPLE_CHOICE_GRID",
+    },
+    {
+      "columns": [
+        {
+          "label": "Column 1",
+        },
+        {
+          "label": "Column 2",
+        },
+        {
+          "label": "Column 3",
+        },
+      ],
+      "description": "With description",
+      "id": "1054835510",
+      "label": "Multiple choice grid (required)",
+      "lines": [
+        {
+          "id": "1054835510",
+          "label": "Row 1",
+        },
+        {
+          "id": "1839167326",
+          "label": "Row 2",
+        },
+        {
+          "id": "835156322",
+          "label": "Row 3",
+        },
+        {
+          "id": "335240212",
+          "label": "Row 4",
+        },
+      ],
+      "required": true,
+      "type": "MULTIPLE_CHOICE_GRID",
+    },
+    {
+      "columns": [
+        {
+          "label": "Column 1",
+        },
+        {
+          "label": "Column 2",
+        },
+        {
+          "label": "Column 3",
+        },
+        {
+          "label": "Column 4",
+        },
+      ],
+      "description": null,
+      "id": "657749623",
+      "label": "Tick box grid",
+      "lines": [
+        {
+          "id": "657749623",
+          "label": "Row 1",
+        },
+        {
+          "id": "924822411",
+          "label": "Row 2",
+        },
+        {
+          "id": "1950277088",
+          "label": "Row 3",
+        },
+      ],
+      "required": false,
+      "type": "TICK_BOX_GRID",
+    },
+    {
+      "columns": [
+        {
+          "label": "Column 1",
+        },
+        {
+          "label": "Column 2",
+        },
+        {
+          "label": "Column 3",
+        },
+        {
+          "label": "Column 4",
+        },
+      ],
+      "description": "With description",
+      "id": "1456685102",
+      "label": "Tick box grid (required)",
+      "lines": [
+        {
+          "id": "1456685102",
+          "label": "Row 1",
+        },
+        {
+          "id": "261027955",
+          "label": "Row 2",
+        },
+        {
+          "id": "1093784376",
+          "label": "Row 3",
+        },
+      ],
+      "required": true,
+      "type": "TICK_BOX_GRID",
+    },
+    {
+      "description": null,
+      "id": "1162784826",
+      "label": "Date",
+      "required": false,
+      "type": "DATE",
+    },
+    {
+      "description": "With description",
+      "id": "817206224",
+      "label": "Date (required)",
+      "required": true,
+      "type": "DATE",
+    },
+  ],
+  "fieldsPositionMap": {
+    "1027526081": 1,
+    "103082236": 2,
+    "1047017538": 3,
+    "1054835510": 13,
+    "1162784826": 16,
+    "1456685102": 15,
+    "1523245781": 6,
+    "1973567836": 0,
+    "248358011": 8,
+    "279371716": 4,
+    "357735393": 7,
+    "37251313": 5,
+    "498463833": 12,
+    "55542064": 10,
+    "657749623": 14,
+    "718227682": 11,
+    "817206224": 17,
+    "882375941": 9,
+  },
+  "formMetadata": {
+    "action": "e/1FAIpQLSf5YK1mmRKPoFCFxNuH0XgyJ4bSRpFk3K5NkS-nlX4VBdysAw",
+    "fbzx": "3047889860006435785",
+    "fvv": 1,
+    "pageHistory": 0,
+  },
+  "title": "Test form",
+}
+`;
+
+exports[`parseGoogleForm > when parsing a form with an unsupported field > should parse the form correctly 1`] = `
+{
+  "description": "form description",
+  "fields": [],
+  "fieldsPositionMap": {},
+  "formMetadata": {
+    "action": "e/1FAIpQLScNatJq3N2INw_Dma5eSZEQyuMMf5nDCTZxwRgeztr3MLdmvg",
+    "fbzx": "4517077496887845092",
+    "fvv": 1,
+    "pageHistory": 0,
+  },
+  "title": "Test form",
+}
+`;
+
+exports[`parseGoogleForm > when the form has special characters > should parse the form correctly 1`] = `
+{
+  "description": null,
+  "fields": [
+    {
+      "description": null,
+      "hasCustomOption": true,
+      "id": "1403784388",
+      "label": "Hello, what's up? ",
+      "options": [
+        {
+          "label": "Option 1",
+        },
+      ],
+      "required": false,
+      "type": "MULTIPLE_CHOICE",
+    },
+    {
+      "description": null,
+      "hasCustomOption": false,
+      "id": "162741379",
+      "label": "Hello, what's up 2",
+      "options": [
+        {
+          "label": "Option 1",
+        },
+      ],
+      "required": false,
+      "type": "MULTIPLE_CHOICE",
+    },
+  ],
+  "fieldsPositionMap": {
+    "1403784388": 0,
+    "162741379": 1,
+  },
+  "formMetadata": {
+    "action": "e/1FAIpQLSeT9rPzmpnaPRPrj6VXv9hXn-AYKYARfzstZmqIQJrkNYtxnQ",
+    "fbzx": "6170924624432982469",
+    "fvv": 1,
+    "pageHistory": 0,
+  },
+  "title": null,
+}
+`;
+
+exports[`parseGoogleForm > when using a shortened url for the form > should parse the form correctly 1`] = `
+{
+  "description": "form description",
+  "fields": [
+    {
+      "description": null,
+      "id": "1973567836",
+      "label": "Short answer question",
+      "required": false,
+      "type": "SHORT_ANSWER",
+    },
+    {
+      "description": "With description",
+      "id": "1027526081",
+      "label": "Short answer question (required)",
+      "required": true,
+      "type": "SHORT_ANSWER",
+    },
+    {
+      "description": null,
+      "id": "103082236",
+      "label": "Paragraph question",
+      "required": false,
+      "type": "PARAGRAPH",
+    },
+    {
+      "description": "With description",
+      "id": "1047017538",
+      "label": "Paragraph question (required)",
+      "required": true,
+      "type": "PARAGRAPH",
+    },
+    {
+      "description": null,
+      "hasCustomOption": true,
+      "id": "279371716",
+      "label": "Multiple choice",
+      "options": [
+        {
+          "label": "Option 1",
+        },
+        {
+          "label": "Option 2",
+        },
+        {
+          "label": "Option 3",
+        },
+      ],
+      "required": false,
+      "type": "MULTIPLE_CHOICE",
+    },
+    {
+      "description": "With description",
+      "hasCustomOption": false,
+      "id": "37251313",
+      "label": "Multiple choice (required)",
+      "options": [
+        {
+          "label": "Option 1",
+        },
+        {
+          "label": "Option 2",
+        },
+        {
+          "label": "Option 3",
+        },
+      ],
+      "required": true,
+      "type": "MULTIPLE_CHOICE",
+    },
+    {
+      "description": null,
+      "hasCustomOption": true,
+      "id": "1523245781",
+      "label": "Checkboxes",
+      "options": [
+        {
+          "label": "Option 1",
+        },
+        {
+          "label": "Option 2",
+        },
+        {
+          "label": "Option 3",
+        },
+      ],
+      "required": false,
+      "type": "CHECKBOXES",
+    },
+    {
+      "description": "With description",
+      "hasCustomOption": false,
+      "id": "357735393",
+      "label": "Multiple choice (required)",
+      "options": [
+        {
+          "label": "Option 1",
+        },
+        {
+          "label": "Option 2",
+        },
+        {
+          "label": "Option 3",
+        },
+      ],
+      "required": true,
+      "type": "CHECKBOXES",
+    },
+    {
+      "description": null,
+      "id": "248358011",
+      "label": "Dropdown",
+      "options": [
+        {
+          "label": "Option 1",
+        },
+        {
+          "label": "Option 2",
+        },
+        {
+          "label": "Option 3",
+        },
+      ],
+      "required": false,
+      "type": "DROPDOWN",
+    },
+    {
+      "description": "With description",
+      "id": "882375941",
+      "label": "Dropdown (required)",
+      "options": [
+        {
+          "label": "Option 1",
+        },
+        {
+          "label": "Option 2",
+        },
+        {
+          "label": "Option 3",
+        },
+      ],
+      "required": true,
+      "type": "DROPDOWN",
+    },
+    {
+      "description": null,
+      "id": "55542064",
+      "label": "Linear scale",
+      "maxNumberLabel": "",
+      "minNumberLabel": "",
+      "options": [
+        {
+          "label": "1",
+        },
+        {
+          "label": "2",
+        },
+        {
+          "label": "3",
+        },
+        {
+          "label": "4",
+        },
+        {
+          "label": "5",
+        },
+      ],
+      "required": false,
+      "type": "LINEAR_SCALE",
+    },
+    {
+      "description": "With description",
+      "id": "718227682",
+      "label": "Linear scale (required)",
+      "maxNumberLabel": "Max number label",
+      "minNumberLabel": "Min number label",
+      "options": [
+        {
+          "label": "0",
+        },
+        {
+          "label": "1",
+        },
+        {
+          "label": "2",
+        },
+        {
+          "label": "3",
+        },
+        {
+          "label": "4",
+        },
+        {
+          "label": "5",
+        },
+        {
+          "label": "6",
+        },
+        {
+          "label": "7",
+        },
+        {
+          "label": "8",
+        },
+        {
+          "label": "9",
+        },
+        {
+          "label": "10",
+        },
+      ],
+      "required": true,
+      "type": "LINEAR_SCALE",
+    },
+    {
+      "columns": [
+        {
+          "label": "Column 1",
+        },
+        {
+          "label": "Column 2",
+        },
+        {
+          "label": "Column 3",
+        },
+      ],
+      "description": null,
+      "id": "498463833",
+      "label": "Multiple choice grid",
+      "lines": [
+        {
+          "id": "498463833",
+          "label": "Row 1",
+        },
+        {
+          "id": "1786304611",
+          "label": "Row 2",
+        },
+        {
+          "id": "1040425630",
+          "label": "Row 3",
+        },
+        {
+          "id": "1772075609",
+          "label": "Row 4",
+        },
+      ],
+      "required": false,
+      "type": "MULTIPLE_CHOICE_GRID",
+    },
+    {
+      "columns": [
+        {
+          "label": "Column 1",
+        },
+        {
+          "label": "Column 2",
+        },
+        {
+          "label": "Column 3",
+        },
+      ],
+      "description": "With description",
+      "id": "1054835510",
+      "label": "Multiple choice grid (required)",
+      "lines": [
+        {
+          "id": "1054835510",
+          "label": "Row 1",
+        },
+        {
+          "id": "1839167326",
+          "label": "Row 2",
+        },
+        {
+          "id": "835156322",
+          "label": "Row 3",
+        },
+        {
+          "id": "335240212",
+          "label": "Row 4",
+        },
+      ],
+      "required": true,
+      "type": "MULTIPLE_CHOICE_GRID",
+    },
+    {
+      "columns": [
+        {
+          "label": "Column 1",
+        },
+        {
+          "label": "Column 2",
+        },
+        {
+          "label": "Column 3",
+        },
+        {
+          "label": "Column 4",
+        },
+      ],
+      "description": null,
+      "id": "657749623",
+      "label": "Tick box grid",
+      "lines": [
+        {
+          "id": "657749623",
+          "label": "Row 1",
+        },
+        {
+          "id": "924822411",
+          "label": "Row 2",
+        },
+        {
+          "id": "1950277088",
+          "label": "Row 3",
+        },
+      ],
+      "required": false,
+      "type": "TICK_BOX_GRID",
+    },
+    {
+      "columns": [
+        {
+          "label": "Column 1",
+        },
+        {
+          "label": "Column 2",
+        },
+        {
+          "label": "Column 3",
+        },
+        {
+          "label": "Column 4",
+        },
+      ],
+      "description": "With description",
+      "id": "1456685102",
+      "label": "Tick box grid (required)",
+      "lines": [
+        {
+          "id": "1456685102",
+          "label": "Row 1",
+        },
+        {
+          "id": "261027955",
+          "label": "Row 2",
+        },
+        {
+          "id": "1093784376",
+          "label": "Row 3",
+        },
+      ],
+      "required": true,
+      "type": "TICK_BOX_GRID",
+    },
+    {
+      "description": null,
+      "id": "1162784826",
+      "label": "Date",
+      "required": false,
+      "type": "DATE",
+    },
+    {
+      "description": "With description",
+      "id": "817206224",
+      "label": "Date (required)",
+      "required": true,
+      "type": "DATE",
+    },
+  ],
+  "fieldsPositionMap": {
+    "1027526081": 1,
+    "103082236": 2,
+    "1047017538": 3,
+    "1054835510": 13,
+    "1162784826": 16,
+    "1456685102": 15,
+    "1523245781": 6,
+    "1973567836": 0,
+    "248358011": 8,
+    "279371716": 4,
+    "357735393": 7,
+    "37251313": 5,
+    "498463833": 12,
+    "55542064": 10,
+    "657749623": 14,
+    "718227682": 11,
+    "817206224": 17,
+    "882375941": 9,
+  },
+  "formMetadata": {
+    "action": "e/1FAIpQLSf5YK1mmRKPoFCFxNuH0XgyJ4bSRpFk3K5NkS-nlX4VBdysAw",
+    "fbzx": "3047889860006435785",
+    "fvv": 1,
+    "pageHistory": 0,
+  },
+  "title": "Test form",
+}
+`;
