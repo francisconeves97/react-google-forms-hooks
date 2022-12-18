@@ -1,10 +1,25 @@
-import { Field, GoogleForm } from "@google-forms-js/types";
-import { UseFormReturn } from "react-hook-form";
+import { GoogleForm, Field } from "@google-forms-js/types";
+import {
+  UseFormRegisterReturn,
+  RegisterOptions,
+  FieldErrorsImpl as ReactHookFormFieldError,
+  UseFormReturn,
+} from "react-hook-form";
 
-interface UseGoogleForm {
-  (args: { form: GoogleForm }): UseFormReturn & {
-    getField: (id: string) => Field;
-  };
+interface RegisterReturn {
+  register: (options?: RegisterOptions) => UseFormRegisterReturn;
 }
 
-export { UseGoogleForm };
+interface FieldError {
+  error?: ReactHookFormFieldError[string];
+}
+
+type UseGoogleFormReturn = UseFormReturn & {
+  getField: (id: string) => Field;
+};
+
+interface UseGoogleForm {
+  (args: { form: GoogleForm }): UseGoogleFormReturn;
+}
+
+export { RegisterReturn, FieldError, UseGoogleForm, UseGoogleFormReturn };

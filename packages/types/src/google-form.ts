@@ -1,7 +1,7 @@
 export interface BaseField {
   id: string;
   label: string;
-  description: string | null;
+  description?: string;
   required: boolean;
 }
 
@@ -89,7 +89,7 @@ export interface FieldsPositionMap {
 
 export interface GoogleForm {
   title: string;
-  description: string | null;
+  description?: string;
   formMetadata: {
     action: string;
     fvv: number;

@@ -105,7 +105,12 @@ const parseRawFormData: ParseRawFormData = ({ fbzx, rawFormDataTuple }) => {
   };
 
   googleForm.title = rawFormDataTuple[1][8];
-  googleForm.description = rawFormDataTuple[1][0];
+
+  const description = rawFormDataTuple[1][0];
+
+  if (description) {
+    googleForm.description = rawFormDataTuple[1][0];
+  }
 
   const { fields, fieldsPositionMap } = parseFields(rawFormDataTuple[1][1]);
   googleForm.fields = fields;

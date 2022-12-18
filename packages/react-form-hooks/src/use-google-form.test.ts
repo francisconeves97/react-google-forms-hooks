@@ -1,7 +1,7 @@
 import { test, expect, describe } from "vitest";
 import { renderHook } from "@testing-library/react";
 import { mockGoogleForm } from "../tests/mocks";
-import { useGoogleForm } from "./useGoogleForm";
+import { useGoogleForm } from "./use-google-form";
 
 describe("useGoogleForm", () => {
   test("returns methods from react-hook-form", () => {

@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { GoogleForm } from "@google-forms-js/types";
+import { UseGoogleForm } from "./types";
 
 const resolveField = (id: string, form: GoogleForm) => {
   const fieldIndex = form.fieldsPositionMap[id];
@@ -11,7 +12,7 @@ const resolveField = (id: string, form: GoogleForm) => {
   return form.fields[fieldIndex];
 };
 
-const useGoogleForm = ({ form }: { form: GoogleForm }) => {
+const useGoogleForm: UseGoogleForm = ({ form }: { form: GoogleForm }) => {
   const methods = useForm();
 
   return {
