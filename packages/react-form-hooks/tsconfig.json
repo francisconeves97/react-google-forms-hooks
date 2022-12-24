@@ -3,7 +3,8 @@
   "compilerOptions": {
     "jsx": "react",
     "types": [
-      "vitest/globals"
+      "vitest/globals",
+      "@types/testing-library__jest-dom"
     ]
   }
 }

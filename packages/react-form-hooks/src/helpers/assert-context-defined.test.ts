@@ -1,4 +1,3 @@
-import { test, expect, describe } from "vitest";
 import { assertContextDefined } from "./assert-context-defined";
 
 describe("assertContextDefined", () => {

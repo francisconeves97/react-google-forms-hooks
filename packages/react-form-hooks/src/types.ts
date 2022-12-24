@@ -14,6 +14,10 @@ interface FieldError {
   error?: ReactHookFormFieldError[string];
 }
 
+type UseFieldHookReturn<FieldType extends Field> = FieldType &
+  RegisterReturn &
+  FieldError;
+
 type UseGoogleFormReturn = UseFormReturn & {
   getField: (id: string) => Field;
 };
@@ -22,4 +26,10 @@ interface UseGoogleForm {
   (args: { form: GoogleForm }): UseGoogleFormReturn;
 }
 
-export { RegisterReturn, FieldError, UseGoogleForm, UseGoogleFormReturn };
+export {
+  RegisterReturn,
+  FieldError,
+  UseGoogleForm,
+  UseGoogleFormReturn,
+  UseFieldHookReturn,
+};

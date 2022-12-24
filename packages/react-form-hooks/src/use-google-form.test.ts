@@ -4,7 +4,7 @@ import { mockGoogleForm } from "../tests/mocks";
 import { useGoogleForm } from "./use-google-form";
 
 describe("useGoogleForm", () => {
-  test("returns methods from react-hook-form", () => {
+  test("should return methods from react-hook-form", () => {
     const { result } = renderHook(() =>
       useGoogleForm({ form: mockGoogleForm })
     );
@@ -15,7 +15,7 @@ describe("useGoogleForm", () => {
     expect(watch).toBeDefined();
   });
 
-  test("returns the getField method", () => {
+  test("should return the getField method", () => {
     const { result } = renderHook(() =>
       useGoogleForm({ form: mockGoogleForm })
     );
@@ -26,7 +26,7 @@ describe("useGoogleForm", () => {
   });
 
   describe("getField", () => {
-    test("returns the field with the given id", () => {
+    test("should return the field with the given id", () => {
       const { result } = renderHook(() =>
         useGoogleForm({ form: mockGoogleForm })
       );
@@ -40,7 +40,7 @@ describe("useGoogleForm", () => {
     });
 
     describe("when the field with the given id does not exist", () => {
-      test("throws an error", () => {
+      test("should throw an error", () => {
         const { result } = renderHook(() =>
           useGoogleForm({ form: mockGoogleForm })
         );

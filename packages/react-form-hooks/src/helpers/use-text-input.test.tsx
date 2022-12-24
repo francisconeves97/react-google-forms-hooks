@@ -1,5 +1,4 @@
 import React from "react";
-import { test, expect, describe, beforeEach, afterEach } from "vitest";
 import { RegisterOptions } from "react-hook-form";
 import { renderHook } from "@testing-library/react";
 import { render, fireEvent, screen, act } from "@testing-library/react";
@@ -63,7 +62,7 @@ describe("useTextInput", () => {
     output = {};
   });
 
-  test("returns the correspondent field information", () => {
+  test("should return the correspondent field information", () => {
     const { result } = renderHook(() => useTextInput(mockTextAnswerField.id), {
       wrapper: createMockGoogleFormWrapper({ onSubmit }),
     });
@@ -71,7 +70,7 @@ describe("useTextInput", () => {
     expect(result.current).toMatchObject(mockTextAnswerField);
   });
 
-  test("registers the field correctly", async () => {
+  test("should register the field correctly", async () => {
     renderComponent();
 
     await fillTextField("xico");
@@ -94,7 +93,7 @@ describe("useTextInput", () => {
       mockGetField.mockImplementation(() => requiredMockField);
     });
 
-    test("gives an error when the field is not filled", async () => {
+    test("should give an error when the field is not filled", async () => {
       renderComponent();
 
       await submitForm();
@@ -104,7 +103,7 @@ describe("useTextInput", () => {
   });
 
   describe("when other validations are passed to the register method", () => {
-    test("submits the form successfully when it does comply with the validation", async () => {
+    test("should submit the form successfully when it does comply with the validation", async () => {
       renderComponent({ minLength: 3 });
 
       await fillTextField("xico");
@@ -116,7 +115,7 @@ describe("useTextInput", () => {
       });
     });
 
-    test("gives a validation error when it does not comply with the validation", async () => {
+    test("should give a validation error when it does not comply with the validation", async () => {
       renderComponent({ minLength: 3 });
 
       await fillTextField("xi");

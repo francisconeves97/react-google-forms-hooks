@@ -1,0 +1,51 @@
+import { ParagraphField, ShortAnswerField } from "@google-forms-js/types";
+import { renderHook } from "@testing-library/react";
+import { useTextInput } from "./helpers/use-text-input";
+import { useShortAnswerInput } from "./use-short-answer-input";
+
+vi.mock("./helpers/use-text-input");
+const mockUseTextInput = vi.mocked(useTextInput);
+
+describe("useShortAnswerInput", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  describe("when the field type is short answer", () => {
+    const mockField: ShortAnswerField = {
+      type: "SHORT_ANSWER",
+      id: "id",
+      label: "mock field",
+      required: false,
+    };
+
+    beforeEach(() => {
+      mockUseTextInput.mockReturnValue(mockField as any);
+    });
+
+    it("should return the correspondent field information", () => {
+      const { result } = renderHook(() => useShortAnswerInput(mockField.id));
+
+      expect(result.current).toBe(mockField);
+    });
+  });
+
+  describe("when the field type is not short answer", () => {
+    const mockField: ParagraphField = {
+      type: "PARAGRAPH",
+      id: "id",
+      label: "mock field",
+      required: false,
+    };
+
+    beforeEach(() => {
+      mockUseTextInput.mockReturnValue(mockField as any);
+    });
+
+    it("should throw an error", () => {
+      expect(() =>
+        renderHook(() => useShortAnswerInput(mockField.id))
+      ).toThrow();
+    });
+  });
+});

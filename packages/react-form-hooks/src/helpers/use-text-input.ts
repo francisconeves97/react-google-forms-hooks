@@ -1,15 +1,13 @@
 import { ParagraphField, ShortAnswerField } from "@google-forms-js/types";
 import { RegisterOptions } from "react-hook-form";
-import { FieldError, RegisterReturn } from "../types";
+import { UseFieldHookReturn } from "../types";
 
 import { useGoogleFormContext } from "../context/google-form-context";
 import { assertContextDefined } from "./assert-context-defined";
 
 type TextField = ShortAnswerField | ParagraphField;
 
-type UseTextInputReturn = TextField & RegisterReturn & FieldError;
-
-function useTextInput(id: string): UseTextInputReturn {
+function useTextInput(id: string): UseFieldHookReturn<TextField> {
   const context = useGoogleFormContext();
 
   assertContextDefined(context);
