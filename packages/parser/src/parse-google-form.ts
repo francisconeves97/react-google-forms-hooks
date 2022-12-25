@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+import fetch from "isomorphic-unfetch";
 import { GoogleForm } from "@google-forms-js/types";
 import { extractRawFormData } from "./extract-raw-form-data";
 import { parseRawFormData } from "./parse-raw-form-data";
