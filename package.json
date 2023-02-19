@@ -5,6 +5,10 @@
   "repository": {
     "url": "https://github.com/francisconeves97/google-forms-js"
   },
+  "scripts": {
+    "dev": "npm run dev -w packages/types & npm run dev -w packages/parser & npm run dev -w packages/submitter & npm run dev -w packages/react-form-hooks",
+    "test": "npm run test -w packages/parser & npm run test -w packages/submitter & npm run test -w packages/react-form-hooks"
+  },
   "author": "francisconeves97",
   "license": "MIT",
   "workspaces": [

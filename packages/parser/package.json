@@ -1,6 +1,7 @@
 {
   "name": "@google-forms-js/parser",
   "version": "1.0.0",
+  "private": true,
   "description": "Util for parsing a Google Forms form into a JSON.",
   "author": "francisconeves97",
   "license": "MIT",
