@@ -6,7 +6,7 @@ import fetchMock from "fetch-mock";
 import { parseGoogleForm } from "./parse-google-form";
 import fetch from "isomorphic-unfetch";
 
-vi.mock("node-fetch", () => {
+vi.mock("isomorphic-unfetch", () => {
   return {
     default: fetchMock.sandbox(),
   };
