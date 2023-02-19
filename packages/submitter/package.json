@@ -1,7 +1,7 @@
 {
-  "name": "@google-forms-js/parser",
+  "name": "@google-forms-js/submitter",
   "version": "1.0.0",
-  "description": "Util for parsing a Google Forms form into a JSON.",
+  "description": "Util for submitting a Google Form.",
   "author": "francisconeves97",
   "license": "MIT",
   "scripts": {
@@ -22,7 +22,6 @@
     "vitest": "^0.24.5"
   },
   "dependencies": {
-    "cheerio": "^1.0.0-rc.12",
     "isomorphic-unfetch": "^3.1.0"
   },
   "files": [

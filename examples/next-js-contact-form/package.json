@@ -1,5 +1,5 @@
 {
-  "name": "next-js-client-side-contact-form",
+  "name": "next-js-contact-form",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@google-forms-js/react-form-hooks": "file:../packages/react-form-hooks",
+    "@google-forms-js/submitter": "file:../packages/submitter",
     "@next/font": "13.1.1",
     "@types/node": "18.11.17",
     "@types/react": "18.0.26",

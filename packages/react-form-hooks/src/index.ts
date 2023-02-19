@@ -1,3 +1,4 @@
+export * from "react-hook-form";
 export * from "./use-google-form";
 export * from "./types";
 export * from "./use-paragraph-input";

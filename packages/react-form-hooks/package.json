@@ -27,10 +27,10 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "peerDependencies": {
-    "react": "^16.8.0 || ^17 || ^18"
+    "react": "^16.8.0 || ^17 || ^18",
+    "react-hook-form": "^7"
   },
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "react-hook-form": "^7.41.0"
+    "@testing-library/jest-dom": "^5.16.5"
   }
 }

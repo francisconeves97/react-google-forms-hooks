@@ -2,7 +2,7 @@ import { GoogleForm, Field } from "@google-forms-js/types";
 import {
   UseFormRegisterReturn,
   RegisterOptions,
-  FieldErrorsImpl as ReactHookFormFieldError,
+  FieldErrorsImpl,
   UseFormReturn,
 } from "react-hook-form";
 
@@ -10,13 +10,13 @@ interface RegisterReturn {
   register: (options?: RegisterOptions) => UseFormRegisterReturn;
 }
 
-interface FieldError {
-  error?: ReactHookFormFieldError[string];
+interface GoogleFormFieldError {
+  error?: FieldErrorsImpl[string];
 }
 
 type UseFieldHookReturn<FieldType extends Field> = FieldType &
   RegisterReturn &
-  FieldError;
+  GoogleFormFieldError;
 
 type UseGoogleFormReturn = UseFormReturn & {
   getField: (id: string) => Field;
@@ -28,7 +28,7 @@ interface UseGoogleForm {
 
 export {
   RegisterReturn,
-  FieldError,
+  GoogleFormFieldError,
   UseGoogleForm,
   UseGoogleFormReturn,
   UseFieldHookReturn,
