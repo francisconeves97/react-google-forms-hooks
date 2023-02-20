@@ -70,7 +70,7 @@ export interface TickBoxGrid extends GridField {
   type: "TICK_BOX_GRID";
 }
 
-export type Field =
+export type GoogleFormField =
   | ShortAnswerField
   | ParagraphField
   | DateField
@@ -81,7 +81,7 @@ export type Field =
   | MultipleChoiceGridField
   | TickBoxGrid;
 
-export type FieldType = Field["type"];
+export type FieldType = GoogleFormField["type"];
 
 export interface FieldsPositionMap {
   [fieldId: string]: number;
@@ -96,6 +96,6 @@ export interface GoogleForm {
     pageHistory: number;
     fbzx: string;
   };
-  fields: Field[];
+  fields: GoogleFormField[];
   fieldsPositionMap: FieldsPositionMap;
 }

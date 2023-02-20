@@ -1,4 +1,4 @@
-import { parseGoogleForm } from "@google-forms-js/parser";
+import { parseGoogleForm } from "@google-forms-js/react";
 import fs from "fs";
 import path from "path";
 

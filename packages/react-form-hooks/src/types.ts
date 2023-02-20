@@ -1,4 +1,4 @@
-import { GoogleForm, Field } from "@google-forms-js/types";
+import { GoogleForm, GoogleFormField } from "@google-forms-js/types";
 import {
   UseFormRegisterReturn,
   RegisterOptions,
@@ -14,12 +14,12 @@ interface GoogleFormFieldError {
   error?: FieldErrorsImpl[string];
 }
 
-type UseFieldHookReturn<FieldType extends Field> = FieldType &
+type UseFieldHookReturn<FieldType extends GoogleFormField> = FieldType &
   RegisterReturn &
   GoogleFormFieldError;
 
 type UseGoogleFormReturn = UseFormReturn & {
-  getField: (id: string) => Field;
+  getField: (id: string) => GoogleFormField;
 };
 
 interface UseGoogleForm {

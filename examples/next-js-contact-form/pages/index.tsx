@@ -1,9 +1,6 @@
 import { FieldType, GoogleForm } from "@google-forms-js/types";
 import Head from "next/head";
-import {
-  GoogleFormProvider,
-  useGoogleForm,
-} from "@google-forms-js/react-form-hooks";
+import { GoogleFormProvider, useGoogleForm } from "@google-forms-js/react";
 import form from "../config/form.json";
 import { ParagraphInput } from "./components/ParagraphInput";
 import { ShortAnswerInput } from "./components/ShortAnswerInput";

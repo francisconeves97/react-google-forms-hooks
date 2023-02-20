@@ -1,7 +1,7 @@
 import {
   GoogleForm,
   FieldsPositionMap,
-  Field,
+  GoogleFormField,
   FieldType,
 } from "@google-forms-js/types";
 import { baseFieldParser } from "./parsers/base-field-parser";
@@ -53,13 +53,13 @@ const fieldTypeParsers: Record<
 
 interface ParseFields {
   (rawFields: RawField[]): {
-    fields: Field[];
+    fields: GoogleFormField[];
     fieldsPositionMap: FieldsPositionMap;
   };
 }
 
 const parseFields: ParseFields = (rawFields) => {
-  const fields: Field[] = [];
+  const fields: GoogleFormField[] = [];
 
   const fieldsPositionMap = {} as FieldsPositionMap;
 
@@ -78,7 +78,7 @@ const parseFields: ParseFields = (rawFields) => {
 
     const field = {
       ...fieldData,
-    } as Field;
+    } as GoogleFormField;
 
     if (fieldParser.type) {
       field.type = fieldParser.type;
@@ -109,7 +109,7 @@ const parseRawFormData: ParseRawFormData = ({ fbzx, rawFormDataTuple }) => {
   const description = rawFormDataTuple[1][0];
 
   if (description) {
-    googleForm.description = rawFormDataTuple[1][0];
+    googleForm.description = description;
   }
 
   const { fields, fieldsPositionMap } = parseFields(rawFormDataTuple[1][1]);

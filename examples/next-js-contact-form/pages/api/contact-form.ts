@@ -1,5 +1,5 @@
 import { NextApiHandler } from "next";
-import { GoogleForm, submitGoogleForm } from "@google-forms-js/submitter";
+import { GoogleForm, submitGoogleForm } from "@google-forms-js/react";
 import form from "../../config/form.json";
 
 const handler: NextApiHandler = async (req, res) => {
