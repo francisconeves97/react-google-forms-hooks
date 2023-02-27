@@ -9,7 +9,8 @@
     "build": "NODE_ENV='production' tsup-node",
     "dev": "NODE_ENV='development' tsup-node",
     "lint": "eslint src --ext .ts",
-    "test": "vitest"
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "devDependencies": {
     "@google-forms-js/types": "file:../packages/parser",

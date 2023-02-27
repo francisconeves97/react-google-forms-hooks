@@ -1,4 +1,4 @@
-import React from "react";
+import React, { JSXElementConstructor } from "react";
 import { fireEvent, screen, act } from "@testing-library/react";
 import { GoogleFormProvider } from "../src/context/google-form-context";
 import { vi } from "vitest";
@@ -35,7 +35,7 @@ const createMockGoogleFormWrapper = ({
   };
 };
 
-const MockGoogleFormComponent = ({
+const MockGoogleFormComponent: JSXElementConstructor<any> = ({
   children,
   onSubmit,
 }: {

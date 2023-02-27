@@ -1,4 +1,4 @@
-import { GoogleForm, GoogleFormField } from "@google-forms-js/types";
+import { GoogleForm, GoogleFormField, Option } from "@google-forms-js/types";
 import {
   UseFormRegisterReturn,
   RegisterOptions,
@@ -6,8 +6,10 @@ import {
   UseFormReturn,
 } from "react-hook-form";
 
+type RegisterFunction = (options?: RegisterOptions) => UseFormRegisterReturn;
+
 interface RegisterReturn {
-  register: (options?: RegisterOptions) => UseFormRegisterReturn;
+  register: RegisterFunction;
 }
 
 interface GoogleFormFieldError {
@@ -26,10 +28,17 @@ interface UseGoogleForm {
   (args: { form: GoogleForm }): UseGoogleFormReturn;
 }
 
+interface OptionInput extends Option, GoogleFormFieldError {
+  id: string;
+  register: RegisterFunction;
+}
+
 export {
   RegisterReturn,
   GoogleFormFieldError,
   UseGoogleForm,
   UseGoogleFormReturn,
   UseFieldHookReturn,
+  RegisterFunction,
+  OptionInput,
 };
