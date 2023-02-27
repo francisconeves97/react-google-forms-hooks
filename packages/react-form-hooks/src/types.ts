@@ -28,8 +28,11 @@ interface UseGoogleForm {
   (args: { form: GoogleForm }): UseGoogleFormReturn;
 }
 
-interface OptionInput extends Option, GoogleFormFieldError {
+interface OptionWithId extends Option {
   id: string;
+}
+
+interface OptionInput extends OptionWithId, GoogleFormFieldError {
   register: RegisterFunction;
 }
 
@@ -41,4 +44,5 @@ export {
   UseFieldHookReturn,
   RegisterFunction,
   OptionInput,
+  OptionWithId,
 };
