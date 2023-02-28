@@ -28,6 +28,7 @@ type UseCustomOptionInputReturn<T extends CustomOptionField> = Omit<
   customOption?: CustomOption;
 };
 
+const OTHER_OPTION = "__other_option__";
 const OTHER_OPTION_RESPONSE = "other_option_response";
 
 const buildCustomFieldId = (id: string) => {
@@ -54,13 +55,13 @@ const useCustomOptionInput = <T extends CustomOptionField>(
   useEffect(() => {
     if (field.type === "MULTIPLE_CHOICE") {
       const isCustomOptionSelected =
-        currentValue && currentValue === OTHER_OPTION_RESPONSE;
+        currentValue && currentValue === OTHER_OPTION;
       setCustomInputRequired(field.required && isCustomOptionSelected);
     } else if (field.type === "CHECKBOXES") {
       const isCustomOptionSelected =
         currentValue &&
         currentValue.length === 1 &&
-        currentValue.includes(OTHER_OPTION_RESPONSE);
+        currentValue.includes(OTHER_OPTION);
       setCustomInputRequired(field.required && isCustomOptionSelected);
     }
   }, [currentValue, customInputRequired]);
@@ -92,7 +93,7 @@ const useCustomOptionInput = <T extends CustomOptionField>(
   if (field.hasCustomOption) {
     const registerOption = (options = {}) => ({
       ...register({ ...options }),
-      value: OTHER_OPTION_RESPONSE,
+      value: OTHER_OPTION,
     });
 
     const customOptionId = buildCustomFieldId(id);
@@ -123,4 +124,9 @@ const useCustomOptionInput = <T extends CustomOptionField>(
   };
 };
 
-export { useCustomOptionInput, buildCustomFieldId, OTHER_OPTION_RESPONSE };
+export {
+  useCustomOptionInput,
+  buildCustomFieldId,
+  OTHER_OPTION_RESPONSE,
+  OTHER_OPTION,
+};

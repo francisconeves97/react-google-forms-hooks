@@ -6,6 +6,7 @@ import { render, fireEvent, screen, act } from "@testing-library/react";
 import { CheckboxesField, MultipleChoiceField } from "@google-forms-js/types";
 import {
   buildCustomFieldId,
+  OTHER_OPTION,
   OTHER_OPTION_RESPONSE,
   useCustomOptionInput,
 } from "./use-custom-option-input";
@@ -307,7 +308,7 @@ describe("useCustomOptionInput", () => {
         await submitForm();
 
         expect(output).toEqual({
-          [mockOptionField.id]: OTHER_OPTION_RESPONSE,
+          [mockOptionField.id]: OTHER_OPTION,
           [buildCustomFieldId(mockOptionField.id)]: "",
         });
       });
@@ -319,7 +320,7 @@ describe("useCustomOptionInput", () => {
         await submitForm();
 
         expect(output).toEqual({
-          [mockOptionField.id]: OTHER_OPTION_RESPONSE,
+          [mockOptionField.id]: OTHER_OPTION,
           [buildCustomFieldId(mockOptionField.id)]: "",
         });
 
@@ -399,7 +400,7 @@ describe("useCustomOptionInput", () => {
             await submitForm();
 
             expect(output).toEqual({
-              [mockOptionField.id]: OTHER_OPTION_RESPONSE,
+              [mockOptionField.id]: OTHER_OPTION,
               [buildCustomFieldId(mockOptionField.id)]: "xico",
             });
           });
@@ -426,7 +427,7 @@ describe("useCustomOptionInput", () => {
         await submitForm();
 
         expect(output).toEqual({
-          [mockOptionField.id]: [OTHER_OPTION_RESPONSE],
+          [mockOptionField.id]: [OTHER_OPTION],
           [buildCustomFieldId(mockOptionField.id)]: "",
         });
       });
@@ -438,7 +439,7 @@ describe("useCustomOptionInput", () => {
         await submitForm();
 
         expect(output).toEqual({
-          [mockOptionField.id]: [OTHER_OPTION_RESPONSE],
+          [mockOptionField.id]: [OTHER_OPTION],
           [buildCustomFieldId(mockOptionField.id)]: "",
         });
 
@@ -446,7 +447,7 @@ describe("useCustomOptionInput", () => {
         await submitForm();
 
         expect(output).toEqual({
-          [mockOptionField.id]: [firstLabel, OTHER_OPTION_RESPONSE],
+          [mockOptionField.id]: [firstLabel, OTHER_OPTION],
           [buildCustomFieldId(mockOptionField.id)]: "",
         });
       });
@@ -520,7 +521,7 @@ describe("useCustomOptionInput", () => {
             await submitForm();
 
             expect(output).toEqual({
-              [mockOptionField.id]: [OTHER_OPTION_RESPONSE],
+              [mockOptionField.id]: [OTHER_OPTION],
               [buildCustomFieldId(mockOptionField.id)]: "xico",
             });
           });
