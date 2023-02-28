@@ -5,11 +5,14 @@ import { slugify } from "./helpers/slugify";
 
 import { OptionWithId, RegisterFunction, UseFieldHookReturn } from "./types";
 
-type UseDropdownReturn = Omit<UseFieldHookReturn<DropdownField>, "options"> & {
+type UseDropdownInputReturn = Omit<
+  UseFieldHookReturn<DropdownField>,
+  "options"
+> & {
   options: OptionWithId[];
 };
 
-const useDropdownInput = (id: string): UseDropdownReturn => {
+const useDropdownInput = (id: string): UseDropdownInputReturn => {
   const context = useGoogleFormContext();
 
   assertContextDefined(context);
