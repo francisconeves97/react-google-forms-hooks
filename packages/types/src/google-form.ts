@@ -66,7 +66,7 @@ export interface MultipleChoiceGridField extends GridField {
   type: "MULTIPLE_CHOICE_GRID";
 }
 
-export interface TickBoxGrid extends GridField {
+export interface TickBoxGridField extends GridField {
   type: "TICK_BOX_GRID";
 }
 
@@ -79,7 +79,7 @@ export type GoogleFormField =
   | DropdownField
   | LinearScaleField
   | MultipleChoiceGridField
-  | TickBoxGrid;
+  | TickBoxGridField;
 
 export type FieldType = GoogleFormField["type"];
 

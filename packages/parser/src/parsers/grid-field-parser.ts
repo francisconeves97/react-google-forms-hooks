@@ -1,7 +1,7 @@
 import {
   GridLine,
   MultipleChoiceGridField,
-  TickBoxGrid,
+  TickBoxGridField,
 } from "@google-forms-js/types";
 import { RawGridField } from "../types";
 import { baseFieldParser } from "./base-field-parser";
@@ -19,7 +19,7 @@ const parseLines = (rawField: RawGridField): GridLine[] => {
 
 const gridFieldParser = (
   rawField: RawGridField
-): MultipleChoiceGridField | TickBoxGrid => {
+): MultipleChoiceGridField | TickBoxGridField => {
   const fieldInfo = rawField[4][0];
 
   const isTickboxGrid = numberToBoolean(fieldInfo[11][0]);

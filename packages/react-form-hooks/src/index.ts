@@ -7,5 +7,7 @@ export * from "./use-dropdown-input";
 export * from "./use-checkboxes-input";
 export * from "./use-multiple-choice-input";
 export * from "./use-linear-scale-input";
+export * from "./use-tick-box-grid-input";
+export * from "./use-multiple-choice-grid-input";
 export * from "./context/google-form-context";
 export * from "@google-forms-js/types";
