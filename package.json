@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "npm run dev -w packages/types & npm run dev -w packages/parser & npm run dev -w packages/submitter & npm run dev -w packages/react-form-hooks & npm run dev -w packages/react",
     "test": "npm run test:ci -w packages/parser & npm run test:ci -w packages/submitter & npm run test:ci -w packages/react-form-hooks",
-    "lint": "npm run lint -w packages/types & npm run lint -w packages/parser & npm run lint -w packages/submitter & npm run lint -w packages/react-form-hooks & npm run lint -w packages/react"
+    "lint": "npm run lint -w packages/types & npm run lint -w packages/parser & npm run lint -w packages/submitter & npm run lint -w packages/react-form-hooks & npm run lint -w packages/react",
+    "build": "npm run build -w packages/types && npm run build -w packages/parser && npm run build -w packages/submitter && npm run build -w packages/react-form-hooks && npm run build -w packages/react"
   },
   "author": "francisconeves97",
   "license": "MIT",

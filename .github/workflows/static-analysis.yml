@@ -23,3 +23,13 @@ jobs:
       - name: Run linter
         shell: bash
         run: npm run lint
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup CI Environment
+        uses: ./.github/actions/setup-ci-environment
+      - name: Run build process
+        shell: bash
+        run: npm run build
