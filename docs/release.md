@@ -12,13 +12,6 @@ To bump all packages:
 npm version patch --workspace=packages # Or minor, major, etc.
 ```
 
-To bump certain packages:
-
-```shell
-cd packages/react
-npm version patch # Or minor, major, etc.
-```
-
 Then bump the repo package:
 
 ```shell
