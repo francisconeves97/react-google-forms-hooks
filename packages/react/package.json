@@ -10,6 +10,7 @@
     "dev": "NODE_ENV='development' tsup-node",
     "lint": "eslint src --ext .ts",
     "test": "vitest",
+    "test:ci": "vitest run",
     "coverage": "vitest run --coverage"
   },
   "devDependencies": {
