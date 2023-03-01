@@ -1,6 +1,6 @@
 {
   "name": "gforms-js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Monorepo with dev tools to help building custom forms backed by Google Forms.",
   "repository": {
     "url": "https://github.com/francisconeves97/gforms-js"
