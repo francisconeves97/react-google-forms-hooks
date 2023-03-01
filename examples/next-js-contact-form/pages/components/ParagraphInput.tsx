@@ -1,5 +1,5 @@
 import React from "react";
-import { useParagraphInput } from "@google-forms-js/react-form-hooks";
+import { useParagraphInput } from "@gforms-js/react-form-hooks";
 
 interface ParagraphInputProps {
   id: string;

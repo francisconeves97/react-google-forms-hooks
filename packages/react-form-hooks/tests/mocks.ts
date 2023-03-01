@@ -1,4 +1,4 @@
-import { GoogleForm } from "@google-forms-js/types";
+import { GoogleForm } from "@gforms-js/types";
 
 const mockGoogleForm: GoogleForm = {
   formMetadata: {

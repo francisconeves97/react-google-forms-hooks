@@ -1,5 +1,5 @@
 {
-  "name": "@google-forms-js/submitter",
+  "name": "@gforms-js/submitter",
   "version": "1.0.0",
   "private": true,
   "description": "Util for submitting a Google Form.",
@@ -13,7 +13,7 @@
     "coverage": "vitest run --coverage"
   },
   "devDependencies": {
-    "@google-forms-js/types": "file:../packages/types",
+    "@gforms-js/types": "file:../packages/types",
     "@vitest/coverage-c8": "^0.25.2",
     "esbuild": "^0.15.12",
     "esbuild-plugin-eslint": "^0.1.1",

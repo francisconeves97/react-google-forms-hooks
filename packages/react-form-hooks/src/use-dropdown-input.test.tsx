@@ -4,7 +4,7 @@ import { renderHook } from "@testing-library/react";
 import { render, fireEvent, screen, act } from "@testing-library/react";
 
 import { useDropdownInput } from "./use-dropdown-input";
-import { DropdownField } from "@google-forms-js/types";
+import { DropdownField } from "@gforms-js/types";
 import {
   mockGetField,
   MockGoogleFormComponent,

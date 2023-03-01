@@ -1,4 +1,4 @@
-import { GoogleForm, GoogleFormField, Option } from "@google-forms-js/types";
+import { GoogleForm, GoogleFormField, Option } from "@gforms-js/types";
 import {
   UseFormRegisterReturn,
   RegisterOptions,

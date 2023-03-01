@@ -1,5 +1,5 @@
 {
-  "name": "@google-forms-js/react-form-hooks",
+  "name": "@gforms-js/react-form-hooks",
   "version": "1.0.0",
   "private": true,
   "description": "Create custom Google Forms using React.",
@@ -13,7 +13,7 @@
     "coverage": "vitest run --coverage"
   },
   "devDependencies": {
-    "@google-forms-js/types": "file:../packages/parser",
+    "@gforms-js/types": "file:../packages/parser",
     "@testing-library/react": "^13.4.0",
     "@vitejs/plugin-react": "^3.0.0",
     "esbuild": "^0.15.12",

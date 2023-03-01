@@ -3,7 +3,7 @@ import fetchMock from "fetch-mock";
 
 import { submitGoogleForm } from "./submit-google-form";
 import fetch from "isomorphic-unfetch";
-import { GoogleForm } from "@google-forms-js/types";
+import { GoogleForm } from "@gforms-js/types";
 
 vi.mock("isomorphic-unfetch", () => {
   return {

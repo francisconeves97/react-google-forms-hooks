@@ -1,5 +1,5 @@
 {
-  "name": "@google-forms-js/examples-parser",
+  "name": "@gforms-js/examples-parser",
   "version": "1.0.0",
   "private": true,
   "description": "",
@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google-forms-js/parser": "file:../packages/parser"
+    "@gforms-js/parser": "file:../packages/parser"
   },
   "devDependencies": {
     "ts-node": "^10.9.1"

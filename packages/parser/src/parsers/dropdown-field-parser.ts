@@ -1,4 +1,4 @@
-import { DropdownField, Option } from "@google-forms-js/types";
+import { DropdownField, Option } from "@gforms-js/types";
 import { RawDropdownField } from "../types";
 import { baseFieldParser } from "./base-field-parser";
 

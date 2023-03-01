@@ -1,4 +1,4 @@
-import { parseGoogleForm } from "@google-forms-js/parser";
+import { parseGoogleForm } from "@gforms-js/parser";
 import fs from "fs";
 import path from "path";
 

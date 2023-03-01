@@ -1,4 +1,4 @@
-import { ParagraphField, ShortAnswerField } from "@google-forms-js/types";
+import { ParagraphField, ShortAnswerField } from "@gforms-js/types";
 import { renderHook } from "@testing-library/react";
 import { useTextInput } from "./helpers/use-text-input";
 import { useParagraphInput } from "./use-paragraph-input";

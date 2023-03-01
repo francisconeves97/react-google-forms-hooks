@@ -1,4 +1,4 @@
-import { DropdownField } from "@google-forms-js/types";
+import { DropdownField } from "@gforms-js/types";
 import { useGoogleFormContext } from "./context/google-form-context";
 import { assertContextDefined } from "./helpers/assert-context-defined";
 import { slugify } from "./helpers/slugify";

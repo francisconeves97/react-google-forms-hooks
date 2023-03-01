@@ -1,4 +1,4 @@
-import { useDropdownInput } from "@google-forms-js/react";
+import { useDropdownInput } from "@gforms-js/react";
 import React from "react";
 
 interface DropdownInputProps {

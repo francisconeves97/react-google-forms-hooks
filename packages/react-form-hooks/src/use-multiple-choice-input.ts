@@ -1,4 +1,4 @@
-import { MultipleChoiceField } from "@google-forms-js/types";
+import { MultipleChoiceField } from "@gforms-js/types";
 import { useCustomOptionInput } from "./helpers/use-custom-option-input";
 
 const useMultipleChoiceInput = (id: string) => {

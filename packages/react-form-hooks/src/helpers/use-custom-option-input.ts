@@ -3,7 +3,7 @@ import {
   GoogleFormField,
   MultipleChoiceField,
   Option,
-} from "@google-forms-js/types";
+} from "@gforms-js/types";
 import { OptionInput, RegisterFunction, UseFieldHookReturn } from "../types";
 
 import { useGoogleFormContext } from "../context/google-form-context";

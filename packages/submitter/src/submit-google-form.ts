@@ -1,5 +1,5 @@
 import fetch from "isomorphic-unfetch";
-import { GoogleForm } from "@google-forms-js/types";
+import { GoogleForm } from "@gforms-js/types";
 import { formatFieldName } from "./format-field-name";
 
 const GOOGLE_FORMS_URL = "https://docs.google.com/forms/d";

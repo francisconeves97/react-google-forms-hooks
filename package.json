@@ -1,9 +1,9 @@
 {
-  "name": "google-forms-js",
+  "name": "gforms-js",
   "version": "0.0.1",
   "description": "Monorepo with dev tools to help building custom forms backed by Google Forms.",
   "repository": {
-    "url": "https://github.com/francisconeves97/google-forms-js"
+    "url": "https://github.com/francisconeves97/gforms-js"
   },
   "scripts": {
     "dev": "npm run dev -w packages/types & npm run dev -w packages/parser & npm run dev -w packages/submitter & npm run dev -w packages/react-form-hooks & npm run dev -w packages/react"

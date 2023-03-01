@@ -1,5 +1,5 @@
 import React from "react";
-import { useCheckboxesInput } from "@google-forms-js/react";
+import { useCheckboxesInput } from "@gforms-js/react";
 
 interface CheckboxesInputProps {
   id: string;

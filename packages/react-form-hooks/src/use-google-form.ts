@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { GoogleForm } from "@google-forms-js/types";
+import { GoogleForm } from "@gforms-js/types";
 import { UseGoogleForm } from "./types";
 
 const resolveField = (id: string, form: GoogleForm) => {

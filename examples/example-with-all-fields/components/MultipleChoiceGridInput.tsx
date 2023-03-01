@@ -1,4 +1,4 @@
-import { useMultipleChoiceGridInput } from "@google-forms-js/react";
+import { useMultipleChoiceGridInput } from "@gforms-js/react";
 import React from "react";
 
 interface MultipleChoiceGridInputProps {

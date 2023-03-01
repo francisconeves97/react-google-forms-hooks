@@ -1,4 +1,4 @@
-import { ParagraphField, ShortAnswerField } from "@google-forms-js/types";
+import { ParagraphField, ShortAnswerField } from "@gforms-js/types";
 import { RegisterOptions } from "react-hook-form";
 import { UseFieldHookReturn } from "../types";
 

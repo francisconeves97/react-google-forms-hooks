@@ -6,7 +6,7 @@ import {
   act,
   renderHook,
 } from "@testing-library/react";
-import { MultipleChoiceGridField } from "@google-forms-js/types";
+import { MultipleChoiceGridField } from "@gforms-js/types";
 import { RegisterOptions } from "react-hook-form";
 import { useGridInput } from "./use-grid-input";
 import {

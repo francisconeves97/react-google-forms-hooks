@@ -7,7 +7,7 @@ import {
   act,
   renderHook,
 } from "@testing-library/react";
-import { LinearScaleField } from "@google-forms-js/types";
+import { LinearScaleField } from "@gforms-js/types";
 import { useLinearScaleInput } from "./use-linear-scale-input";
 import {
   mockGetField,

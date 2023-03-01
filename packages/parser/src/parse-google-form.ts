@@ -1,5 +1,5 @@
 import fetch from "isomorphic-unfetch";
-import { GoogleForm } from "@google-forms-js/types";
+import { GoogleForm } from "@gforms-js/types";
 import { extractRawFormData } from "./extract-raw-form-data";
 import { parseRawFormData } from "./parse-raw-form-data";
 

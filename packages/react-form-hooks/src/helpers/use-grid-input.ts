@@ -3,7 +3,7 @@ import {
   MultipleChoiceGridField,
   GridLine,
   GridColumn,
-} from "@google-forms-js/types";
+} from "@gforms-js/types";
 import { useEffect, useState } from "react";
 import { FieldError, RegisterOptions } from "react-hook-form";
 import { useGoogleFormContext } from "../context/google-form-context";

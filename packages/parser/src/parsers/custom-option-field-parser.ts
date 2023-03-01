@@ -1,4 +1,4 @@
-import { CustomOptionField, Option } from "@google-forms-js/types";
+import { CustomOptionField, Option } from "@gforms-js/types";
 import { RawCustomOptionField } from "../types";
 import { baseFieldParser } from "./base-field-parser";
 import { numberToBoolean } from "./helpers/number-to-boolean";

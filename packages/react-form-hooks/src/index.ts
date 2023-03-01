@@ -10,4 +10,4 @@ export * from "./use-linear-scale-input";
 export * from "./use-tick-box-grid-input";
 export * from "./use-multiple-choice-grid-input";
 export * from "./context/google-form-context";
-export * from "@google-forms-js/types";
+export * from "@gforms-js/types";

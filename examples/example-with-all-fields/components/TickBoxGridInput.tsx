@@ -1,4 +1,4 @@
-import { useTickBoxGridInput } from "@google-forms-js/react";
+import { useTickBoxGridInput } from "@gforms-js/react";
 import React from "react";
 
 interface TickBoxGridInputProps {

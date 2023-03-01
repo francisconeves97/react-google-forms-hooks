@@ -1,4 +1,4 @@
-import { LinearScaleField } from "@google-forms-js/types";
+import { LinearScaleField } from "@gforms-js/types";
 import { RawLinearField } from "../types";
 import { baseFieldParser } from "./base-field-parser";
 import { flattenOptionsArray } from "./helpers/flatten-options-array";

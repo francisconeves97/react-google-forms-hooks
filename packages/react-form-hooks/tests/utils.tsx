@@ -3,7 +3,7 @@ import { fireEvent, screen, act } from "@testing-library/react";
 import { GoogleFormProvider } from "../src/context/google-form-context";
 import { vi } from "vitest";
 import { useGoogleForm } from "../src/use-google-form";
-import { GoogleForm } from "@google-forms-js/types";
+import { GoogleForm } from "@gforms-js/types";
 
 const getContextWrapper = (props: any = {}) =>
   function ContextWrapper({ children }: { children?: React.ReactNode }) {

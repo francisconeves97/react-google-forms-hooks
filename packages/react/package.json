@@ -1,5 +1,5 @@
 {
-  "name": "@google-forms-js/react",
+  "name": "@gforms-js/react",
   "version": "1.0.0",
   "private": true,
   "description": "Set of utils to build Google Forms UIs using React.",
@@ -19,8 +19,8 @@
     "vite": "^3.2.2"
   },
   "dependencies": {
-    "@google-forms-js/submitter": "file:../packages/types",
-    "@google-forms-js/react-form-hooks": "file:../packages/react-form-hooks"
+    "@gforms-js/submitter": "file:../packages/types",
+    "@gforms-js/react-form-hooks": "file:../packages/react-form-hooks"
   },
   "files": [
     "dist"

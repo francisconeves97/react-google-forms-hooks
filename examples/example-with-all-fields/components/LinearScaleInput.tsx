@@ -1,4 +1,4 @@
-import { useLinearScaleInput } from "@google-forms-js/react";
+import { useLinearScaleInput } from "@gforms-js/react";
 import React from "react";
 
 interface LinearScaleInputProps {

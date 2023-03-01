@@ -3,7 +3,7 @@ import {
   FieldsPositionMap,
   GoogleFormField,
   FieldType,
-} from "@google-forms-js/types";
+} from "@gforms-js/types";
 import { baseFieldParser } from "./parsers/base-field-parser";
 import { customOptionFieldParser } from "./parsers/custom-option-field-parser";
 import { dropdownFieldParser } from "./parsers/dropdown-field-parser";

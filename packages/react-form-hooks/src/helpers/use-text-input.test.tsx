@@ -2,7 +2,7 @@ import React from "react";
 import { RegisterOptions } from "react-hook-form";
 import { renderHook } from "@testing-library/react";
 import { render, fireEvent, screen, act } from "@testing-library/react";
-import { ShortAnswerField } from "@google-forms-js/types";
+import { ShortAnswerField } from "@gforms-js/types";
 import { useTextInput } from "./use-text-input";
 import {
   createMockGoogleFormWrapper,

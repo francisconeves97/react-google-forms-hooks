@@ -3,7 +3,7 @@ import { RegisterOptions } from "react-hook-form";
 import { renderHook } from "@testing-library/react";
 import { render, fireEvent, screen, act } from "@testing-library/react";
 
-import { CheckboxesField, MultipleChoiceField } from "@google-forms-js/types";
+import { CheckboxesField, MultipleChoiceField } from "@gforms-js/types";
 import {
   buildCustomFieldId,
   OTHER_OPTION,

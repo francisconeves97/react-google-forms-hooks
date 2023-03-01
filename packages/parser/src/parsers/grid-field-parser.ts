@@ -2,7 +2,7 @@ import {
   GridLine,
   MultipleChoiceGridField,
   TickBoxGridField,
-} from "@google-forms-js/types";
+} from "@gforms-js/types";
 import { RawGridField } from "../types";
 import { baseFieldParser } from "./base-field-parser";
 import { flattenOptionsArray } from "./helpers/flatten-options-array";

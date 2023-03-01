@@ -1,4 +1,4 @@
-import { ShortAnswerField } from "@google-forms-js/types";
+import { ShortAnswerField } from "@gforms-js/types";
 import { useTextInput } from "./helpers/use-text-input";
 import { UseFieldHookReturn } from "./types";
 

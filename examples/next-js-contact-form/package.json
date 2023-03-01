@@ -10,7 +10,7 @@
     "download-form": "npx ts-node ./scripts/download-form-config.ts"
   },
   "dependencies": {
-    "@google-forms-js/react": "file:../packages/react",
+    "@gforms-js/react": "file:../packages/react",
     "@next/font": "13.1.1",
     "@types/node": "18.11.17",
     "@types/react": "18.0.26",
@@ -24,6 +24,6 @@
   },
   "devDependencies": {
     "ts-node": "^10.9.1",
-    "@google-forms-js/parser": "file:../packages/parser"
+    "@gforms-js/parser": "file:../packages/parser"
   }
 }

@@ -1,4 +1,4 @@
-import { CheckboxesField } from "@google-forms-js/types";
+import { CheckboxesField } from "@gforms-js/types";
 import { useCustomOptionInput } from "./helpers/use-custom-option-input";
 
 const useCheckboxesInput = (id: string) => {

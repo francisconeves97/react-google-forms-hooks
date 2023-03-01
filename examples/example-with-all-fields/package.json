@@ -19,9 +19,9 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "4.9.5",
-    "@google-forms-js/react": "file:../packages/react"
+    "@gforms-js/react": "file:../packages/react"
   },
   "devDependencies": {
-    "@google-forms-js/parser": "file:../packages/parser"
+    "@gforms-js/parser": "file:../packages/parser"
   }
 }

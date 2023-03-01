@@ -1,4 +1,4 @@
-import { BaseField } from "@google-forms-js/types";
+import { BaseField } from "@gforms-js/types";
 import { RawField } from "../types";
 import { numberToBoolean } from "./helpers/number-to-boolean";
 

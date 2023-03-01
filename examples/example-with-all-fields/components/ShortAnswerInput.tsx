@@ -1,5 +1,5 @@
 import React from "react";
-import { useShortAnswerInput } from "@google-forms-js/react-form-hooks";
+import { useShortAnswerInput } from "@gforms-js/react-form-hooks";
 
 interface ShortAnswerInputProps {
   id: string;
