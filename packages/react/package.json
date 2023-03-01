@@ -1,7 +1,9 @@
 {
   "name": "@gforms-js/react",
-  "version": "1.0.0",
-  "private": true,
+  "version": "0.0.0",
+  "repository": {
+    "url": "https://github.com/francisconeves97/gforms-js"
+  },
   "description": "Set of utils to build Google Forms UIs using React.",
   "author": "francisconeves97",
   "license": "MIT",

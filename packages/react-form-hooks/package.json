@@ -1,7 +1,9 @@
 {
   "name": "@gforms-js/react-form-hooks",
-  "version": "1.0.0",
-  "private": true,
+  "version": "0.0.0",
+  "repository": {
+    "url": "https://github.com/francisconeves97/gforms-js"
+  },
   "description": "Create custom Google Forms using React.",
   "author": "francisconeves97",
   "license": "MIT",

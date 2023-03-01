@@ -1,7 +1,9 @@
 {
   "name": "@gforms-js/submitter",
-  "version": "1.0.0",
-  "private": true,
+  "version": "0.0.0",
+  "repository": {
+    "url": "https://github.com/francisconeves97/gforms-js"
+  },
   "description": "Util for submitting a Google Form.",
   "author": "francisconeves97",
   "license": "MIT",
