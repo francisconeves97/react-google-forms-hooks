@@ -13,6 +13,7 @@ import { MultipleChoiceInput } from "../components/MultipleChoiceInput";
 import { DropdownInput } from "../components/DropdownInput";
 import { LinearScaleInput } from "../components/LinearScaleInput";
 import { MultipleChoiceGridInput } from "../components/MultipleChoiceGridInput";
+import { TickBoxGridInput } from "../components/TickBoxGridInput";
 
 const fieldTypeMapper: Partial<{
   [k in FieldType]: React.FC<{ id: string }>;
@@ -24,6 +25,7 @@ const fieldTypeMapper: Partial<{
   DROPDOWN: DropdownInput,
   LINEAR_SCALE: LinearScaleInput,
   MULTIPLE_CHOICE_GRID: MultipleChoiceGridInput,
+  TICK_BOX_GRID: TickBoxGridInput,
 };
 
 export default function Home() {

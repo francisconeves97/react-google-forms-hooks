@@ -9,8 +9,6 @@ const handler: NextApiHandler = async (req, res) => {
 
   const data = JSON.parse(req.body);
 
-  console.log(">>> data!!!", data);
-
   const { success } = await submitGoogleForm(form as GoogleForm, data);
 
   if (!success) {
