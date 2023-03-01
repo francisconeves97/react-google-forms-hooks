@@ -1,0 +1,18 @@
+name: Publish npm package
+
+on:
+  release:
+    types: [created]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup CI Environment
+        uses: ./.github/actions/setup-ci-environment
+      - run: npm run build
+      - run: npm publish --access public --workspace=packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
