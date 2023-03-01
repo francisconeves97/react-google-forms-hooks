@@ -11,7 +11,7 @@ const saveJsonToFile = (filename: string, json: any) => {
 
 const run = async () => {
   const result = await parseGoogleForm(
-    "https://docs.google.com/forms/d/e/1FAIpQLScONyWWPwUsI_cHIAccHWLrB9h31Yq482awOl3BkrJ8J9Pg0w/viewform?usp=sf_link"
+    "https://docs.google.com/forms/d/e/1FAIpQLSf5YK1mmRKPoFCFxNuH0XgyJ4bSRpFk3K5NkS-nlX4VBdysAw/viewform"
   );
 
   saveJsonToFile(path.join(__dirname, "..", "config", "form.json"), result);

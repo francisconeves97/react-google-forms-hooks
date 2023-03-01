@@ -7,7 +7,6 @@ import { CheckboxesField, MultipleChoiceField } from "@google-forms-js/types";
 import {
   buildCustomFieldId,
   OTHER_OPTION,
-  OTHER_OPTION_RESPONSE,
   useCustomOptionInput,
 } from "./use-custom-option-input";
 import {
@@ -59,9 +58,8 @@ describe("useCustomOptionInput", () => {
     customInputOptions?: RegisterOptions;
     type?: "CHECKBOXES" | "MULTIPLE_CHOICE";
   }) => {
-    const { customOption, options, error } = useCustomOptionInput(
-      mockOptionField.id
-    );
+    const { customOption, options, error, isCustomOptionSelected } =
+      useCustomOptionInput(mockOptionField.id);
 
     const inputType = type === "MULTIPLE_CHOICE" ? "radio" : "checkbox";
 
@@ -96,6 +94,7 @@ describe("useCustomOptionInput", () => {
                 </>
               </span>
             )}
+            {isCustomOptionSelected && <span>Custom option selected</span>}
           </>
         )}
         {error && (
@@ -313,6 +312,18 @@ describe("useCustomOptionInput", () => {
         });
       });
 
+      it("computes isCustomOptionSelected correctly", async () => {
+        renderComponent();
+
+        expect(
+          screen.queryByText("Custom option selected")
+        ).not.toBeInTheDocument();
+
+        await clickOption(customOptionLabel);
+
+        expect(screen.getByText("Custom option selected")).toBeVisible();
+      });
+
       it("changes between options correctly", async () => {
         renderComponent();
 
@@ -430,6 +441,18 @@ describe("useCustomOptionInput", () => {
           [mockOptionField.id]: [OTHER_OPTION],
           [buildCustomFieldId(mockOptionField.id)]: "",
         });
+      });
+
+      it("computes isCustomOptionSelected correctly", async () => {
+        renderComponent({ type: "CHECKBOXES" });
+
+        expect(
+          screen.queryByText("Custom option selected")
+        ).not.toBeInTheDocument();
+
+        await clickOption(customOptionLabel);
+
+        expect(screen.getByText("Custom option selected")).toBeVisible();
       });
 
       it("selects the options correctly", async () => {

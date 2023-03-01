@@ -5,7 +5,10 @@ import { formatFieldName } from "./format-field-name";
 const GOOGLE_FORMS_URL = "https://docs.google.com/forms/d";
 
 interface SubmitGoogleForm {
-  (form: GoogleForm, formData: Record<string, string | string[]>): Promise<{
+  (
+    form: GoogleForm,
+    formData: Record<string, string | string[] | null>
+  ): Promise<{
     success: boolean;
   }>;
 }
@@ -16,12 +19,14 @@ const submitGoogleForm: SubmitGoogleForm = async (form, formData) => {
   Object.keys(formData).forEach((fieldId) => {
     const fieldValue = formData[fieldId];
 
-    if (Array.isArray(fieldValue)) {
-      fieldValue.forEach((answer) => {
-        urlParams.append(formatFieldName(fieldId), answer);
-      });
-    } else {
-      urlParams.append(formatFieldName(fieldId), fieldValue);
+    if (fieldValue) {
+      if (Array.isArray(fieldValue)) {
+        fieldValue.forEach((answer) => {
+          urlParams.append(formatFieldName(fieldId), answer);
+        });
+      } else {
+        urlParams.append(formatFieldName(fieldId), fieldValue);
+      }
     }
   });
 

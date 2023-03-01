@@ -22,10 +22,11 @@ type CustomOption = Omit<
 
 type UseCustomOptionInputReturn<T extends CustomOptionField> = Omit<
   UseFieldHookReturn<T>,
-  "options"
+  "options" | "register"
 > & {
   options: OptionInput[];
   customOption?: CustomOption;
+  isCustomOptionSelected: boolean;
 };
 
 const OTHER_OPTION = "__other_option__";
@@ -44,6 +45,8 @@ const useCustomOptionInput = <T extends CustomOptionField>(
 
   const field = context.getField(id) as CustomOptionField;
 
+  const [isCustomOptionSelected, setIsCustomOptionSelected] =
+    useState<boolean>(false);
   const [customInputRequired, setCustomInputRequired] =
     useState<boolean>(false);
 
@@ -57,12 +60,14 @@ const useCustomOptionInput = <T extends CustomOptionField>(
       const isCustomOptionSelected =
         currentValue && currentValue === OTHER_OPTION;
       setCustomInputRequired(field.required && isCustomOptionSelected);
+      setIsCustomOptionSelected(isCustomOptionSelected);
     } else if (field.type === "CHECKBOXES") {
       const isCustomOptionSelected =
         currentValue &&
         currentValue.length === 1 &&
         currentValue.includes(OTHER_OPTION);
       setCustomInputRequired(field.required && isCustomOptionSelected);
+      setIsCustomOptionSelected(isCustomOptionSelected);
     }
   }, [currentValue, customInputRequired]);
 
@@ -87,7 +92,6 @@ const useCustomOptionInput = <T extends CustomOptionField>(
   const result = {
     ...field,
     options: field.options.map(buildOptionRegister),
-    register,
   } as UseCustomOptionInputReturn<T>;
 
   if (field.hasCustomOption) {
@@ -121,6 +125,7 @@ const useCustomOptionInput = <T extends CustomOptionField>(
     ...(field as GoogleFormField),
     ...result,
     error,
+    isCustomOptionSelected,
   };
 };
 

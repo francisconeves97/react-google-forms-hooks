@@ -74,6 +74,32 @@ describe("submitGoogleForm", () => {
     });
   });
 
+  describe("when there are null or empty values", () => {
+    const mockFormdata = {
+      id1: "id1value",
+      id2: null,
+      id3: null,
+      ["id3-other_option_response"]: "",
+    };
+
+    beforeEach(() => {
+      fetchMockSandbox.get(
+        "https://docs.google.com/forms/d/e/1234/formResponse?submit=Submit&entry.id1=id1value",
+        {
+          status: 200,
+        }
+      );
+    });
+
+    test("should return the success flag as true and call the correct url", async () => {
+      const result = await submitGoogleForm(mockForm, mockFormdata);
+
+      expect(result).toEqual({
+        success: true,
+      });
+    });
+  });
+
   describe("when the request fails", () => {
     beforeEach(() => {
       fetchMockSandbox.get(
