@@ -1,6 +1,6 @@
 # React Google Forms Hooks
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Description
@@ -112,13 +112,16 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
-  <tr>
-    <td align="center"><a href="https://github.com/juliangsibecas"><img src="https://avatars.githubusercontent.com/u/25715495?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Julián Gómez Sibecas</b></sub></a><br /><a href="https://github.com/francisconeves97/react-google-forms-hooks/commits?author=juliangsibecas" title="Code">💻</a></td>
-    <td align="center"><a href="https://lumen.media"><img src="https://avatars.githubusercontent.com/u/489221?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dominic Garms</b></sub></a><br /><a href="#ideas-dohomi" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/francisconeves97/react-google-forms-hooks/commits?author=dohomi" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/kbalisnomo"><img src="https://avatars.githubusercontent.com/u/42983430?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kyle Philip Balisnomo</b></sub></a><br /><a href="https://github.com/francisconeves97/react-google-forms-hooks/commits?author=kbalisnomo" title="Code">💻</a> <a href="https://github.com/francisconeves97/react-google-forms-hooks/issues?q=author%3Akbalisnomo" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://github.com/mikemajara"><img src="https://avatars.githubusercontent.com/u/15649320?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mikemajara</b></sub></a><br /><a href="https://github.com/francisconeves97/react-google-forms-hooks/commits?author=mikemajara" title="Code">💻</a> <a href="#ideas-mikemajara" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://github.com/DanielOrtel"><img src="https://avatars.githubusercontent.com/u/19431728?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Daniel Ferenc Balogh</b></sub></a><br /><a href="https://github.com/francisconeves97/react-google-forms-hooks/issues?q=author%3ADanielOrtel" title="Bug reports">🐛</a></td>
-  </tr>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/juliangsibecas"><img src="https://avatars.githubusercontent.com/u/25715495?v=4?s=100" width="100px;" alt="Julián Gómez Sibecas"/><br /><sub><b>Julián Gómez Sibecas</b></sub></a><br /><a href="https://github.com/francisconeves97/react-google-forms-hooks/commits?author=juliangsibecas" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://lumen.media"><img src="https://avatars.githubusercontent.com/u/489221?v=4?s=100" width="100px;" alt="Dominic Garms"/><br /><sub><b>Dominic Garms</b></sub></a><br /><a href="#ideas-dohomi" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/francisconeves97/react-google-forms-hooks/commits?author=dohomi" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/kbalisnomo"><img src="https://avatars.githubusercontent.com/u/42983430?v=4?s=100" width="100px;" alt="Kyle Philip Balisnomo"/><br /><sub><b>Kyle Philip Balisnomo</b></sub></a><br /><a href="https://github.com/francisconeves97/react-google-forms-hooks/commits?author=kbalisnomo" title="Code">💻</a> <a href="https://github.com/francisconeves97/react-google-forms-hooks/issues?q=author%3Akbalisnomo" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/mikemajara"><img src="https://avatars.githubusercontent.com/u/15649320?v=4?s=100" width="100px;" alt="mikemajara"/><br /><sub><b>mikemajara</b></sub></a><br /><a href="https://github.com/francisconeves97/react-google-forms-hooks/commits?author=mikemajara" title="Code">💻</a> <a href="#ideas-mikemajara" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/DanielOrtel"><img src="https://avatars.githubusercontent.com/u/19431728?v=4?s=100" width="100px;" alt="Daniel Ferenc Balogh"/><br /><sub><b>Daniel Ferenc Balogh</b></sub></a><br /><a href="https://github.com/francisconeves97/react-google-forms-hooks/issues?q=author%3ADanielOrtel" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/bfrymire"><img src="https://avatars.githubusercontent.com/u/20096702?v=4?s=100" width="100px;" alt="Brent Frymire"/><br /><sub><b>Brent Frymire</b></sub></a><br /><a href="https://github.com/francisconeves97/react-google-forms-hooks/commits?author=bfrymire" title="Code">💻</a></td>
+    </tr>
+  </tbody>
 </table>
 
 <!-- markdownlint-restore -->
