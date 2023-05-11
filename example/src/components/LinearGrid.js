@@ -17,7 +17,7 @@ const ErrorLabel = styled.span`
   color: red;
 `
 
-export default function ShortAnswerInput({ id }) {
+export default function LinearGrid({ id }) {
   const { options, legend, error } = useLinearInput(id)
 
   return (
