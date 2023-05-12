@@ -6,7 +6,7 @@ import getFieldFromContext from './getFieldFromContext'
 
 export default (
   id: string,
-  fieldType: 'LONG_ANSWER' | 'SHORT_ANSWER'
+  fieldType: 'LONG_ANSWER' | 'SHORT_ANSWER' | 'DATE' | 'TIME',
 ): UseTextFieldReturn => {
   const context = useGoogleFormContext()
 
